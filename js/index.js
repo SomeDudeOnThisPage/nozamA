@@ -1,2 +1,3 @@
-let shadowHost = document.getElementById('item-list-shadow-host');
-let shadowRoot = host.createShadowRoot();
+let il_shadowHost = document.getElementById('item-list-shadow-host');
+
+// Add item frames

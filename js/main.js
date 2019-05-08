@@ -1,20 +1,4 @@
-// APPLICATION CONSTANTS
-const NOZAMA_API = 'http://api.qwertxzy.me';
+import ItemFrame from './elements/ItemFrame.js';
 
-// TODO: Move this into an api of sorts, for now we'll just use a table...
-let user = {};
-
-user.signIn = function()
-{
-
-};
-
-user.signOut = function()
-{
-
-};
-
-window.onload = function()
-{
-};
-
+// TODO: Index more custom elements here to be implementable on every page...
+customElements.define('item-preview-frame', ItemFrame);

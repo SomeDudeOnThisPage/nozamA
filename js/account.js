@@ -72,7 +72,7 @@ function register_action(ev)
   // Make call to the API
   $.ajax({
     type: 'POST',
-    url: NOZAMA_API + '/register',
+    url: NOZAMA.API + NOZAMA.REGISTER,
     data:
       {
         "email": elements[2].value,
@@ -115,7 +115,7 @@ function login_action(ev)
   // Make the call to the API
   $.ajax({
     type: 'POST',
-    url: NOZAMA_API + '/login',
+    url: NOZAMA.API + NOZAMA.LOGIN,
     data:
       {
         'email': elements[0].value,
