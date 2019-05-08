@@ -1,0 +1,21 @@
+/*
+  TODO: Footer should probably be a sticky footer
+  -> Reference: https://css-tricks.com/snippets/css/sticky-footer/
+ */
+
+.footer
+{
+  position: relative;
+  bottom: calc(100% - 1000px);
+  height: 55px;
+  width: 100%;
+
+  padding: 10px;
+  background-color: cornflowerblue;
+}
+
+.footer > a
+{
+  color: aliceblue;
+  font-size: 15px;
+}

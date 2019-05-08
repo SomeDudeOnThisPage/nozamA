@@ -1,0 +1,72 @@
+.header
+{
+  position: sticky;
+  top: 0;
+  height: 55px;
+  width: 100%;
+
+  padding: 10px;
+  background-color: cornflowerblue;
+}
+
+#nav-logo
+{
+  position: absolute;
+  width: 150px;
+  top: 50%;
+  transform: translateY(-40%);
+}
+
+#nav-search
+{
+  position: absolute;
+  width: calc(100% - /* (image size offset + 50 offset for the internal padding) times 2 */ 400px);
+  min-width: 400px;
+  left: 200px;
+  top: 50%;
+}
+
+#nav-account
+{
+  position: absolute;
+  width: 35px;
+  right: 125px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#nav-cart
+{
+  position: absolute;
+  width: 35px;
+  right: 75px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#nav-search>.search_bar
+{
+  position: absolute;
+  width: calc(100% - 40px);
+  transform: translateY(-50%);
+
+  padding: 8px;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+}
+
+#nav-search>.search_button
+{
+  position: absolute;
+  width: 40px;
+  left: calc(100% - 23px);
+  transform: translateY(-50%);
+
+  padding: 8px;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+}
