@@ -1,0 +1,45 @@
+.item-frame
+{
+  position: relative;
+
+  height: 175px;
+
+  margin: 10px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.item-frame > .item-frame-name
+{
+  color: black;
+  font-size: 30px;
+  text-decoration: none;
+
+  position: relative;
+  left: 135px;
+}
+
+.item-frame > .item-frame-name:visited
+{
+  color: black;
+}
+
+.item-frame > .item-frame-image > img
+{
+  padding: 5px;
+  position: absolute;
+  left: 0;
+  width: 125px;
+  height: 125px;
+
+  border: 1px solid black;
+}
+
+.item-frame > p
+{
+  font-size: 30px;
+
+  position: absolute;
+  bottom: -25px;
+  left: 10px;
+}

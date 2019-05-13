@@ -17,8 +17,31 @@ html, body
   height: 100%;
 }
 
+.item-list-container
+{
+  padding: 10px;
+  margin: 10px;
+  background: aliceblue;
+}
+
 #main-container
 {}
+
+#side-bar
+{
+  /* Max mach das mal  s c h ö n  */
+  width: 160px;
+  position: fixed;
+  top: 100px;
+  bottom: 100px;
+  left: 0;
+  background-color: cornflowerblue;
+}
+
+#content
+{
+  margin-left: 160px;
+}
 
 #content
 {}

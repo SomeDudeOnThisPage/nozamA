@@ -1,6 +1,7 @@
 // APPLICATION CONSTANTS
 const NOZAMA = {
-  API: 'http://api.qwertxzy.me',
+  API: 'https://api.qwertxzy.me',
   LOGIN: '/login',
-  REGISTER: '/register'
+  REGISTER: '/register',
+  ITEM: '/item'
 };

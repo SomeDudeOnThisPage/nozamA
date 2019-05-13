@@ -130,7 +130,8 @@ function login_action(ev)
     },
     success: function(data)
     {
-      setSessionID(data)
+      setSessionID(data);
+      window.location.href = "account.html";
     }
   });
 
