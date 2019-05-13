@@ -2,12 +2,9 @@ import Item from './Item.js';
 
 export default class ItemFrame extends HTMLElement
 {
-  constructor()
+  generate()
   {
-    super();
-
-    this.item = new Item(this.innerText || 1);
-    this.item.d_print();
+    this.item = new Item(this.innerText);
     this.href = 'item.html?item=' + this.innerText;
 
     // TODO: Get item name

@@ -4,13 +4,18 @@
         <meta charset="UTF-8">
         <title>Please don't sue me Jeff.</title>
 
-        <link rel="stylesheet" href="css/shared.css">
-
+        <!-- External Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="js/shared/ajax_common.js"></script>
 
-        <script type="module" src="js/main.js"></script>
+        <!-- Modules -->
+        <script type="module" src="js/shared/ajax_commons.js"></script>
+        <script type="module" src="js/helpers.js"></script>
+
+        <!-- Scripts -->
         <script src="js/index.js"></script>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="css/shared.css">
     </head>
 
     <body>
@@ -21,23 +26,7 @@
 
             <div id="content">
                 <div id="item-list-container" class="item-list-container">
-                    <div id="item-list-shadow-host">
-                        <item-preview-frame>1</item-preview-frame>
-                        <hr>
-                        <item-preview-frame>2</item-preview-frame>
-                        <hr>
-                        <item-preview-frame>1</item-preview-frame>
-                        <hr>
-                        <item-preview-frame>2</item-preview-frame>
-                        <hr>
-                        <item-preview-frame>1</item-preview-frame>
-                        <hr>
-                        <item-preview-frame>2</item-preview-frame>
-                        <hr>
-                        <item-preview-frame>1</item-preview-frame>
-                        <hr>
-                        <item-preview-frame>2</item-preview-frame>
-                    </div>
+                    <div id="item-list-shadow-host"></div>
                 </div>
             </div>
 

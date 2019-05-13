@@ -2,18 +2,30 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>C_RESULTS</title>
+        <title>Results</title>
 
+        <!-- External Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <!-- Modules -->
+        <script type="module" src="js/shared/ajax_commons.js"></script>
+        <script type="module" src="js/helpers.js"></script>
+
+        <!-- Scripts -->
+        <script src="js/results.js"></script>
+
+        <!-- Stylesheets -->
         <link rel="stylesheet" href="css/shared.css">
     </head>
 
     <body>
         <div id="main-container">
             <script src="js/shared/header.js"></script>
-            <script src="js/main.js"></script>
 
             <div id="content">
-                <p>The content you were looking for is not here. Shoo.</p>
+                <div id="item-list-container" class="item-list-container">
+                    <div id="item-list-shadow-host"></div>
+                </div>
             </div>
 
             <script src="js/shared/footer.js"></script>

@@ -5,11 +5,14 @@
 
 function subm(ev)
 {
-  // TODO: Make this actually fire a query... otherwise it's kinda useless.
   ev.preventDefault();
   ev.stopPropagation();
 
-  window.location.href = "results.html"; // append searches to here
+  // Get search results and split
+  let elements = document.getElementById('header_search').elements;
+
+  let search = (elements[0].value).replace(/ /g,'+');
+  window.location.href = 'results.html?search=' + search;
 
   return false;
 }
