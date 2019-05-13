@@ -13,6 +13,7 @@ window.onload = function()
 
   let pages = /* Total amount of search results divided by PAGE_ITEMS rounded down, but just PAGE_ITEMS for now... */ PAGE_ITEMS;
 
+  itemList.createButtons(3);
   itemList.populateRandom(5);
   il_shadowHost.appendChild(itemList);
 };
