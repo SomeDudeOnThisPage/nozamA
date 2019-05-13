@@ -30,7 +30,8 @@ html, body
 #side-bar
 {
   /* Max mach das mal  s c h ö n  */
-  width: 160px;
+  width: 1px;
+  height: 1px;
   position: fixed;
   top: 100px;
   bottom: 100px;
@@ -40,7 +41,7 @@ html, body
 
 #content
 {
-  margin-left: 160px;
+
 }
 
 #content

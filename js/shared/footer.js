@@ -5,6 +5,7 @@
 
 export default function()
 {
+  console.log('soos');
   window.addStylesheet('css/footer.css');
 
   let footer = document.createElement('div');

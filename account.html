@@ -4,12 +4,22 @@
         <meta charset="UTF-8">
         <title>vartitle</title>
 
+        <script type="module" src="js/shared/ajax_commons.js"></script>
+        <script type="module" src="js/helpers.js"></script>
+        <script src="js/accountmgmt.js"></script>
+
         <link rel="stylesheet" href="css/shared.css">
     </head>
 
     <body>
         <div id="main-container">
-            <div id="content"></div>
+            <div id="content">
+                <div id="account-info">
+                    <form id="account-info-form" method="post" onsubmit="return register_action(event)">
+                    <button id="account-info-edit">change</button>
+                </div>
+                <div id="account-history">Account history here...</div>
+            </div>
         </div>
     </body>
 </html>

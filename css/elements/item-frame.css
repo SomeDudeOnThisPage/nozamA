@@ -2,9 +2,9 @@
 {
   position: relative;
 
+  width: 99%;
   height: 175px;
 
-  margin: 10px;
   padding: 10px;
   z-index: 1;
 }

@@ -37,3 +37,21 @@ window.addStylesheet = function(path)
   stylesheet.setAttribute('href', path);
   document.head.appendChild(stylesheet);
 };
+
+/**
+ * Gets the value of a cookie.
+ * @param name The name of the cookie.
+ */
+window.getCookie = function(name)
+{
+  let strings = document.cookie.split(/[=;]/);
+
+  // Find our cookie (if applicable)
+  let cookie = strings.findIndex(function(cname) { return cname === name; });
+  if (cookie && strings[cookie + 1] != null)
+  {
+    return strings[cookie + 1];
+  }
+
+  return false;
+};

@@ -4,7 +4,7 @@
   position: sticky;
   top: 0;
   height: 55px;
-  width: 100%;
+  width: 99%;
 
   padding: 10px;
   background-color: cornflowerblue;
@@ -21,26 +21,27 @@
 #nav-search
 {
   position: absolute;
-  width: calc(100% - /* (image size offset + 50 offset for the internal padding) times 2 */ 400px);
+  width: calc(100% - /* (image size offset + 50 offset for the internal padding) times 2 */ 450px);
   min-width: 400px;
   left: 200px;
   top: 50%;
 }
 
-#nav-account
+#nav-select
 {
   position: absolute;
-  width: 35px;
-  right: 125px;
+  width: 130px;
+  height: 30px;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-#nav-cart
+#nav-login
 {
   position: absolute;
-  width: 35px;
-  right: 75px;
+  width: 200px;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
 }

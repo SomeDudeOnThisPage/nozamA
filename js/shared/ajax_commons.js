@@ -167,6 +167,11 @@ export default class QueryManager
       },
     });
   }
+
+  static getUserData(sessionID)
+  {
+    return true;
+  }
 }
 
 
