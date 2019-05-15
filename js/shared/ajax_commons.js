@@ -4,13 +4,16 @@ const NOZAMA = {
   LOGIN: '/login',
   REGISTER: '/register',
   ITEM: '/item',
-  RANDOM: '/random'
+  RANDOM: '/random',
+  USER: '/profile',
+  VENDOR: '/vendor'
 };
 
 // ERROR MESSAGES
 const emsg = {
   0: {redirect: 500},
   400: {msg: 'The provided credentials were incorrect', fatal: false},
+  401: {msg: 'You are unauthorized to continue', fatal: false},
   404: {msg: '', fatal: false},
   409: {msg: 'The provided E-Mail address already exists', fatal: false},
   500: {msg: 'Internal Server Error', fatal: true},
@@ -58,7 +61,7 @@ export default class QueryManager
       },
       error: function(xhr, status, error)
       {
-        cerror(xhr, status, error);
+        cerror(xhr, null);
       }
     });
 
@@ -96,7 +99,7 @@ export default class QueryManager
       },
       error: function(xhr, status, error)
       {
-        cerror(xhr, status, error);
+        cerror(xhr, null);
       }
     });
 
@@ -170,7 +173,46 @@ export default class QueryManager
 
   static getUserData(sessionID)
   {
-    return true;
+    let data = {};
+
+    $.ajax({
+      type: 'GET',
+      url: NOZAMA.API + NOZAMA.USER + '/' + sessionID,
+      dataType: 'json',
+      async: false, // This is VERY bad, but in order to load the objects on the page we NEED the data first...
+      success: function(result)
+      {
+        data = result;
+      },
+      error: function(xhr, status, error)
+      {
+        cerror(xhr, function() {});
+      }
+    });
+
+    return data || false;
+  }
+
+  static getVendorData(vendorID)
+  {
+    let data = {};
+
+    $.ajax({
+      type: 'GET',
+      url: NOZAMA.API + NOZAMA.VENDOR + '/' + vendorID,
+      dataType: 'json',
+      async: false, // This is VERY bad, but in order to load the objects on the page we NEED the data first...
+      success: function(result)
+      {
+        data = result;
+      },
+      error: function(xhr, status, error)
+      {
+        cerror(xhr, function() {});
+      }
+    });
+
+    return data || false;
   }
 }
 

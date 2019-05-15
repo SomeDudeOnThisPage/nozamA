@@ -2,25 +2,13 @@
   Generic header writer to implement on all pages.
   This header is created once while the page loads -> document.write is sufficient here.
  */
-
+const VENDOR_SPECIFIC = 1;
 const options_on = [];
   options_on[0] = {value : 'account.html#account-info', innerText : 'Account Information'};
   options_on[1] = {value : 'account.html#account-history', innerText : 'Payment History'};
   options_on[2] = {value : 'cart.html', innerText : 'Shopping Cart'};
-
-function submit_form(ev)
-{
-  ev.preventDefault();
-  ev.stopPropagation();
-
-  // Get search results and split
-  let elements = document.getElementById('header_search').elements;
-
-  let search = (elements[0].value).replace(/ /g,'+');
-  window.location.href = 'results.html?search=' + search;
-
-  return false;
-}
+  options_on[3] = {value : 'account.html?logout=yes', innerText : 'Log Out'};
+  options_on[4] = {value : 'vendor.html', innerText : 'Vendor Management'};
 
 /**
  * Creates the nozamA header.
@@ -34,8 +22,7 @@ export default function()
   header.className = 'header';
 
   // Check if we have a valid session and set the headers' links accordingly
-  let cookie = window.getCookie('sessionID');
-  if (cookie !== '' && window.QueryManager.getUserData(cookie))
+  if (window.user)
   {
     // Create dropdown menu containing account links
     let dropdown = document.createElement('select');
@@ -48,7 +35,9 @@ export default function()
     dropdown.appendChild(dropdown_ph);
 
     // Generate our links
-    for (let i = 0; i < options_on.length; i++)
+    let isvendor = VENDOR_SPECIFIC;
+    if (window.user['belongs_to_vendor'] !== null) { isvendor = 0; }
+    for (let i = 0; i < options_on.length - isvendor; i++)
     {
       let option = document.createElement('option');
       option.setAttribute('value', options_on[i].value);
@@ -56,7 +45,6 @@ export default function()
       dropdown.appendChild(option);
     }
 
-    // DONT FORGET TO ADD IT TO THE DOM OMG I SPEND LIKE 30 MIN SEARCHING FOR THE ERROR...
     header.appendChild(dropdown);
   }
   else
@@ -73,7 +61,7 @@ export default function()
   header.innerHTML += `
     <a href="index.html"><img id="nav-logo" src="resources/img/logo.png"></a>
     
-    <form id="header_search" method="post" onsubmit="return submit_form(event)">
+    <form id="header_search" method="post">
         <div id="nav-search">
             <input id="nav-searchbar" name="nav_searchbar" class="search_bar" type="text" placeholder="Search...">
             <button id="search-button" class="search_button" type="submit">Q</button>
@@ -83,11 +71,23 @@ export default function()
 
   // Attach event handlers
   // Doing this AFTER adding the header to the DOM, otherwise the events won't fire...
-  if (document.getElementById('nav-select') !== null)
+  document.getElementById('header_search').onsubmit = (ev => {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    // Get search results and split
+    let elements = document.getElementById('header_search').elements;
+
+    let search = (elements[0].value).replace(/ /g,'+');
+    window.location.href = 'results.html?search=' + search;
+
+    return false;
+  });
+
+  if (document.getElementById('nav-select') !== null) // Check if our element isn't null otherwise we get an error...
   {
-    document.getElementById('nav-select').onchange = function()
-    {
+    document.getElementById('nav-select').onchange = (ev => {
       document.location.href = document.getElementById('nav-select').value;
-    };
+    });
   }
 };

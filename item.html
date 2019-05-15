@@ -7,16 +7,39 @@
         <link rel="stylesheet" href="css/shared.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="js/shared/ajax_commons.js"></script>
 
+        <script type="module" src="js/shared/ajax_commons.js"></script>
         <script type="module" src="js/helpers.js"></script>
+
         <script src="js/item.js"></script>
     </head>
 
     <body>
         <div id="main-container">
-            <div id="side-bar"></div>
-            <div id="content"></div>
+            <div id="content">
+                <div id="item-data">
+                    <img id="item-image-main" src="" alt="">
+                    <img id="item-image-other1" src="" alt="">
+                    <img id="item-image-other2" src="" alt="">
+                    <img id="item-image-other3" src="" alt="">
+                    <p id="item-name"></p>
+                    <p id="item-description"></p>
+                    <p id="item-price"></p>
+                </div>
+
+                <div id="item-details">
+                    <table>
+                        <tr>
+                            <td>Sold By:</td>
+                            <td id="item-vendor"></td>
+                        </tr>
+                        <tr>
+                            <td>Manufactured By:</td>
+                            <td id="item-manufacturer"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </body>
 </html>

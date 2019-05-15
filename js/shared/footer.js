@@ -5,7 +5,6 @@
 
 export default function()
 {
-  console.log('soos');
   window.addStylesheet('css/footer.css');
 
   let footer = document.createElement('div');
@@ -14,6 +13,7 @@ export default function()
   // I'm lazy
   footer.innerHTML = `
       <a id="href-faq" href="faq.html">FAQ</a>
+      <a id="href-become-vendor" href="faq.html#become-a-vendor">Become a vendor</a>
   `;
 
   document.getElementById('main-container').appendChild(footer);

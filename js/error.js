@@ -9,6 +9,7 @@ window.onload = function()
   document.getElementById('error-number').innerText = id;
   document.getElementById('error-message').innerText = msg;
 
+  // This code is awful but I wrote it at like 2 am so whatever
   document.getElementById('secret').onclick = function()
   {
     if (!secret_on)

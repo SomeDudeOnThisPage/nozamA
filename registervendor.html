@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Your Shop</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <script type="module" src="js/shared/ajax_commons.js"></script>
+        <script type="module" src="js/helpers.js"></script>
+
+        <script src="js/register_vendor.js"></script>
+
+        <link rel="stylesheet" href="css/shared.css">
+    </head>
+
+    <body>
+    <div id="main-container">
+        <div id="content">
+            <form id="register-vendor" method="post" onsubmit="return register_action(event)">
+                <p>Please fill out the needed information to create your shop.</p>
+                <p id="register-error" class="form-error"></p>
+
+                <label for="register-vendor-name" class="form-label">Shop Name:</label>
+                <input type="text" id="register-vendor-name" class="form-input-text" required>
+                <br>
+
+                <label for="register-vendor-description" class="form-label">Shop Description:</label>
+                <textarea id="register-vendor-description" class="form-input-text-large" required></textarea>
+                <br>
+
+                <label for="register-vendor-image" class="form-label">Shop Image:</label>
+                <input type="file" id="register-vendor-image" class="form-input-image" required accept="image/*">
+                <br>
+
+                <input type="submit" value="Register!" class="form-submit">
+                <br>
+            </form>
+        </div>
+    </div>
+    </body>
+</html>
