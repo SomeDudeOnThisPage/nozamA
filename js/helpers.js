@@ -1,6 +1,7 @@
 import ItemFrame from './elements/ItemFrame.js';
 import ItemList from './elements/ItemList.js';
 import Item from './elements/Item.js';
+import ItemImageDisplay from './elements/ItemImageDisplay.js';
 import QueryManager from './shared/ajax_commons.js';
 import header from './shared/header.js';
 import footer from './shared/footer.js';
@@ -22,6 +23,7 @@ window.user = false;
 // DEFINE GLOBAL CUSTOM ELEMENTS
 customElements.define('item-preview-frame', ItemFrame);
 customElements.define('item-list', ItemList);
+customElements.define('item-image-display', ItemImageDisplay);
 
 // CREATE HEADER AND FOOTER
 // Use an event listener so our main script can use window.onload without mess-ups.

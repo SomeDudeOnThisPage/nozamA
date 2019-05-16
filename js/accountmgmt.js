@@ -19,6 +19,14 @@ window.onload = function()
     window.logout();
   }
 
+  // Check if user has changed his pw
+  let pw_changed = new URL(window.location.href).searchParams.get('password_changed');
+  if (pw_changed === 'yes')
+  {
+    // TODO: Make this nice
+    alert('Your password has changed');
+  }
+
   // Get User Information and fill in the fields
   let elements = Array.from(document.getElementById('account-info-form').elements);
 

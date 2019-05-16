@@ -9,6 +9,10 @@ window.onload = function()
   item = new window.Item(id).data;
   vendor = window.QueryManager.getVendorData(item['vendor_id']);
 
+  let iidisplay = document.getElementById('item-images');
+  iidisplay.generate(['resources/img/img_missing.png', 'resources/img/img_missing.png']);
+
+  // TODO: Unfuck this
   // Populate our elements with the required data
   document.getElementById('item-name').innerText = item['name'];
   document.getElementById('item-description').innerText = item['description'];
