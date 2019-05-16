@@ -18,20 +18,13 @@
         <div id="main-container">
             <div id="content">
                 <div id="item-data">
+                    <item-image-display id="item-images"></item-image-display>
                     <p id="item-name"></p>
-                    <!-- TODO: <item-image-viewer> custom element
-                    <item-image-viewer>
-                        <img src...>
-                        <img src...>
-                        ...
-                    </item-image-viewer>
-                    -->
                     <p id="item-description"></p>
                     <p id="item-price"></p>
                 </div>
 
                 <div id="item-details">
-                    <p>Item Details:</p>
                     <table>
                         <tr>
                             <td>Sold By:</td>
@@ -42,17 +35,6 @@
                             <td id="item-manufacturer"></td>
                         </tr>
                     </table>
-                </div>
-
-                <div id="item-purchase">
-                    <form id="item-grab" method="post" onsubmit="return grab_item(event)">
-                        <label for="item-amount" class="form-label">Amount:</label>
-                        <input type="number" value="1" min="1" max="99" id="item-amount" class="form-input-text">
-                        <br>
-
-                        <input type="submit" value="Add to cart!" class="form-submit">
-                        <br>
-                    </form>
                 </div>
             </div>
         </div>

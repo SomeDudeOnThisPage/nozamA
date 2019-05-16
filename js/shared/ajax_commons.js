@@ -6,7 +6,8 @@ const NOZAMA = {
   ITEM: '/item',
   RANDOM: '/random',
   USER: '/profile',
-  VENDOR: '/vendor'
+  VENDOR: '/vendor',
+  CHANGE_PASSWORD: '/change_password'
 };
 
 // ERROR MESSAGES
@@ -167,6 +168,27 @@ export default class QueryManager
           document.getElementById("regem").style.display = "inline";
           document.getElementById("register-error").innerText = emsg[xhr.status].msg;
         });
+      },
+    });
+  }
+
+  static changePassword(sessionID, password)
+  {
+    $.ajax({
+      type: 'POST',
+      url: NOZAMA.API + NOZAMA.CHANGE_PASSWORD + '/' + sessionID,
+      data: { 'password' : password },
+      success: function()
+      {
+        // href to account page
+        window.location.href = 'account.html?password_changed=yes';
+      },
+      error: function(xhr, _1, _2)
+      {
+        cerror(xhr, function()
+        {
+          document.getElementById('error-message').innerText = xhr.status + ' ' + esmg[xhr.status].msg;
+        })
       },
     });
   }
