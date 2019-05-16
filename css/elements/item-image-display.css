@@ -1,0 +1,20 @@
+#item-image-display-main-image
+{
+    position: relative;
+    min-height: 250px;
+    width: 250px;
+    height: auto;
+}
+
+.item-image-display-button
+{
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.item-image-display-button > img
+{
+    width: 100px;
+    height: auto;
+}

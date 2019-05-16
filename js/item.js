@@ -8,9 +8,10 @@ window.onload = function()
   // Create our item
   item = new window.Item(id).data;
   vendor = window.QueryManager.getVendorData(item['vendor_id']);
-
+  
   let iidisplay = document.getElementById('item-images');
-  iidisplay.generate(['resources/img/img_missing.png', 'resources/img/img_missing.png']);
+  iidisplay.generate(item['images']);
+
 
   // TODO: Unfuck this
   // Populate our elements with the required data
