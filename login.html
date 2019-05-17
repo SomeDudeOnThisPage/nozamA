@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Hello World</title>
+        <title>Sign in to Nozama</title>
 
         <link rel="stylesheet" href="css/shared.css">
-
+        <link rel="stylesheet" href="css/login.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
         <script type="module" src="js/shared/ajax_commons.js"></script>
@@ -16,6 +16,7 @@
     <body>
         <div id="main-container">
             <form id="login" method="post" onsubmit="return login_action(event)">
+                <p id="login-disclaimer" >Sign in</p>
                 <p id="register-error" class="form-error"></p>
 
                 <label for="login-main-address" class="form-label">E-Mail Address:</label>
@@ -26,11 +27,11 @@
                 <input type="password" id="login-main-password" class="form-input-text">
                 <br>
 
-                <input type="submit" value="Login!" class="form-submit">
-                <br>
+                <input type="submit" value="Login" class="form-submit">
+                
             </form>
 
-            <p id="login-register">Don't have an account yet? <a href="register.html">Sign Up!</a></p>
+            <p id="login-register">Don't have an account yet? <a href="register.html">Sign Up</a></p>
         </div>
     </body>
 </html>
