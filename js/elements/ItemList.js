@@ -3,8 +3,7 @@ export default class ItemList extends HTMLElement
   static generateItemPreviewFrame(id)
   {
     let frame = document.createElement('item-preview-frame');
-    frame.innerHTML = id;
-    frame.generate();
+    frame.setItem(id);
     return frame;
   }
 
@@ -13,7 +12,12 @@ export default class ItemList extends HTMLElement
    */
   forward()
   {
-
+    if ((this.page + 1) * this.pageItems < this.items.length)
+    {
+      document.getElementById('end-of-search').style.display = 'none';
+      this.page += 1;
+      this.populatePage();
+    }
   }
 
   /**
@@ -21,30 +25,60 @@ export default class ItemList extends HTMLElement
    */
   back()
   {
+    document.getElementById('end-of-search').style.display = 'none';
 
+    if (this.page > 0)
+    {
+      this.page = Math.max(this.page - 1, 0);
+      this.populatePage();
+    }
   }
 
   populatePage()
   {
+    let self = this;
 
+    // Clear items
+    this.itemFrames.forEach(function(element)
+    {
+      self.removeChild(element);
+    });
+    this.itemFrames = [];
+
+    // TODO: too
+    //let ids = window.QueryManager.getRandomItemSequence(this.pageItems);
+
+
+    for (let i = this.page * this.pageItems; i < this.page * this.pageItems + this.pageItems; i++)
+    {
+      if (i < this.items.length)
+      {
+        this.itemFrames[i] = ItemList.generateItemPreviewFrame(this.items[i]);
+        this.appendChild(this.itemFrames[i]);
+      }
+      else
+      {
+        document.getElementById('end-of-search').style.display = 'inline';
+      }
+    }
   }
 
   /**
    * Populates the item list with random (!) items
    * @see https://github.com/qwertxzy/nozama-api#get-n--random-items
    */
-  populateRandom(pageItems)
+  populateRandom()
   {
     // Clear items
-    this.items = [];
+    this.itemFrames = [];
 
-    let ids = window.QueryManager.getRandomItemSequence(pageItems);
+    let ids = window.QueryManager.getRandomItemSequence(this.pageItems);
 
     // Always start at 0 in this case, as there are no pages.
-    for (let i = 0; i < pageItems; i++)
+    for (let i = 0; i < this.pageItems; i++)
     {
-      this.items[i] = ItemList.generateItemPreviewFrame(ids[i]);
-      this.appendChild(this.items[i]);
+      this.itemFrames[i] = ItemList.generateItemPreviewFrame(ids[i]);
+      this.appendChild(this.itemFrames[i]);
     }
   }
 
@@ -68,7 +102,7 @@ export default class ItemList extends HTMLElement
     let sb1 = document.createElement('button');
     sb1.innerText = '<<';
     sb1.className = 'item-list-button';
-    sb1.onclick = function() { self.page = 0; };
+    sb1.onclick = function() { self.back(); };
     buttonContainer.appendChild(sb1);
 
     // Create buttons in DOM
@@ -90,15 +124,17 @@ export default class ItemList extends HTMLElement
     let sb2 = document.createElement('button');
     sb2.innerText = '>>';
     sb2.className = 'item-list-button';
-    sb2.onclick = function() { console.log('Leo please implement searching.'); };
+    sb2.onclick = function() { self.forward(); };
     buttonContainer.appendChild(sb2);
   }
 
   constructor()
   {
     super();
+    this.itemFrames = [];
+    this.items = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3]; // test data
     this.page = 0;
-    this.items = [];
+    this.pageItems = 5;
 
     // Check if we already appended a stylesheet to the current DOM
     if (!document.head.contains(document.getElementById('item-list-stylesheet')))

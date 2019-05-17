@@ -47,10 +47,8 @@ export default class QueryManager
   /**
    * Gets item data from the database
    */
-  static getItem(id)
+  static getItem(id, frame)
   {
-    let data = {};
-
     $.ajax({
       type: 'GET',
       url: NOZAMA.API + NOZAMA.ITEM + '/' + id,
@@ -58,15 +56,13 @@ export default class QueryManager
       async: false, // This is VERY bad, but in order to load the objects on the page we NEED the data first...
       success: function(result)
       {
-        data = result;
+        frame.generate(result);
       },
       error: function(xhr, status, error)
       {
         cerror(xhr, null);
       }
     });
-
-    return data;
   }
 
   /**
