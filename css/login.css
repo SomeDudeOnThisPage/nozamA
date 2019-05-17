@@ -1,0 +1,53 @@
+#main-container{
+    border: 1px solid gray;
+    border-radius: 10px;    
+    width: 30%;
+    margin: 0 auto;
+}   
+
+
+input[type=submit]{
+    font-weight: 500;
+    width: 80%;
+    background-image: linear-gradient(#F5DA81, #DBA901);
+    border-radius: 2px;
+}
+
+
+body {
+    text-align: left;
+    font-family: sans-serif;
+}
+
+
+label, input{
+    font-size: 14px;
+    margin-left: 10%;
+    display: block;
+    height: auto;
+    font-weight: normal;
+}
+
+input{
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+
+input[type=text]{
+    width: 80%;
+}
+
+input[type=password]{
+    width: 80%;
+}
+
+#login-disclaimer{
+    margin-left: 10%;
+    font-weight: bold;
+}
+
+#login-register{
+    margin-left: 10%;
+    font-size: 14px;
+}
