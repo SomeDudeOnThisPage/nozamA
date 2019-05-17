@@ -63,6 +63,16 @@ export default class ItemList extends HTMLElement
     }
   }
 
+  generate(data)
+  {
+    // Always start at 0 in this case, as there are no pages.
+    for (let i = 0; i < this.pageItems; i++)
+    {
+      this.itemFrames[i] = ItemList.generateItemPreviewFrame(data[i]);
+      this.appendChild(this.itemFrames[i]);
+    }
+  }
+
   /**
    * Populates the item list with random (!) items
    * @see https://github.com/qwertxzy/nozama-api#get-n--random-items
@@ -71,15 +81,7 @@ export default class ItemList extends HTMLElement
   {
     // Clear items
     this.itemFrames = [];
-
-    let ids = window.QueryManager.getRandomItemSequence(this.pageItems);
-
-    // Always start at 0 in this case, as there are no pages.
-    for (let i = 0; i < this.pageItems; i++)
-    {
-      this.itemFrames[i] = ItemList.generateItemPreviewFrame(ids[i]);
-      this.appendChild(this.itemFrames[i]);
-    }
+    window.QueryManager.get('RANDOM', this.pageItems, this);
   }
 
   /**

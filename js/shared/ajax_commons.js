@@ -45,18 +45,28 @@ const cerror = function(xhr, e_callback)
 export default class QueryManager
 {
   /**
-   * Gets item data from the database
+   * Method to asynchronously retrieve data from our API.
+   * TODO: Add custom error callback.
+   * @param d_type The type of data to be requested from the API.
+   * @param id The id of the data to be requested.
+   * @param callback The callback to be executed. In case callback is an object, case object.generate will be executed.
    */
-  static getItem(id, frame)
+  static get(d_type, id, callback)
   {
     $.ajax({
       type: 'GET',
-      url: NOZAMA.API + NOZAMA.ITEM + '/' + id,
+      url: NOZAMA.API + NOZAMA[d_type] + '/' + id,
       dataType: 'json',
-      async: false, // This is VERY bad, but in order to load the objects on the page we NEED the data first...
       success: function(result)
       {
-        frame.generate(result);
+        if (typeof callback === 'object')
+        {
+          callback.generate(result);
+        }
+        else
+        {
+          callback(result);
+        }
       },
       error: function(xhr, status, error)
       {
@@ -71,10 +81,6 @@ export default class QueryManager
    */
   static getItemListBySearch(str)
   {
-    let data = {};
-
-    // THIS IS NOT IMPLEMENTED YET! - RETURN EMPTY DATA!
-    return data;
   }
 
   /**
@@ -197,29 +203,6 @@ export default class QueryManager
       type: 'GET',
       url: NOZAMA.API + NOZAMA.USER + '/' + sessionID,
       dataType: 'json',
-      async: false, // This is VERY bad, but in order to load the objects on the page we NEED the data first...
-      success: function(result)
-      {
-        data = result;
-      },
-      error: function(xhr, status, error)
-      {
-        cerror(xhr, function() {});
-      }
-    });
-
-    return data || false;
-  }
-
-  static getVendorData(vendorID)
-  {
-    let data = {};
-
-    $.ajax({
-      type: 'GET',
-      url: NOZAMA.API + NOZAMA.VENDOR + '/' + vendorID,
-      dataType: 'json',
-      async: false, // This is VERY bad, but in order to load the objects on the page we NEED the data first...
       success: function(result)
       {
         data = result;

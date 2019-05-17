@@ -21,7 +21,7 @@ export default class ItemFrame extends HTMLElement
       </div>`;
 
     // Fetch item data from the server
-    window.QueryManager.getItem(id, this)
+    window.QueryManager.get('ITEM', id, this)
   }
 
   /**
@@ -47,7 +47,6 @@ export default class ItemFrame extends HTMLElement
     super();
 
     // Create class attributes
-    this.data = {};
     this.attachShadow({mode: 'open'});
   }
 }

@@ -22,18 +22,23 @@ window.user = false;
 
 // CREATE HEADER AND FOOTER
 // Use an event listener so our main script can use window.onload without mess-ups.
-document.addEventListener("DOMContentLoaded", function()
+window.onload = function()
 {
   // Preload the user data
   if (getCookie('sessionID'))
   {
     // Get User Data
-    window.user = QueryManager.getUserData(getCookie('sessionID'));
-  }
+    QueryManager.get('USER', getCookie('sessionID'), function(result)
+    {
+      window.user = result;
 
-  header();
-  footer();
-});
+      header();
+      footer();
+      let event = new CustomEvent("onuserloaded");
+      document.dispatchEvent(event);
+    });
+  }
+};
 
 // DEFINE COMMON FUNCTIONS
 /**

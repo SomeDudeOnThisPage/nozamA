@@ -9,7 +9,7 @@ let user_element_translation = {
   'vendor' : 'belongs_to_vendor'
 };
 
-window.onload = function()
+document.addEventListener("onuserloaded", function(e)
 {
   // Before we do anything, check if the user wants to logout...
   let logout = new URL(window.location.href).searchParams.get('logout');
@@ -63,4 +63,4 @@ window.onload = function()
       editButton.innerText = 'Edit Information';
     }
   };
-};
+});
