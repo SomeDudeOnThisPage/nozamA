@@ -26,7 +26,7 @@ export default class ItemFrame extends HTMLElement
 
   /**
    * Asynchronous callback to generate the frame after the items data has been loaded
-   * @param data
+   * @param data The item data downloaded from the server.
    */
   generate(data)
   {

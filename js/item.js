@@ -13,7 +13,7 @@ function generate(item, vendor)
   document.getElementById('item-manufacturer').innerText = item['manufacturer'];
 }
 
-document.addEventListener("onuserloaded", function(e)
+document.addEventListener("ondataloaded", function(e)
 {
   let url = new URL(window.location.href);
   let id = url.searchParams.get('item');

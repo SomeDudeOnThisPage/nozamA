@@ -9,7 +9,7 @@ let user_element_translation = {
   'vendor' : 'belongs_to_vendor'
 };
 
-document.addEventListener("onuserloaded", function(e)
+document.addEventListener("ondataloaded", function(e)
 {
   // Before we do anything, check if the user wants to logout...
   let logout = new URL(window.location.href).searchParams.get('logout');

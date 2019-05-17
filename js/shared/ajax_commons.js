@@ -46,7 +46,6 @@ export default class QueryManager
 {
   /**
    * Method to asynchronously retrieve data from our API.
-   * TODO: Add custom error callback.
    * @param d_type The type of data to be requested from the API.
    * @param id The id of the data to be requested.
    * @param callback The callback to be executed. In case callback is an object, case object.generate will be executed.
@@ -68,45 +67,11 @@ export default class QueryManager
           callback(result);
         }
       },
-      error: function(xhr, status, error)
+      error: function(xhr, _1, _2)
       {
         cerror(xhr, null);
       }
     });
-  }
-
-  /**
-   * Returns a list of item id's determined by the input search string.
-   * @param str The search string.
-   */
-  static getItemListBySearch(str)
-  {
-  }
-
-  /**
-   * Returns n random item IDs.
-   * @param num The amount of items needed.
-   */
-  static getRandomItemSequence(num)
-  {
-    let data = {};
-
-    $.ajax({
-      type: 'GET',
-      url: NOZAMA.API + NOZAMA.RANDOM + '/' + num,
-      dataType: 'json',
-      async: false, // This is VERY bad, but in order to load the objects on the page we NEED the data first...
-      success: function(result)
-      {
-        data = result;
-      },
-      error: function(xhr, status, error)
-      {
-        cerror(xhr, null);
-      }
-    });
-
-    return data;
   }
 
   /**
@@ -157,7 +122,6 @@ export default class QueryManager
         },
       success: function()
       {
-        // TODO: Sign in automatically, Append params to html here...
         window.location.href = "account.html";
       },
       error: function(xhr, _1, _2)
@@ -193,27 +157,6 @@ export default class QueryManager
         })
       },
     });
-  }
-
-  static getUserData(sessionID)
-  {
-    let data = {};
-
-    $.ajax({
-      type: 'GET',
-      url: NOZAMA.API + NOZAMA.USER + '/' + sessionID,
-      dataType: 'json',
-      success: function(result)
-      {
-        data = result;
-      },
-      error: function(xhr, status, error)
-      {
-        cerror(xhr, function() {});
-      }
-    });
-
-    return data || false;
   }
 }
 

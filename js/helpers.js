@@ -20,23 +20,29 @@ window.Item = Item;
 window.QueryManager = QueryManager;
 window.user = false;
 
-// CREATE HEADER AND FOOTER
-// Use an event listener so our main script can use window.onload without mess-ups.
+// MAIN FUNCTION HOOK
 window.onload = function()
 {
-  // Preload the user data
+  let dispatch = function()
+  {
+    header();
+    footer();
+    document.dispatchEvent(new CustomEvent("ondataloaded"));
+  };
+
   if (getCookie('sessionID'))
   {
-    // Get User Data
+    // If we have a session wait for the user data to be loaded.
     QueryManager.get('USER', getCookie('sessionID'), function(result)
     {
       window.user = result;
-
-      header();
-      footer();
-      let event = new CustomEvent("onuserloaded");
-      document.dispatchEvent(event);
+      dispatch();
     });
+  }
+  else
+  {
+    // If there is no user just load the page;
+    dispatch();
   }
 };
 
