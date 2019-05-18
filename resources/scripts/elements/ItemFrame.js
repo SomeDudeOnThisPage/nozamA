@@ -16,7 +16,7 @@ export default class ItemFrame extends HTMLElement
     // Reset inner HTML and make the loader visible
     this.shadowRoot.innerHTML = `
       <div class="item-frame">
-        <link rel="stylesheet" href="./css/elements/item-frame.css">
+        <link rel="stylesheet" href="../../css/elements/item-frame.css">
         <div class="loader"></div>
       </div>`;
 
@@ -35,7 +35,7 @@ export default class ItemFrame extends HTMLElement
 
     this.shadowRoot.innerHTML = `
       <div class="item-frame">
-        <link rel="stylesheet" href="css/elements/item-frame.css">
+        <link rel="stylesheet" href="../../css/elements/item-frame.css">
         <a href="` + href + `" class="item-frame-name">` + data['name'] + `</a>
         <a href ="` + href + `" class="item-frame-image"><img src="resources/img/img_missing.png" alt=""></a>
         <p>` + price + `</p>
