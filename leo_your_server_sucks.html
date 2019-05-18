@@ -4,26 +4,33 @@
         <meta charset="UTF-8">
         <title>Leo fix your shit</title>
 
-        <link rel="stylesheet" href="resources/css/shared.css">
-
+        <!-- External Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+        <!-- Modules -->
+        <script type="module" src="resources/scripts/shared/ajax_commons.js"></script>
         <script type="module" src="resources/scripts/helpers.js"></script>
+
+        <!-- Scripts -->
         <script src="resources/scripts/error.js"></script>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="resources/css/shared.css">
     </head>
 
     <body>
         <div id="main-container">
+            <div id="content">
+                <audio id="dun-dun-dun-dun-da-da-da" preload="auto" loop>
+                    <source src="resources/sound/funky.mp3">
+                </audio>
 
-        <audio id="dun-dun-dun-dun-da-da-da" preload="auto" loop>
-                <source src="resources/sound/funky.mp3">
-            </audio>
+                <p id="error-number"></p>
+                <p id="error-message"></p>
 
-            <p id="error-number"></p>
-            <p id="error-message"></p>
-
-            <div id="whats-this"></div>
-            <button id="secret">Click here to see an actual representation of our severs right now.</button>
+                <div id="whats-this"></div>
+                <button id="secret">Click here to see an actual representation of our severs right now.</button>
+            </div>
         </div>
     </body>
 </html>

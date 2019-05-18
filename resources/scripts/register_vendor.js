@@ -22,7 +22,7 @@ window.onload = function()
   // If the user already has a shop redirect him to his page
   if (window.user['belongs_to_vendor'] !== null)
   {
-    window.location.href = 'vendor.html';
+    window.location.href = 'index.html';
   }
 
   // Otherwise handle our form

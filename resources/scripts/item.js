@@ -1,15 +1,15 @@
-let item, vendor;
-
 function generate(item, vendor)
 {
   let itemImageDisplay = document.getElementById('item-images');
   itemImageDisplay.generate(item['images']);
 
+  let v_href = window.root + '/vendor/index.html?vendor=' + item['vendor_id'];
+
   // Populate our elements with the required data
   document.getElementById('item-name').innerText = item['name'];
   document.getElementById('item-description').innerText = item['description'];
   document.getElementById('item-price').innerText = 'Price: ' + (item['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
-  document.getElementById('item-vendor').innerHTML = '<a href="vendor.html?vendor=' + item['vendor_id'] + '">' + vendor['name'] + '</a>';
+  document.getElementById('item-vendor').innerHTML = '<a href="' + v_href + '">' + vendor['name'] + '</a>';
   document.getElementById('item-manufacturer').innerText = item['manufacturer'];
 }
 

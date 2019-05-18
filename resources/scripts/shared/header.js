@@ -1,21 +1,17 @@
-/*
-  Generic header writer to implement on all pages.
-  This header is created once while the page loads -> document.write is sufficient here.
- */
 const VENDOR_SPECIFIC = 1;
 const options_on = [];
-  options_on[0] = {value : 'account.html#account-info', innerText : 'Account Information'};
-  options_on[1] = {value : 'account.html#account-history', innerText : 'Payment History'};
-  options_on[2] = {value : 'cart.html', innerText : 'Shopping Cart'};
-  options_on[3] = {value : 'account.html?logout=yes', innerText : 'Log Out'};
-  options_on[4] = {value : 'vendor.html', innerText : 'Vendor Management'};
+  options_on[0] = {value : 'account/index.html#account-info', innerText : 'Account Information'};
+  options_on[1] = {value : 'account/index.html#account-history', innerText : 'Payment History'};
+  options_on[2] = {value : 'account/cart.html', innerText : 'Shopping Cart'};
+  options_on[3] = {value : 'index.html?logout=yes', innerText : 'Log Out'};
+  options_on[4] = {value : 'vendor/index.html', innerText : 'Vendor Management'};
 
 /**
  * Creates the nozamA header.
  */
 export default function()
 {
-  window.addStylesheet('css/header.css');
+  window.addStylesheet('header.css');
 
   // Create the header DOM elements
   let header = document.createElement('div');
@@ -40,7 +36,7 @@ export default function()
     for (let i = 0; i < options_on.length - isvendor; i++)
     {
       let option = document.createElement('option');
-      option.setAttribute('value', options_on[i].value);
+      option.setAttribute('value', window.root + options_on[i].value);
       option.innerText = options_on[i].innerText;
       dropdown.appendChild(option);
     }
@@ -59,7 +55,7 @@ export default function()
 
   // I'm lazy.
   header.innerHTML += `
-    <a href="index.html"><img id="nav-logo" src="resources/img/logo.png"></a>
+    <a href="/nozamA/index.html"><img id="nav-logo" src="/nozamA/resources/img/logo.png" alt=""></a>
     
     <form id="header_search" method="post">
         <div id="nav-search">
@@ -79,7 +75,7 @@ export default function()
     let elements = document.getElementById('header_search').elements;
 
     let search = (elements[0].value).replace(/ /g,'+');
-    window.location.href = 'results.html?search=' + search;
+    window.location.href = window.root + 'results.html?search=' + search;
 
     return false;
   });

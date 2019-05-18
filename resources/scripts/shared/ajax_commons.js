@@ -101,7 +101,7 @@ export default class QueryManager
         let session_id = JSON.parse(data)["session_id"];
         // Create cookie, no 'expires' so it expires whenever the session ends.
         document.cookie = 'sessionID=' + session_id;
-        window.location.href = "account.html";
+        window.location.href = "index.html";
       }
     });
   }
@@ -122,7 +122,7 @@ export default class QueryManager
         },
       success: function()
       {
-        window.location.href = "account.html";
+        window.location.href = "index.html";
       },
       error: function(xhr, _1, _2)
       {
@@ -147,7 +147,7 @@ export default class QueryManager
       success: function()
       {
         // href to account page
-        window.location.href = 'account.html?password_changed=yes';
+        window.location.href = 'index.html?password_changed=yes';
       },
       error: function(xhr, _1, _2)
       {

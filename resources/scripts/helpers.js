@@ -9,9 +9,12 @@ import footer from './shared/footer.js';
 /*
   JS module script implemented on every page defining shared globals and custom elements of the page.
   Note that these can only be accessed when window.onload has fired.
+  -> Actually it seems that these can be accessed already when onDOMContentLoaded has fired but better be safe than sorry.
 */
 
 // DEFINE GLOBALS
+window.root = '/nozamA/';
+window.resources = '/nozamA/resources/';
 window.currency = {
   'symbol' : '€',
   'rate' : 0.89 // Might be a good idea to get this dynamically but eeeeh...
@@ -54,7 +57,7 @@ window.addStylesheet = function(path)
 {
   let stylesheet = document.createElement('link');
   stylesheet.setAttribute('rel', 'stylesheet');
-  stylesheet.setAttribute('href', path);
+  stylesheet.setAttribute('href', window.resources + 'css/' + path);
   document.head.appendChild(stylesheet);
 };
 
