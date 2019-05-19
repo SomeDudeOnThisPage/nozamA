@@ -7,6 +7,18 @@ export default class ItemList extends HTMLElement
     return frame;
   }
 
+  clear()
+  {
+    let self = this;
+
+    this.itemFrames.forEach(function(element)
+    {
+      self.removeChild(element);
+    });
+
+    this.itemFrames = [];
+  }
+
   /**
    * Increments page by n pages and regenerates new items
    */
@@ -15,8 +27,9 @@ export default class ItemList extends HTMLElement
     if ((this.page + 1) * this.pageItems < this.items.length)
     {
       document.getElementById('end-of-search').style.display = 'none';
+      this.clear();
       this.page += 1;
-      this.populatePage();
+      this.generate(this.items);
     }
   }
 
@@ -30,24 +43,21 @@ export default class ItemList extends HTMLElement
     if (this.page > 0)
     {
       this.page = Math.max(this.page - 1, 0);
-      this.populatePage();
+      this.clear();
+      this.generate(this.items);
     }
   }
 
-  populatePage()
+  populatePage(search)
   {
-    let self = this;
-
-    // Clear items
-    this.itemFrames.forEach(function(element)
-    {
-      self.removeChild(element);
-    });
     this.itemFrames = [];
 
-    // TODO: too
-    //let ids = window.QueryManager.getRandomItemSequence(this.pageItems);
+    window.QueryManager.get('SEARCH', search, this);
+  }
 
+  generate(data)
+  {
+    this.items = data;
 
     for (let i = this.page * this.pageItems; i < this.page * this.pageItems + this.pageItems; i++)
     {
@@ -60,16 +70,6 @@ export default class ItemList extends HTMLElement
       {
         document.getElementById('end-of-search').style.display = 'inline';
       }
-    }
-  }
-
-  generate(data)
-  {
-    // Always start at 0 in this case, as there are no pages.
-    for (let i = 0; i < this.pageItems; i++)
-    {
-      this.itemFrames[i] = ItemList.generateItemPreviewFrame(data[i]);
-      this.appendChild(this.itemFrames[i]);
     }
   }
 
@@ -134,15 +134,10 @@ export default class ItemList extends HTMLElement
   {
     super();
     this.itemFrames = [];
-    this.items = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3]; // test data
     this.page = 0;
     this.pageItems = 5;
 
-    // Check if we already appended a stylesheet to the current DOM
-    if (!document.head.contains(document.getElementById('item-list-stylesheet')))
-    {
-      // Append our stylesheet
-      window.addStylesheet('css/elements/item-list.css');
-    }
+    // Append our stylesheet
+    window.addStylesheet('elements/item-list.css');
   }
 }

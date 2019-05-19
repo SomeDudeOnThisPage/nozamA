@@ -10,7 +10,7 @@ export default class ItemImageDisplay extends HTMLElement
 
     let stylesheet = document.createElement('link');
     stylesheet.setAttribute('rel', 'stylesheet');
-    stylesheet.setAttribute('href', 'css/elements/item-image-display.css');
+    stylesheet.setAttribute('href', window.resources + 'css/elements/item-image-display.css');
 
     const sRoot = this.attachShadow({ mode : 'open' });
     sRoot.id = 'item-image-display-shadow-root';
@@ -18,7 +18,6 @@ export default class ItemImageDisplay extends HTMLElement
     sRoot.appendChild(mainImage);
 
     let i = 0;
-    // TODO: Tell leo to give me images, use placeholder rn
     data.forEach(function(image)
     {
       let button = document.createElement('button');
@@ -40,6 +39,5 @@ export default class ItemImageDisplay extends HTMLElement
   constructor()
   {
     super();
-    window.addStylesheet('css/elements/item-image-display.css');
   }
 }

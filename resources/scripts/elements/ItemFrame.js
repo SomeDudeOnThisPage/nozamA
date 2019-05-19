@@ -1,3 +1,5 @@
+const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
+
 /**
  * A custom HTML element to display the name, price, one image, vendor and
  * manufacturer to spark the customers interest.
@@ -16,7 +18,7 @@ export default class ItemFrame extends HTMLElement
     // Reset inner HTML and make the loader visible
     this.shadowRoot.innerHTML = `
       <div class="item-frame">
-        <link rel="stylesheet" href="./resources/css/elements/item-frame.css">
+        <link rel="stylesheet" href="/nozamA/resources/css/elements/item-frame.css">
         <div class="loader"></div>
       </div>`;
 
@@ -32,12 +34,13 @@ export default class ItemFrame extends HTMLElement
   {
     let href = 'item.html?item=' + this.getAttribute('item');
     let price = (data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
+    let image = (NOZAMA_IMAGE_PATH + data['images'][0]);
 
     this.shadowRoot.innerHTML = `
       <div class="item-frame">
         <link rel="stylesheet" href="./resources/css/elements/item-frame.css">
         <a href="` + href + `" class="item-frame-name">` + data['name'] + `</a>
-        <a href ="` + href + `" class="item-frame-image"><img src="resources/img/img_missing.png" alt=""></a>
+        <a href ="` + href + `" class="item-frame-image"><img src="` + image + `" alt=""></a>
         <p>` + price + `</p>
       </div>`;
   }

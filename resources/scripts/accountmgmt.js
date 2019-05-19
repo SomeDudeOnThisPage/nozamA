@@ -15,6 +15,7 @@ document.addEventListener("ondataloaded", function(e)
   let logout = new URL(window.location.href).searchParams.get('logout');
   if (logout === 'yes')
   {
+    console.log('logout');
     // Perform logout procedure
     window.logout();
   }

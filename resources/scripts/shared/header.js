@@ -3,7 +3,7 @@ const options_on = [];
   options_on[0] = {value : 'account/index.html#account-info', innerText : 'Account Information'};
   options_on[1] = {value : 'account/index.html#account-history', innerText : 'Payment History'};
   options_on[2] = {value : 'account/cart.html', innerText : 'Shopping Cart'};
-  options_on[3] = {value : 'index.html?logout=yes', innerText : 'Log Out'};
+  options_on[3] = {value : 'account/index.html?logout=yes', innerText : 'Log Out'};
   options_on[4] = {value : 'vendor/index.html', innerText : 'Vendor Management'};
 
 /**
@@ -48,7 +48,7 @@ export default function()
     // User not logged in / sessionID expired - Create login and sign up links
     let lisu = document.createElement('a');
     lisu.id = 'nav-login';
-    lisu.href = 'login.html';
+    lisu.href = window.root + 'account/login.html';
     lisu.innerText = 'Log In / Sign Up!';
     header.appendChild(lisu);
   }
@@ -75,6 +75,7 @@ export default function()
     let elements = document.getElementById('header_search').elements;
 
     let search = (elements[0].value).replace(/ /g,'+');
+    if (search === '') { return false; }
     window.location.href = window.root + 'results.html?search=' + search;
 
     return false;

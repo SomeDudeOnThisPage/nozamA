@@ -6,8 +6,7 @@ document.addEventListener("ondataloaded", function(e)
   let itemList = document.createElement('item-list');
 
   // Perform the actual search
-  // Ha ha jk this isn't implemented yet so let's do this.
   itemList.createButtons(3);
-  itemList.populatePage();
+  itemList.populatePage(search);
   document.getElementById('item-list-container').appendChild(itemList);
 });

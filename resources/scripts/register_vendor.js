@@ -9,21 +9,23 @@ function register_action(ev)
   ev.stopPropagation();
 
   let elements = document.getElementById('register-vendor').elements;
-
-  for (let i = 0; i < elements.length; i++)
-  {
-    console.log(elements[i].value);
-  }
-
+  console.log('Trying to register vendor with name=' + elements[0].value + ' and description=' + elements[1].value);
+  window.QueryManager.registerVendor(elements[0].value, elements[1].value, window.getCookie('sessionID'));
+  return false;
 }
 
-window.onload = function()
+document.addEventListener("ondataloaded", function(e)
 {
+  // If there is no user redirect him to the login page
+  if (window.user === false)
+  {
+    window.location.href = window.root + 'account/login.html?msg=You need to login to use this feature.';
+    return;
+  }
+
   // If the user already has a shop redirect him to his page
   if (window.user['belongs_to_vendor'] !== null)
   {
-    window.location.href = 'index.html';
+    window.location.href = window.root + 'vendor/index.html';
   }
-
-  // Otherwise handle our form
-};
+});

@@ -82,8 +82,8 @@ window.getCookie = function(name)
 
 window.logout = function()
 {
-  document.cookie = "sessionID= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-  window.location.href = 'index.html';
+  document.cookie = "sessionID=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  window.location.href = window.root + 'index.html';
 };
 
 // DEFINE GLOBAL CUSTOM ELEMENTS

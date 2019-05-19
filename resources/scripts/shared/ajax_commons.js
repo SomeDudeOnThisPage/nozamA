@@ -7,7 +7,9 @@ const NOZAMA = {
   RANDOM: '/random',
   USER: '/profile',
   VENDOR: '/vendor',
-  CHANGE_PASSWORD: '/change_password'
+  REGISTER_VENDOR: '/add_vendor',
+  CHANGE_PASSWORD: '/change_password',
+  SEARCH: '/search'
 };
 
 // ERROR MESSAGES
@@ -15,8 +17,8 @@ const emsg = {
   0: {redirect: 500},
   400: {msg: 'The provided credentials were incorrect', fatal: false},
   401: {msg: 'You are unauthorized to continue', fatal: false},
-  404: {msg: '', fatal: false},
-  409: {msg: 'The provided E-Mail address already exists', fatal: false},
+  404: {msg: '', fatal: true},  // TBH this should NEVER be returned by a request but better be safe than sorry.
+  409: {msg: 'The provided credentials already exist', fatal: false},
   500: {msg: 'Internal Server Error', fatal: true},
 };
 
@@ -42,6 +44,9 @@ const cerror = function(xhr, e_callback)
   }
 };
 
+/**
+ * Static class holding a collection of static methods designed to push and receive data to / from the API.
+ */
 export default class QueryManager
 {
   /**
@@ -99,9 +104,10 @@ export default class QueryManager
       success: function(data)
       {
         let session_id = JSON.parse(data)["session_id"];
-        // Create cookie, no 'expires' so it expires whenever the session ends.
-        document.cookie = 'sessionID=' + session_id;
-        window.location.href = "index.html";
+
+        // Create cookie, no 'expires' so it expires whenever the session ends (The browser is closed).
+        document.cookie = 'sessionID=' + session_id + ';path=/;';
+        window.location.href = window.root + 'index.html';
       }
     });
   }
@@ -138,6 +144,11 @@ export default class QueryManager
     });
   }
 
+  /**
+   * Performs password change procedure.
+   * @param sessionID The session id of the currently logged in user.
+   * @param password The new password.
+   */
   static changePassword(sessionID, password)
   {
     $.ajax({
@@ -153,8 +164,32 @@ export default class QueryManager
       {
         cerror(xhr, function()
         {
-          document.getElementById('error-message').innerText = xhr.status + ' ' + esmg[xhr.status].msg;
+          document.getElementById('error-message').innerText = xhr.status + ' ' + emsg[xhr.status].msg;
         })
+      },
+    });
+  }
+
+  static registerVendor(name, description, sessionID)
+  {
+    $.ajax({
+      type: 'POST',
+      url: NOZAMA.API + NOZAMA.REGISTER_VENDOR + '/' + sessionID,
+      contentType: 'application/json',
+      data: JSON.stringify({
+        "name": name,
+        "description": description
+      }),
+      success: function()
+      {
+        window.location.href = window.root + 'vendor/index.html';
+      },
+      error: function(xhr, _1, _2)
+      {
+        cerror(xhr, function()
+        {
+          document.getElementById('error-message').innerText = xhr.status + ' ' + emsg[xhr.status].msg;
+        });
       },
     });
   }
