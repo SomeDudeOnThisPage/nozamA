@@ -35,7 +35,6 @@ window.onload = function()
 
   if (getCookie('sessionID'))
   {
-    // If we have a session wait for the user data to be loaded.
     QueryManager.get('USER', getCookie('sessionID'), function(result)
     {
       window.user = result;
