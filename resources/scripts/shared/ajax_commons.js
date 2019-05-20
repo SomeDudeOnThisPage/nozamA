@@ -9,7 +9,8 @@ const NOZAMA = {
   VENDOR: '/vendor',
   REGISTER_VENDOR: '/add_vendor',
   CHANGE_PASSWORD: '/change_password',
-  SEARCH: '/search'
+  SEARCH: '/search',
+  ADD_CART: '/grab_item'
 };
 
 // ERROR MESSAGES
@@ -183,6 +184,27 @@ export default class QueryManager
       success: function()
       {
         window.location.href = window.root + 'vendor/index.html';
+      },
+      error: function(xhr, _1, _2)
+      {
+        cerror(xhr, function()
+        {
+          document.getElementById('error-message').innerText = xhr.status + ' ' + emsg[xhr.status].msg;
+        });
+      },
+    });
+  }
+
+  static grabItem(sessionID, itemID, amount)
+  {
+    $.ajax({
+      type: 'POST',
+      url: NOZAMA.API + NOZAMA.ADD_CART + '/' + sessionID + '/' + itemID + '/' + amount,
+      contentType: 'application/json',
+      data: {},
+      success: function()
+      {
+        // TODO: Display an 'added to cart!'-message or something.
       },
       error: function(xhr, _1, _2)
       {

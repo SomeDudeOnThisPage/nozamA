@@ -7,6 +7,9 @@ export default class ItemList extends HTMLElement
     return frame;
   }
 
+  /**
+   * Removes the item-frames (not the item ids themselves)
+   */
   clear()
   {
     let self = this;
@@ -86,6 +89,7 @@ export default class ItemList extends HTMLElement
 
   /**
    * Creates buttons that can modify the page.
+   * The inner buttons do nothing yet but will eventually also be used to switch pages.
    * @param amt
    */
   createButtons(amt)

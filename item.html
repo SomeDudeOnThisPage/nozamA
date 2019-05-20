@@ -21,6 +21,8 @@
     <body>
         <div id="main-container">
             <div id="content">
+                <p id="error-message"></p>
+
                 <div id="item-data">
                     <item-image-display id="item-images"></item-image-display>
                     <p id="item-name"></p>
@@ -39,6 +41,11 @@
                             <td id="item-manufacturer"></td>
                         </tr>
                     </table>
+                </div>
+                <div>
+                    <label for="add-to-cart-amount" class="form-label">Amount:</label>
+                    <input id="add-to-cart-amount" type="number" min="1" max="99" placeholder="amount" value="1">
+                    <button id="add-to-cart">Add to cart</button>
                 </div>
             </div>
         </div>
