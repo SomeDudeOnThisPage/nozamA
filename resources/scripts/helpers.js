@@ -1,6 +1,5 @@
 import ItemFrame from './elements/ItemFrame.js';
 import ItemList from './elements/ItemList.js';
-import Item from './elements/Item.js';
 import ItemImageDisplay from './elements/ItemImageDisplay.js';
 import QueryManager from './shared/ajax_commons.js';
 import header from './shared/header.js';
@@ -19,7 +18,6 @@ window.currency = {
   'symbol' : '€',
   'rate' : 0.89 // Might be a good idea to get this dynamically but eeeeh...
 };
-window.Item = Item;
 window.QueryManager = QueryManager;
 window.user = false;
 
@@ -52,12 +50,16 @@ window.onload = function()
 /**
  * Adds a stylesheet for a custom element to the DOM when needed.
  */
-window.addStylesheet = function(path)
+window.addStylesheet = function()
 {
-  let stylesheet = document.createElement('link');
-  stylesheet.setAttribute('rel', 'stylesheet');
-  stylesheet.setAttribute('href', window.resources + 'css/' + path);
-  document.head.appendChild(stylesheet);
+  let path = arguments[0];
+  let element = arguments[1] || 'head';
+
+  let stylesheet = $('<link>').attr({
+    rel: 'stylesheet',
+    href: window.resources + 'css/' + path
+  });
+  $(element).append(stylesheet);
 };
 
 /**

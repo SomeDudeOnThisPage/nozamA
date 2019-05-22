@@ -66,7 +66,7 @@ export default class QueryManager
       {
         if (typeof callback === 'object')
         {
-          callback.generate(result);
+          callback.postDataLoaded(result);
         }
         else
         {

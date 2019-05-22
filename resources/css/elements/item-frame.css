@@ -46,7 +46,7 @@
   left: 10px;
 }
 
-.loader
+.item-frame > .loader
 {
   position: absolute;
   border: 16px solid #f3f3f3;

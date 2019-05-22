@@ -32,7 +32,7 @@ export default class ItemList extends HTMLElement
       document.getElementById('end-of-search').style.display = 'none';
       this.clear();
       this.page += 1;
-      this.generate(this.items);
+      this.postDataLoaded(this.items);
     }
   }
 
@@ -47,7 +47,7 @@ export default class ItemList extends HTMLElement
     {
       this.page = Math.max(this.page - 1, 0);
       this.clear();
-      this.generate(this.items);
+      this.postDataLoaded(this.items);
     }
   }
 
@@ -58,7 +58,7 @@ export default class ItemList extends HTMLElement
     window.QueryManager.get('SEARCH', search, this);
   }
 
-  generate(data)
+  postDataLoaded(data)
   {
     this.items = data;
 
