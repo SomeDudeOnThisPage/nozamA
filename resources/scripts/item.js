@@ -32,7 +32,6 @@ document.addEventListener("ondataloaded", function(e)
 
   document.getElementById("add-to-cart").addEventListener("click", function()
   {
-    console.log('glig');
     window.QueryManager.grabItem(window.getCookie('sessionID'), current, document.getElementById('add-to-cart-amount').value || 1);
   });
 });

@@ -7,6 +7,6 @@ document.addEventListener("ondataloaded", function(e)
 
   // Perform the actual search
   itemList.createButtons(3);
-  itemList.populatePage(search);
+  itemList.populate(search);
   document.getElementById('item-list-container').appendChild(itemList);
 });

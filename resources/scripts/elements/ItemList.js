@@ -1,4 +1,6 @@
-export default class ItemList extends HTMLElement
+import AsyncElement from "./AsyncElement.js";
+
+export default class ItemList extends AsyncElement
 {
   static generateItemPreviewFrame(id)
   {
@@ -32,7 +34,7 @@ export default class ItemList extends HTMLElement
       document.getElementById('end-of-search').style.display = 'none';
       this.clear();
       this.page += 1;
-      this.postDataLoaded(this.items);
+      this.generate(this.items);
     }
   }
 
@@ -47,18 +49,11 @@ export default class ItemList extends HTMLElement
     {
       this.page = Math.max(this.page - 1, 0);
       this.clear();
-      this.postDataLoaded(this.items);
+      this.generate(this.items);
     }
   }
 
-  populatePage(search)
-  {
-    this.itemFrames = [];
-
-    window.QueryManager.get('SEARCH', search, this);
-  }
-
-  postDataLoaded(data)
+  generate(data)
   {
     this.items = data;
 
@@ -67,13 +62,23 @@ export default class ItemList extends HTMLElement
       if (i < this.items.length)
       {
         this.itemFrames[i] = ItemList.generateItemPreviewFrame(this.items[i]);
-        this.appendChild(this.itemFrames[i]);
+        this.shadowRoot.appendChild(this.itemFrames[i]);
       }
       else
       {
         document.getElementById('end-of-search').style.display = 'inline';
       }
     }
+  }
+
+  /**
+   * Populates the object based on a search string.
+   * @param search The search string.
+   */
+  populate(search)
+  {
+    this.itemFrames = [];
+    window.QueryManager.get('SEARCH', search, this);
   }
 
   /**
@@ -100,7 +105,7 @@ export default class ItemList extends HTMLElement
     let buttonContainer = document.createElement('div');
     buttonContainer.className = 'item-list-button-container';
     buttonContainer.setAttribute('buttons', amt);
-    this.appendChild(buttonContainer);
+    this.shadowRoot.appendChild(buttonContainer);
 
     this.buttons = [];
 
@@ -136,12 +141,9 @@ export default class ItemList extends HTMLElement
 
   constructor()
   {
-    super();
+    super('item-list');
     this.itemFrames = [];
     this.page = 0;
     this.pageItems = 5;
-
-    // Append our stylesheet
-    window.addStylesheet('elements/item-list.css');
   }
 }

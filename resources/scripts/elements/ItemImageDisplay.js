@@ -1,23 +1,18 @@
+import AsyncElement from "./AsyncElement.js";
+
 const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me';
 
-export default class ItemImageDisplay extends HTMLElement
+export default class ItemImageDisplay extends AsyncElement
 {
   generate(data)
   {
     let mainImage = document.createElement('img');
     mainImage.id = 'item-image-display-main-image';
     mainImage.setAttribute('src', data[0]);
-
-    let stylesheet = document.createElement('link');
-    stylesheet.setAttribute('rel', 'stylesheet');
-    stylesheet.setAttribute('href', window.resources + 'css/elements/item-image-display.css');
-
-    const sRoot = this.attachShadow({ mode : 'open' });
-    sRoot.id = 'item-image-display-shadow-root';
-    sRoot.appendChild(stylesheet);
-    sRoot.appendChild(mainImage);
+    this.shadowRoot.appendChild(mainImage);
 
     let i = 0;
+    let self = this;
     data.forEach(function(image)
     {
       let button = document.createElement('button');
@@ -31,13 +26,13 @@ export default class ItemImageDisplay extends HTMLElement
         mainImage.setAttribute('src', img.getAttribute('src'));
       };
 
-      sRoot.appendChild(button);
+      self.shadowRoot.appendChild(button);
       i++;
     });
   }
 
   constructor()
   {
-    super();
+    super('item-image-display');
   }
 }

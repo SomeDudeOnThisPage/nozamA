@@ -15,6 +15,7 @@ export default class ItemFrame extends AsyncElement
   setItem(id)
   {
     if (id === this.getAttribute('item')) { return; }
+    this.setAttribute('item', id);
     window.QueryManager.get('ITEM', id, this)
   }
 
@@ -24,17 +25,11 @@ export default class ItemFrame extends AsyncElement
    */
   generate(data)
   {
-    let href = 'item.html?item=' + this.getAttribute('item');
-    let price = (data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
-    let image = NOZAMA_IMAGE_PATH + data['images'][0];
-
-    // Populate elements
     let elements = this.getInternalElements();
-    console.log(elements, elements[2]);
-    elements[0].href = href;
+    elements[0].href = 'item.html?item=' + this.getAttribute('item');
     elements[0].innerText = data['name'];
-    elements[1].children[0].src = image;
-    elements[2].innerText = price;
+    elements[1].children[0].src = NOZAMA_IMAGE_PATH + data['images'][0];
+    elements[2].innerText = (data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
   }
 
   constructor()

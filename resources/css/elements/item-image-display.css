@@ -11,10 +11,11 @@
     position: relative;
     width: 100px;
     height: 100px;
+    padding: 0;
 }
 
 .item-image-display-button > img
 {
     width: 100px;
-    height: auto;
+    height: 100px;
 }
