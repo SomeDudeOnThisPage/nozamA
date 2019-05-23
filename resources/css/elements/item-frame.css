@@ -11,7 +11,7 @@
   background: white;
 }
 
-.item-frame > .item-frame-name
+.name
 {
   color: black;
   font-size: 30px;
@@ -21,12 +21,12 @@
   left: 135px;
 }
 
-.item-frame > .item-frame-name:visited
+.name:visited
 {
   color: black;
 }
 
-.item-frame > .item-frame-image > img
+.image > img
 {
   padding: 5px;
   position: absolute;
@@ -37,16 +37,32 @@
   border: 1px solid black;
 }
 
-.item-frame > p
+.price
 {
   font-size: 30px;
-
   position: absolute;
   bottom: -25px;
   left: 10px;
 }
 
-.item-frame > .loader
+.vendor-info
+{
+  position: absolute;
+  right: 0;
+}
+
+.vendor-info > p
+{
+  font-size: 20px;
+}
+
+.vendor-info > button
+{
+  font-size: 20px;
+  padding: 10px;
+}
+
+.loader
 {
   position: absolute;
   border: 16px solid #f3f3f3;

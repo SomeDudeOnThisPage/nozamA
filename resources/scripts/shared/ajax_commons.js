@@ -8,6 +8,7 @@ const NOZAMA = {
   USER: '/profile',
   VENDOR: '/vendor',
   REGISTER_VENDOR: '/add_vendor',
+  EDIT_VENDOR: '/change_profile/vendor',
   CHANGE_PASSWORD: '/change_password',
   SEARCH: '/search',
   ADD_CART: '/grab_item'
@@ -37,7 +38,7 @@ const cerror = function(xhr, e_callback)
 
   if (emsg[xhr.status].fatal)
   {
-    window.location.href = 'leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
+    window.location.href = '/nozamA/leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
   }
   else
   {
@@ -80,6 +81,27 @@ export default class QueryManager
     });
   }
 
+  static post(d_type, id, data, callback)
+  {
+    $.ajax({
+      type: 'POST',
+      url: NOZAMA.API + NOZAMA[d_type] + '/' + id,
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      error: function(xhr, _1, _2)
+      {
+        cerror(xhr, function()
+        {
+          cerror(xhr, null);
+        });
+      },
+      success: function(data)
+      {
+        callback(data);
+      }
+    });
+  }
+
   /**
    * Performs login procedure and sets a session cookie
    */
@@ -95,7 +117,6 @@ export default class QueryManager
         },
       error: function(xhr, _1, _2)
       {
-        console.log(xhr.status + " fuck");
         cerror(xhr, function()
         {
           document.getElementById("register-error").innerText = 'The provided credentials were incorrect.';

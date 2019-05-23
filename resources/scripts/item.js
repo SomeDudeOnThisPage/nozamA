@@ -8,11 +8,11 @@ function generate(item, vendor)
   let v_href = window.root + '/vendor/index.html?vendor=' + item['vendor_id'];
 
   // Populate our elements with the required data
-  document.getElementById('item-name').innerText = item['name'];
-  document.getElementById('item-description').innerText = item['description'];
-  document.getElementById('item-price').innerText = 'Price: ' + (item['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
-  document.getElementById('item-vendor').innerHTML = '<a href="' + v_href + '">' + vendor['name'] + '</a>';
-  document.getElementById('item-manufacturer').innerText = item['manufacturer'];
+  $('#item-name').text(item['name']);
+  $('#item-description').text(item['description']);
+  $('#item-price').text('Price: ' + (item['price'] * window.currency.rate).toFixed(2) + window.currency.symbol);
+  $('#item-vendor').html('<a href="' + v_href + '">' + vendor['name'] + '</a>');
+  $('#item-manufacturer').text(item['manufacturer']);
 }
 
 document.addEventListener("ondataloaded", function(e)

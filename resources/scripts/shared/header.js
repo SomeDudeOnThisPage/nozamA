@@ -4,7 +4,7 @@ const options_on = [];
   options_on[1] = {value : 'account/index.html#account-history', innerText : 'Payment History'};
   options_on[2] = {value : 'account/cart.html', innerText : 'Shopping Cart'};
   options_on[3] = {value : 'account/index.html?logout=yes', innerText : 'Log Out'};
-  options_on[4] = {value : 'vendor/index.html', innerText : 'Vendor Management'};
+  options_on[4] = {value : 'vendor/manage.html', innerText : 'Vendor Management'};
 
 /**
  * Creates the nozamA header.

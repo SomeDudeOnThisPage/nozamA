@@ -82,6 +82,14 @@ export default class ItemList extends AsyncElement
   }
 
   /**
+   * Adds one specific item based on its' ID.
+   */
+  addItem(id)
+  {
+    this.itemFrames.push(ItemList.generateItemPreviewFrame(id));
+  }
+
+  /**
    * Populates the item list with random (!) items
    * @see https://github.com/qwertxzy/nozama-api#get-n--random-items
    */

@@ -1,33 +1,38 @@
 import AsyncElement from "./AsyncElement.js";
-
 const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me';
 
 export default class ItemImageDisplay extends AsyncElement
 {
+  /**
+   * We never load an item in here so postDataLoaded would never be called.
+   */
+  preDataLoaded()
+  {
+    this.wrapper.load('/nozamA/resources/html/elements/item-image-display.html');
+  }
+
+  /**
+   * Create a button for each image and display the image on the main image on click.
+   * @param data
+   */
   generate(data)
   {
-    let mainImage = document.createElement('img');
-    mainImage.id = 'item-image-display-main-image';
-    mainImage.setAttribute('src', data[0]);
-    this.shadowRoot.appendChild(mainImage);
-
-    let i = 0;
     let self = this;
     data.forEach(function(image)
     {
-      let button = document.createElement('button');
-      let img = document.createElement('img');
-      button.className = 'item-image-display-button';
-      img.setAttribute('src', NOZAMA_IMAGE_PATH + '/' + image);
-      button.appendChild(img);
+      let img = $('<img>').attr({
+        src: NOZAMA_IMAGE_PATH + '/' + image,
+        alt: 'oops'
+      });
 
-      button.onclick = function()
+      let button = $('<button>');
+      button.click(function()
       {
-        mainImage.setAttribute('src', img.getAttribute('src'));
-      };
+        self.shadowRoot.getElementById('main-image').setAttribute('src', img.attr('src'));
+      });
 
-      self.shadowRoot.appendChild(button);
-      i++;
+      button.append(img);
+      self.wrapper.append(button);
     });
   }
 
