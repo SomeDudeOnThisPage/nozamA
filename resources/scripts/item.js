@@ -23,6 +23,16 @@ document.addEventListener("ondataloaded", function(e)
   // Create our item
   window.QueryManager.get('ITEM', current, function(i_result)
   {
+    // Check if the user is the vendor of this item
+    if (i_result['vendor_id'] === window.user['belongs_to_vendor'])
+    {
+      // Make hidden elements visible
+      Array.from(document.getElementsByClassName('vendor-info')).forEach(function(element)
+      {
+        element.style.display = 'block';
+      });
+    }
+
     // Get vendor data after creating our item
     window.QueryManager.get('VENDOR', i_result['vendor_id'], function(v_result)
     {

@@ -39,15 +39,12 @@ export default class ItemFrame extends AsyncElement
     elements[1].children[0].src = NOZAMA_IMAGE_PATH + data['images'][0];
     elements[2].innerText = (data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
 
-    console.log(data['vendor_id'] + " " + window.user['belongs_to_vendor']);
-
     // Check if the user is the vendor of this item
     if (data['vendor_id'] === window.user['belongs_to_vendor'])
     {
       // Make hidden elements visible
       elements[3].style.display = 'block';
     }
-
   }
 
   constructor()

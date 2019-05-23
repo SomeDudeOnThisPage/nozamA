@@ -13,61 +13,65 @@ export default function()
 {
   window.addStylesheet('header.css');
 
-  // Create the header DOM elements
-  let header = document.createElement('div');
-  header.className = 'header';
-
-  // Check if we have a valid session and set the headers' links accordingly
-  if (window.user)
+  let container = $('#main-container');
+  let header = $('<div></div>').attr({class: 'header'}).load('/nozamA/resources/html/elements/header.html', function()
   {
-    // Create dropdown menu containing account links
-    let dropdown = document.createElement('select');
-    dropdown.id = 'nav-select';
-
-    // Create a placeholder for the dropdown menu
-    let dropdown_ph = document.createElement('option');
-    dropdown_ph.hidden = true;
-    dropdown_ph.innerText = 'Your Account';
-    dropdown.appendChild(dropdown_ph);
-
-    // Generate our links
-    let isvendor = VENDOR_SPECIFIC;
-    if (window.user['belongs_to_vendor'] !== null) { isvendor = 0; }
-    for (let i = 0; i < options_on.length - isvendor; i++)
+    // Check if we have a valid session and set the headers' links accordingly
+    if (window.user)
     {
-      let option = document.createElement('option');
-      option.setAttribute('value', window.root + options_on[i].value);
-      option.innerText = options_on[i].innerText;
-      dropdown.appendChild(option);
+      // Create dropdown menu containing account links
+      let dropdown = $('<select></select>').attr({
+        id: 'nav-select'
+      });
+
+      // Create a placeholder for the dropdown menu
+      let dropdown_ph = $('<option></option>').text('Your Account').attr({
+        hidden: true
+      });
+      dropdown.append(dropdown_ph);
+
+      $(dropdown).change(function()
+      {
+        console.log('heyoo');
+        document.location.href = $(this).val();
+      });
+
+      // Generate our links
+      let isvendor = VENDOR_SPECIFIC;
+      if (window.user['belongs_to_vendor'] !== null) { isvendor = 0; }
+      for (let i = 0; i < options_on.length - isvendor; i++)
+      {
+        let option = $('<option></option>').text(options_on[i].innerText).attr({value: window.root + options_on[i].value});
+        dropdown.append(option);
+      }
+
+      header.append(dropdown);
+    }
+    else
+    {
+      // User not logged in / sessionID expired - Create login and sign up links
+      let lisu = $('<a></a>').text('Log In / Sign Up!').attr({href: window.root + 'account/login.html', id: 'nav-login'});
+      header.append(lisu);
     }
 
-    header.appendChild(dropdown);
-  }
-  else
-  {
-    // User not logged in / sessionID expired - Create login and sign up links
-    let lisu = document.createElement('a');
-    lisu.id = 'nav-login';
-    lisu.href = window.root + 'account/login.html';
-    lisu.innerText = 'Log In / Sign Up!';
-    header.appendChild(lisu);
-  }
+    // Attach search bar event handlers
+    $('#header_search').submit(function()
+    {
+      let elements = $('#nav-searchbar');
 
-  // I'm lazy.
-  header.innerHTML += `
-    <a href="/nozamA/index.html"><img id="nav-logo" src="/nozamA/resources/img/logo.png" alt=""></a>
-    
-    <form id="header_search" method="post">
-        <div id="nav-search">
-            <input id="nav-searchbar" name="nav_searchbar" class="search_bar" type="text" placeholder="Search...">
-            <button id="search-button" class="search_button" type="submit">Q</button>
-        </div>
-    </form>`;
-  document.getElementById('main-container').prepend(header);
+      let search = (elements.val()).replace(/ /g,'+');
+      if (search === '') { return false; }
+
+      window.location.href = window.root + 'results.html?search=' + search;
+    });
+
+  });
+
+  container.prepend(header);
 
   // Attach event handlers
   // Doing this AFTER adding the header to the DOM, otherwise the events won't fire...
-  document.getElementById('header_search').onsubmit = (ev => {
+  /*document.getElementById('header_search').onsubmit = (ev => {
     ev.preventDefault();
     ev.stopPropagation();
 
@@ -79,12 +83,6 @@ export default function()
     window.location.href = window.root + 'results.html?search=' + search;
 
     return false;
-  });
+  });*/
 
-  if (document.getElementById('nav-select') !== null) // Check if our element isn't null otherwise we get an error...
-  {
-    document.getElementById('nav-select').onchange = (ev => {
-      document.location.href = document.getElementById('nav-select').value;
-    });
-  }
 };
