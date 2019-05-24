@@ -3,10 +3,11 @@
   position: relative;
   margin-bottom: 10px;
 
-  width: 99%;
   height: 175px;
 
-  padding: 10px;
+  box-sizing: border-box;
+  border: 1px darkgrey dashed;
+
   z-index: 1;
   background: white;
 }
@@ -16,6 +17,8 @@
   color: black;
   font-size: 30px;
   text-decoration: none;
+
+  padding: 5px;
 
   position: relative;
   left: 135px;
@@ -39,7 +42,7 @@
 
 .price
 {
-  font-size: 30px;
+  font-size: 28px;
   position: absolute;
   bottom: -25px;
   left: 10px;

@@ -1,0 +1,46 @@
+#itemmgmt
+{
+  position: relative;
+  height: 625px;
+  border: 2px black solid;
+  width: 50%;
+}
+
+#items
+{
+  position: relative;
+  height: 600px;
+  overflow: scroll;
+  overflow-x: hidden;
+
+  padding: 15px;
+
+  box-sizing: border-box;
+}
+
+#items-controls
+{
+  position: relative;
+  height: 25px;
+  background: cornflowerblue;
+}
+
+#items-controls > p
+{
+  position: absolute;
+  top: -20px;
+  left: 20px;
+}
+
+#items-controls > label
+{
+  position: absolute;
+  top: 0;
+  right: 210px;
+}
+
+#items-controls > input
+{
+  position: absolute;
+  right: 30px;
+}

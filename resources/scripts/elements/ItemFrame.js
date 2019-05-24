@@ -34,9 +34,9 @@ export default class ItemFrame extends AsyncElement
   generate(data)
   {
     let elements = this.getInternalElements();
-    elements[0].href = 'item.html?item=' + this.getAttribute('item');
+    elements[0].href = window.root + 'item.html?item=' + this.getAttribute('item');
     elements[0].innerText = data['name'];
-    elements[1].children[0].src = NOZAMA_IMAGE_PATH + data['images'][0];
+    window.QueryManager.loadImage(data['images'][0], elements[1].children[0]);
     elements[2].innerText = (data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
 
     // Check if the user is the vendor of this item
@@ -44,6 +44,7 @@ export default class ItemFrame extends AsyncElement
     {
       // Make hidden elements visible
       elements[3].style.display = 'block';
+      elements[2].innerText = 'This item is being sold by your shop.'
     }
   }
 

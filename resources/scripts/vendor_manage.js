@@ -1,52 +1,98 @@
 let vendor;
 let items;
 let form_enabled = false;
+let list;
+
+function vForm(elements)
+{
+  if ((form_enabled = !form_enabled) === true) // Was false, enable form elements
+  {
+    elements.forEach(function(element)
+    {
+      element.removeAttribute('disabled');
+    });
+
+    $('#vendor-info-edit').text('Confirm');
+  }
+  else // Was true, confirm, send data and disable forms
+  {
+    $('#vendor-info-edit').text('Please Wait');
+
+    window.QueryManager.post('EDIT_VENDOR', window.getCookie('sessionID'),
+    {
+      'name': elements[0].value,
+      'description': elements[1].value
+    },
+    function ()
+    {
+      elements.forEach(function (element)
+      {
+        element.setAttribute('disabled', null);
+      });
+      $('#vendor-info-edit').text('Edit Information');
+    });
+  }
+}
+
+function searchVForm(data)
+{
+  data.filter(function(value, index, arr)
+  {
+    console.log('ayy');
+    return data['vendor'] === window.user['belongs_to_vendor'];
+  });
+
+  list.clear();
+  list.generate(data);
+}
 
 document.addEventListener("ondataloaded", function(e)
 {
-  // Get vendor info
+  // Get vendor info.
   window.QueryManager.get('VENDOR', window.user['belongs_to_vendor'], function(data)
   {
     vendor = data;
     items = vendor['items'];
 
-    // Setup item list
-    let itemList = document.createElement('item-list');
-
-    // Populate our data
+    // Populate our data.
     let elements = Array.from(document.getElementById('change-data').elements);
     elements[0].value = vendor['name'];
     elements[1].value = vendor['description'];
 
-    // Create button change listener
+    // Initially populate item list.
+    list = document.getElementById('item-list');
+    let populateListByVendorItems = function()
+    {
+      Array.from(vendor['items']).forEach(function(item)
+      {
+        list.addItem(item);
+      });
+    };
+    populateListByVendorItems();
+
+    // Create button change listener.
     $('#vendor-info-edit').click(function()
     {
-      if ((form_enabled = !form_enabled) === true) // Was false, enable form elements
-      {
-        elements.forEach(function(element)
-        {
-          element.removeAttribute('disabled');
-        });
+      vForm(elements);
+    });
 
-        $('#vendor-info-edit').text('Confirm');
-      }
-      else // Was true, confirm, send data and disable forms
+    // Create search bar listener (fires when 'enter' was pressed while the input field was in focus).
+    $('#item-search').keypress(function(e)
+    {
+      if (e.which === 13)
       {
-        $('#vendor-info-edit').text('Please Wait');
+        let value = $('#item-search').val();
 
-        window.QueryManager.post('EDIT_VENDOR', window.getCookie('sessionID'),
+        if (value === '')
         {
-          'name': elements[0].value,
-          'description': elements[1].value
-        },
-        function()
-        {
-          elements.forEach(function (element)
-          {
-            element.setAttribute('disabled', null);
-          });
-          $('#vendor-info-edit').text('Edit Information');
-        });
+          // Reset to display all vendor items.
+          list.clear();
+          populateListByVendorItems();
+          return false;
+        }
+
+        window.QueryManager.get('SEARCH', value, searchVForm);
+        return false;
       }
     });
   });

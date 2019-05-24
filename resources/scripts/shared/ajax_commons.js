@@ -14,6 +14,8 @@ const NOZAMA = {
   ADD_CART: '/grab_item'
 };
 
+const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
+
 // ERROR MESSAGES
 const emsg = {
   0: {redirect: 500},
@@ -51,6 +53,26 @@ const cerror = function(xhr, e_callback)
  */
 export default class QueryManager
 {
+  /**
+   * Checks if an image exists and returns a default path if none is found.
+   * @param path The image path on our server.
+   * @param img The <img> element that needs to have its' src-attribute changed.
+   */
+  static loadImage(path, img)
+  {
+    $.get(NOZAMA_IMAGE_PATH + path)
+      .done(function()
+      {
+        // Image exists
+        img.src = NOZAMA_IMAGE_PATH + path;
+      })
+      .fail(function()
+      {
+        // Image does not exist
+        img.src = window.resources + 'img/img_missing.png';
+      });
+  }
+
   /**
    * Method to asynchronously retrieve data from our API.
    * @param d_type The type of data to be requested from the API.

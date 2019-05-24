@@ -4,7 +4,9 @@
   position: sticky;
   top: 0;
   height: 55px;
-  width: 99%;
+  width: 100%;
+
+  box-sizing: border-box;
 
   padding: 10px;
   background-color: cornflowerblue;

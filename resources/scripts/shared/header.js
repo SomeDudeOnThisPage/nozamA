@@ -32,7 +32,6 @@ export default function()
 
       $(dropdown).change(function()
       {
-        console.log('heyoo');
         document.location.href = $(this).val();
       });
 
@@ -50,8 +49,11 @@ export default function()
     else
     {
       // User not logged in / sessionID expired - Create login and sign up links
-      let lisu = $('<a></a>').text('Log In / Sign Up!').attr({href: window.root + 'account/login.html', id: 'nav-login'});
-      header.append(lisu);
+      header.append($('<a></a>').text('Log In / Sign Up!').attr(
+      {
+        href: window.root + 'account/login.html',
+        id: 'nav-login'
+      }));
     }
 
     // Attach search bar event handlers
@@ -68,21 +70,4 @@ export default function()
   });
 
   container.prepend(header);
-
-  // Attach event handlers
-  // Doing this AFTER adding the header to the DOM, otherwise the events won't fire...
-  /*document.getElementById('header_search').onsubmit = (ev => {
-    ev.preventDefault();
-    ev.stopPropagation();
-
-    // Get search results and split
-    let elements = document.getElementById('header_search').elements;
-
-    let search = (elements[0].value).replace(/ /g,'+');
-    if (search === '') { return false; }
-    window.location.href = window.root + 'results.html?search=' + search;
-
-    return false;
-  });*/
-
 };

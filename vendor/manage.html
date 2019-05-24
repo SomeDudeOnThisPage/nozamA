@@ -16,30 +16,45 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../resources/css/shared.css">
+        <link rel="stylesheet" href="../resources/css/vendor.css">
     </head>
 
     <body>
-    <div id="main-container">
-        <div id="content">
-            <div id="data">
-                <form id="change-data" onsubmit="return false">
-                    <p>Your Shop:</p>
+        <div id="main-container">
+            <div id="content">
 
-                    <label for="shop-name" class="form-label">Shop Name:</label>
-                    <input type="text" id="shop-name" class="form-input-text" disabled>
-                    <br>
+                <div id="data">
+                    <form id="change-data" onsubmit="return false">
+                        <p>Your Shop:</p>
 
-                    <label for="shop-description" class="form-label">Shop Description:</label>
-                    <textarea id="shop-description" class="form-input-text-large" disabled></textarea>
-                    <br>
-                </form>
-                <button id="vendor-info-edit">Edit Information</button>
+                        <label for="shop-name" class="form-label">Shop Name:</label>
+                        <input type="text" id="shop-name" class="form-input-text" disabled>
+                        <br>
+
+                        <label for="shop-description" class="form-label">Shop Description:</label>
+                        <textarea id="shop-description" class="form-input-text-large" disabled></textarea>
+                        <br>
+                    </form>
+                    <button id="vendor-info-edit">Edit Information</button>
+                </div>
+
+                <div id="options">
+                    <a href="additem.html">Add an Item.</a>
+                </div>
+
+                <div id="itemmgmt">
+                    <div id="items-controls">
+                        <p>Your Items:</p>
+                        <label for="item-search">Search:</label>
+                        <input id="item-search">
+                    </div>
+
+                    <div id="items">
+                        <item-list id="item-list"></item-list>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div id="options">
-            <a href="additem.html">Add an Item.</a>
-        </div>
-        <div id="item-list-container" class="item-list-container"></div>
-    </div>
     </body>
 </html>

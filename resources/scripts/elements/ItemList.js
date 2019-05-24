@@ -10,6 +10,16 @@ export default class ItemList extends AsyncElement
   }
 
   /**
+   * Adds one specific item based on its' ID.
+   * @param id The ID of the item.
+   */
+  addItem(id)
+  {
+    this.itemFrames.push(ItemList.generateItemPreviewFrame(id));
+    this.shadowRoot.appendChild(this.itemFrames[this.itemFrames.length - 1]);
+  }
+
+  /**
    * Removes the item-frames (not the item ids themselves)
    */
   clear()
@@ -18,7 +28,8 @@ export default class ItemList extends AsyncElement
 
     this.itemFrames.forEach(function(element)
     {
-      self.removeChild(element);
+      console.log(element);
+      self.shadowRoot.removeChild(element);
     });
 
     this.itemFrames = [];
@@ -66,7 +77,11 @@ export default class ItemList extends AsyncElement
       }
       else
       {
-        document.getElementById('end-of-search').style.display = 'inline';
+        // Just in case our page has no 'end-of-search'
+        if (document.getElementById('end-of-search') !== null)
+        {
+          document.getElementById('end-of-search').style.display = 'inline';
+        }
       }
     }
   }
@@ -79,14 +94,6 @@ export default class ItemList extends AsyncElement
   {
     this.itemFrames = [];
     window.QueryManager.get('SEARCH', search, this);
-  }
-
-  /**
-   * Adds one specific item based on its' ID.
-   */
-  addItem(id)
-  {
-    this.itemFrames.push(ItemList.generateItemPreviewFrame(id));
   }
 
   /**
