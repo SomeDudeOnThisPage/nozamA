@@ -8,12 +8,14 @@ export default class AsyncElement extends HTMLElement
    */
   getInternalElements()
   {
-    return Array.from(this.wrapper.get()[0].children);
+    return (this.wrapper.get()[0]).children;
   }
 
   /**
-   *
-   * @param data
+   * The method (re-) generating the component. Note that elements defined in the HTML template of
+   * the component cannot be accessed in a method called before this one, as they will not have
+   * finished loading before.
+   * @param data The data with which the element will be generated. Type of data depends on implementation.
    */
   generate(data)
   {

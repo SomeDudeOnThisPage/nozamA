@@ -33,7 +33,7 @@ export default class ItemFrame extends AsyncElement
    */
   generate(data)
   {
-    let elements = this.getInternalElements();
+    let elements = Array.from(this.getInternalElements());
     elements[0].href = window.root + 'item.html?item=' + this.getAttribute('item');
     elements[0].innerText = data['name'];
     window.QueryManager.loadImage(data['images'][0], elements[1].children[0]);
@@ -50,6 +50,6 @@ export default class ItemFrame extends AsyncElement
 
   constructor()
   {
-    super('item-frame');
+    super(arguments[0] || 'item-frame');
   }
 }

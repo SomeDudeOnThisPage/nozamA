@@ -1,4 +1,5 @@
 import ItemFrame from './elements/ItemFrame.js';
+import CartItemFrame from './elements/CartItemFrame.js';
 import ItemList from './elements/ItemList.js';
 import ItemImageDisplay from './elements/ItemImageDisplay.js';
 import QueryManager from './shared/ajax_commons.js';
@@ -89,5 +90,6 @@ window.logout = function()
 
 // DEFINE GLOBAL CUSTOM ELEMENTS
 customElements.define('item-preview-frame', ItemFrame);
+customElements.define('cart-item-frame', CartItemFrame);
 customElements.define('item-list', ItemList);
 customElements.define('item-image-display', ItemImageDisplay);

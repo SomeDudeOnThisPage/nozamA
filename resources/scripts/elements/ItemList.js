@@ -4,9 +4,18 @@ export default class ItemList extends AsyncElement
 {
   static generateItemPreviewFrame(id)
   {
-    let frame = document.createElement('item-preview-frame');
-    frame.setItem(id);
-    return frame;
+    if (arguments[1] === 'cart')
+    {
+      let frame = document.createElement('cart-item-frame');
+      frame.setItem(id, 2);
+      return frame;
+    }
+    else
+    {
+      let frame = document.createElement('item-preview-frame');
+      frame.setItem(id);
+      return frame;
+    }
   }
 
   /**
@@ -15,7 +24,7 @@ export default class ItemList extends AsyncElement
    */
   addItem(id)
   {
-    this.itemFrames.push(ItemList.generateItemPreviewFrame(id));
+    this.itemFrames.push(ItemList.generateItemPreviewFrame(id, this.getAttribute('mode') || null));
     this.shadowRoot.appendChild(this.itemFrames[this.itemFrames.length - 1]);
   }
 
@@ -24,15 +33,7 @@ export default class ItemList extends AsyncElement
    */
   clear()
   {
-    let self = this;
-
-    this.itemFrames.forEach(function(element)
-    {
-      console.log(element);
-      self.shadowRoot.removeChild(element);
-    });
-
-    this.itemFrames = [];
+    this.wrapper.empty();
   }
 
   /**
@@ -68,43 +69,54 @@ export default class ItemList extends AsyncElement
   {
     this.items = data;
 
-    for (let i = this.page * this.pageItems; i < this.page * this.pageItems + this.pageItems; i++)
+    // If we are a cart list, generate in a different manner
+    if (this.getAttribute('mode') === 'cart')
     {
-      if (i < this.items.length)
+      let cart = Array.from(data);
+      cart.forEach(function(element)
       {
-        this.itemFrames[i] = ItemList.generateItemPreviewFrame(this.items[i]);
-        this.shadowRoot.appendChild(this.itemFrames[i]);
-      }
-      else
+        let frame = ItemList.generateItemPreviewFrame(element['item_id'], 'cart');
+        this.itemFrames.push(frame);
+        this.wrapper.append(frame);
+      });
+    }
+    else
+    {
+      for (let i = this.page * this.pageItems; i < this.page * this.pageItems + this.pageItems; i++)
       {
-        // Just in case our page has no 'end-of-search'
-        if (document.getElementById('end-of-search') !== null)
+        if (i < this.items.length)
         {
-          document.getElementById('end-of-search').style.display = 'inline';
+          this.itemFrames.push(ItemList.generateItemPreviewFrame(this.items[i]));
+          this.wrapper.append(this.itemFrames[i]);
+        }
+        else
+        {
+          // Just in case our page has no 'end-of-search'
+          if (document.getElementById('end-of-search') !== null)
+          {
+            document.getElementById('end-of-search').style.display = 'inline';
+          }
         }
       }
     }
   }
 
   /**
-   * Populates the object based on a search string.
-   * @param search The search string.
+   * Populates the object based on a search string or cart.
    */
-  populate(search)
+  populate()
   {
     this.itemFrames = [];
-    window.QueryManager.get('SEARCH', search, this);
-  }
 
-  /**
-   * Populates the item list with random (!) items
-   * @see https://github.com/qwertxzy/nozama-api#get-n--random-items
-   */
-  populateRandom()
-  {
-    // Clear items
-    this.itemFrames = [];
-    window.QueryManager.get('RANDOM', this.pageItems, this);
+    switch(this.getAttribute('mode'))
+    {
+      case 'random':
+        return window.QueryManager.get('RANDOM', arguments[0], this);
+      case 'cart':
+        return generate(window.user['cart']);
+      default:
+        return window.QueryManager.get('SEARCH', arguments[0], this);
+    }
   }
 
   /**
@@ -117,46 +129,32 @@ export default class ItemList extends AsyncElement
     let self = this;
 
     // Create a container for our buttons
-    let buttonContainer = document.createElement('div');
-    buttonContainer.className = 'item-list-button-container';
-    buttonContainer.setAttribute('buttons', amt);
-    this.shadowRoot.appendChild(buttonContainer);
-
-    this.buttons = [];
-
-    // Create 'skip to page 1' button
-    let sb1 = document.createElement('button');
-    sb1.innerText = '<<';
-    sb1.className = 'item-list-button';
-    sb1.onclick = function() { self.back(); };
-    buttonContainer.appendChild(sb1);
-
-    // Create buttons in DOM
-    for (let i = 0; i < amt; i++)
+    let container = $('<div></div>').attr(
     {
-      let button = document.createElement('button');
-      button.className = 'item-list-button';
-      button.innerText = '?';
+      class: 'item-list-button-container'
+    });
 
-      button.onclick = function()
-      {
-        console.log('I am useless!');
-      };
+    // Create page forward / page backward buttons
+    container.append(
+      $('<button></button>').text('<').attr({
+        class: 'item-list-button'
+      })
+      .click(function() { self.back() })
+    );
 
-      buttonContainer.appendChild(button);
-    }
+    container.append(
+      $('<button></button>').text('>').attr({
+        class: 'item-list-button'
+      })
+      .click(function() { self.forward() } )
+    );
 
-    // Create 'skip to last page' button
-    let sb2 = document.createElement('button');
-    sb2.innerText = '>>';
-    sb2.className = 'item-list-button';
-    sb2.onclick = function() { self.forward(); };
-    buttonContainer.appendChild(sb2);
+    $(this.shadowRoot).append(container);
   }
 
   constructor()
   {
-    super('item-list');
+    super(arguments[0] || 'item-list');
     this.itemFrames = [];
     this.page = 0;
     this.pageItems = 5;
