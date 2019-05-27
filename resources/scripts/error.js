@@ -1,6 +1,7 @@
 let secret_on = false;
 
-window.onload = function()
+// Idk manI wrote this drunk at like 3am in themorging
+document.addEventListener("ondataloaded", function(e)
 {
   let url = new URL(window.location.href);
   let id = url.searchParams.get('id');
@@ -9,13 +10,13 @@ window.onload = function()
   document.getElementById('error-number').innerText = id;
   document.getElementById('error-message').innerText = msg;
 
-  // This code is awful but I wrote it at like 2 am so whatever
+  // This code i awful but I wrote it at like 2 am so whatver
   document.getElementById('secret').onclick = function()
   {
     if (!secret_on)
     {
       let representation = document.createElement('img');
-      representation.src = 'resources/img/db_irl.gif';
+      representation.src = window.resources + 'img/db_irl.gif';
       representation.id = 'representation';
 
       document.getElementById('dun-dun-dun-dun-da-da-da').play();
@@ -31,4 +32,4 @@ window.onload = function()
       secret_on = !secret_on;
     }
   }
-};
+});

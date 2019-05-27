@@ -141,8 +141,8 @@ export default class QueryManager
       {
         cerror(xhr, function()
         {
-          document.getElementById("register-error").innerText = 'The provided credentials were incorrect.';
-          document.getElementById("login-main-password").innerText = '';
+          $('#error-message').text('The provided credentials were incorrect.');
+          $("#login-main-password").text('');
         });
       },
       success: function(data)
@@ -182,7 +182,7 @@ export default class QueryManager
           document.getElementById("regpwt").style.display = "none";
 
           document.getElementById("regem").style.display = "inline";
-          document.getElementById("register-error").innerText = emsg[xhr.status].msg;
+          $('#error-message').text(emsg[xhr.status].msg);
         });
       },
     });
@@ -208,7 +208,7 @@ export default class QueryManager
       {
         cerror(xhr, function()
         {
-          document.getElementById('error-message').innerText = xhr.status + ' ' + emsg[xhr.status].msg;
+          $('#error-message').text(xhr.status + ' ' + emsg[xhr.status].msg);
         })
       },
     });
@@ -232,7 +232,7 @@ export default class QueryManager
       {
         cerror(xhr, function()
         {
-          document.getElementById('error-message').innerText = xhr.status + ' ' + emsg[xhr.status].msg;
+          $('#error-message').text(xhr.status + ' ' + emsg[xhr.status].msg);
         });
       },
     });
@@ -253,7 +253,7 @@ export default class QueryManager
       {
         cerror(xhr, function()
         {
-          document.getElementById('error-message').innerText = xhr.status + ' ' + emsg[xhr.status].msg;
+          $('#error-message').text(xhr.status + ' ' + emsg[xhr.status].msg);
         });
       },
     });

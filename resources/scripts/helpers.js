@@ -63,6 +63,11 @@ window.addStylesheet = function()
   $(element).append(stylesheet);
 };
 
+window.error = function(msg)
+{
+  $('#error-message').text(arguments[1] || '' + msg);
+};
+
 /**
  * Gets the value of a cookie.
  * @param name The name of the cookie.

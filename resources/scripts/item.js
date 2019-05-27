@@ -42,6 +42,20 @@ document.addEventListener("ondataloaded", function(e)
 
   document.getElementById("add-to-cart").addEventListener("click", function()
   {
+    let cart = Array.from(window.user['cart']);
+
+    // Check if the item is already in the cart
+    for(let i = 0; i < cart.length; i++)
+    {
+      if(cart[i]['item_id'] === Number(current))
+      {
+        let new_amount = JSON.parse(cart[i]['amount']) + Number(document.getElementById('add-to-cart-amount').value || 1);
+        window.QueryManager.grabItem(window.getCookie('sessionID'), current, new_amount);
+        cart[i]['amount'] = JSON.parse(cart[i]['amount']) + Number(document.getElementById('add-to-cart-amount').value);
+        return;
+      }
+    }
+
     window.QueryManager.grabItem(window.getCookie('sessionID'), current, document.getElementById('add-to-cart-amount').value || 1);
   });
 });
