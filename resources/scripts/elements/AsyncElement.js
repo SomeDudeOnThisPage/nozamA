@@ -47,7 +47,7 @@ export default class AsyncElement extends HTMLElement
 
   /**
    * A custom web component utilizing ShadowDOM to initialize a component structure on element creation.
-   * Note: Remember to forward class-name to lower constructors down the inheritance-line.
+   * Note: Remember to forward cname to lower constructors down the inheritance-line.
    * @param cname The class name of the containing div element inside the ShadowDOM.
    */
   constructor(cname)

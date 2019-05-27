@@ -17,18 +17,26 @@ export default class ItemImageDisplay extends AsyncElement
    */
   generate(data)
   {
+    $(this.shadowRoot).find('#main-image').attr({
+      'src': NOZAMA_IMAGE_PATH + '/' + data[0]
+    });
+
     let self = this;
     data.forEach(function(image)
     {
       let img = $('<img>').attr({
         src: NOZAMA_IMAGE_PATH + '/' + image,
-        alt: 'oops'
+        alt: 'oops',
       });
 
-      let button = $('<button>');
+      let button = $('<button>').attr({
+        class: 'image-button'
+      });
       button.click(function()
       {
-        self.shadowRoot.getElementById('main-image').setAttribute('src', img.attr('src'));
+        $(self.shadowRoot).find('#main-image').attr({
+          src: img.attr('src'),
+        });
       });
 
       button.append(img);

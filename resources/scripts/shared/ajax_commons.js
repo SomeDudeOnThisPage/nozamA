@@ -11,7 +11,10 @@ const NOZAMA = {
   EDIT_VENDOR: '/change_profile/vendor',
   CHANGE_PASSWORD: '/change_password',
   SEARCH: '/search',
-  ADD_CART: '/grab_item'
+  ADD_CART: '/grab_item',
+  CATEGORIES: '/categories',
+  ADD_ITEM: '/add_item',
+  ADD_ITEM_IMAGE: '/add_item_image'
 };
 
 const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
@@ -40,7 +43,7 @@ const cerror = function(xhr, e_callback)
 
   if (emsg[xhr.status].fatal)
   {
-    window.location.href = '/nozamA/leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
+    //window.location.href = '/nozamA/leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
   }
   else
   {
@@ -81,9 +84,16 @@ export default class QueryManager
    */
   static get(d_type, id, callback)
   {
+    let url = NOZAMA.API + NOZAMA[d_type];
+
+    if (arguments[1] !== null)
+    {
+      url += '/' + id;
+    }
+
     $.ajax({
       type: 'GET',
-      url: NOZAMA.API + NOZAMA[d_type] + '/' + id,
+      url: url,
       dataType: 'json',
       success: function(result)
       {
@@ -98,28 +108,52 @@ export default class QueryManager
       },
       error: function(xhr, _1, _2)
       {
-        cerror(xhr, null);
+        cerror(xhr, function() {});
       }
     });
   }
 
   static post(d_type, id, data, callback)
   {
+    if (!arguments[5])
+    {
+      data = JSON.stringify(data);
+    }
+
     $.ajax({
       type: 'POST',
       url: NOZAMA.API + NOZAMA[d_type] + '/' + id,
-      contentType: 'application/json',
-      data: JSON.stringify(data),
+      contentType: arguments[4] || 'application/json',
+      data: data,
       error: function(xhr, _1, _2)
       {
-        cerror(xhr, function()
-        {
-          cerror(xhr, null);
-        });
+        cerror(xhr, function() {});
       },
       success: function(data)
       {
         callback(data);
+      }
+    });
+  }
+
+  static addImage(session, item, file)
+  {
+    let fdata = new FormData();
+    fdata.append('image', file);
+
+    $.ajax({
+      type: 'POST',
+      url: NOZAMA.API + NOZAMA.ADD_ITEM_IMAGE + '/' + session + '/' + item,
+      processData: false,
+      contentType: false,
+      data: fdata,
+      error: function(xhr, _1, _2)
+      {
+        cerror(xhr, function() {});
+      },
+      success: function(data)
+      {
+        console.log('ADDED!');
       }
     });
   }
@@ -133,10 +167,10 @@ export default class QueryManager
       type: 'POST',
       url: NOZAMA.API + NOZAMA.LOGIN,
       data:
-        {
-          'email': email,
-          'password': password,
-        },
+      {
+        'email': email,
+        'password': password,
+      },
       error: function(xhr, _1, _2)
       {
         cerror(xhr, function()
@@ -247,7 +281,7 @@ export default class QueryManager
       data: {},
       success: function()
       {
-        // TODO: Display an 'added to cart!'-message or something.
+        $('#total-cart').text('Total of #' + amount + ' items in cart.');
       },
       error: function(xhr, _1, _2)
       {

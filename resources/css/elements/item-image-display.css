@@ -1,21 +1,21 @@
-#item-image-display-main-image
+#main-image
 {
     position: relative;
     min-height: 250px;
     width: 250px;
-    height: auto;
+    height: 250px;
 }
 
-.item-image-display-button
+.image-button
 {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: calc(250px / 4);
+    height: calc(250px / 4);
     padding: 0;
 }
 
-.item-image-display-button > img
+.image-button > img
 {
-    width: 100px;
-    height: 100px;
+    width: calc(250px / 4);
+    height: calc(250px / 4);
 }

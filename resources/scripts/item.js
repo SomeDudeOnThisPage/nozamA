@@ -2,10 +2,10 @@ let current;
 
 function generate(item, vendor)
 {
-  let itemImageDisplay = document.getElementById('item-images');
-  itemImageDisplay.generate(item['images']);
-
   let v_href = window.root + '/vendor/index.html?vendor=' + item['vendor_id'];
+
+  console.log(item['images']);
+  $('#item-images')[0].generate(item['images']);
 
   // Populate our elements with the required data
   $('#item-name').text(item['name']);
@@ -19,6 +19,19 @@ document.addEventListener("ondataloaded", function(e)
 {
   let url = new URL(window.location.href);
   current = url.searchParams.get('item');
+
+  /*let cart = Array.from(window.user['cart']);
+
+  // Check if the item is already in the cart
+  for(let i = 0; i < cart.length; i++)
+  {
+    if(cart[i]['item_id'] === Number(current))
+    {
+      let amount = JSON.parse(cart[i]['amount']);
+      $('#total-cart').text('Total of #' + amount + ' items in cart.');
+      return;
+    }
+  }*/
 
   // Create our item
   window.QueryManager.get('ITEM', current, function(i_result)
@@ -40,7 +53,7 @@ document.addEventListener("ondataloaded", function(e)
     });
   });
 
-  document.getElementById("add-to-cart").addEventListener("click", function()
+  $('#add-to-cart').click(function()
   {
     let cart = Array.from(window.user['cart']);
 
@@ -49,13 +62,17 @@ document.addEventListener("ondataloaded", function(e)
     {
       if(cart[i]['item_id'] === Number(current))
       {
-        let new_amount = JSON.parse(cart[i]['amount']) + Number(document.getElementById('add-to-cart-amount').value || 1);
+        let amount = JSON.parse(cart[i]['amount']);
+        let add = Number($('#add-to-cart-amount').val()) || 1;
+        let new_amount = amount + add;
+
         window.QueryManager.grabItem(window.getCookie('sessionID'), current, new_amount);
-        cart[i]['amount'] = JSON.parse(cart[i]['amount']) + Number(document.getElementById('add-to-cart-amount').value);
+        cart[i]['amount'] = new_amount;
         return;
       }
     }
 
-    window.QueryManager.grabItem(window.getCookie('sessionID'), current, document.getElementById('add-to-cart-amount').value || 1);
+    window.QueryManager.grabItem(window.getCookie('sessionID'), current, Number($('#add-to-cart-amount').val()) || 1);
   });
+
 });

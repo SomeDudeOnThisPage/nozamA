@@ -29,9 +29,17 @@
   color: black;
 }
 
+.image
+{
+  position: absolute;
+  left: 0;
+  width: 125px;
+  height: 125px;
+}
+
 .image > img
 {
-  padding: 5px;
+  padding: 0;
   position: absolute;
   left: 0;
   width: 125px;

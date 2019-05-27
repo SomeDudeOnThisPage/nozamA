@@ -38,7 +38,6 @@ function searchVForm(data)
 {
   data.filter(function(value, index, arr)
   {
-    console.log('ayy');
     return data['vendor'] === window.user['belongs_to_vendor'];
   });
 
@@ -63,6 +62,7 @@ document.addEventListener("ondataloaded", function(e)
     list = document.getElementById('item-list');
     let populateListByVendorItems = function()
     {
+      list.clear();
       Array.from(vendor['items']).forEach(function(item)
       {
         list.addItem(item);
@@ -86,7 +86,6 @@ document.addEventListener("ondataloaded", function(e)
         if (value === '')
         {
           // Reset to display all vendor items.
-          list.clear();
           populateListByVendorItems();
           return false;
         }

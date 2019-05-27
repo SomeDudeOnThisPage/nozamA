@@ -25,7 +25,7 @@ export default class ItemList extends AsyncElement
   addItem(id)
   {
     let frame = ItemList.generateItemPreviewFrame(id, this.getAttribute('mode') || null);
-    $(this.shadowRoot).append(frame);
+    $(this.wrapper).append(frame);
   }
 
   /**
@@ -33,7 +33,7 @@ export default class ItemList extends AsyncElement
    */
   clear()
   {
-    this.wrapper.empty();
+    $(this.wrapper).empty();
   }
 
   /**

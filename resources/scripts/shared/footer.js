@@ -2,14 +2,11 @@ export default function()
 {
   window.addStylesheet('footer.css');
 
-  let footer = document.createElement('div');
-  footer.className = 'footer';
+  let footer = $('<div></div>').attr({
+    class: 'footer'
+  });
 
-  // I'm lazy
-  footer.innerHTML = `
-      <a id="href-faq" href="/nozamA/faq.html">FAQ</a>
-      <a id="href-become-vendor" href="/nozamA/faq.html#become-a-vendor">Become a vendor</a>
-  `;
+  footer.load(window.resources + 'html/elements/footer.html');
 
-  document.getElementById('main-container').appendChild(footer);
+  $('#main-container').append(footer);
 }

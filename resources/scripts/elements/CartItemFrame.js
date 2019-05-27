@@ -26,7 +26,7 @@ export default class CartItemFrame extends ItemFrame
 
   generate(data)
   {
-    this.shadowRoot.getElementById('amount').value = this.getAttribute('amount');
+    $(this.shadowRoot).find('#amount').val(this.getAttribute('amount'));
     super.generate(data);
   }
 
