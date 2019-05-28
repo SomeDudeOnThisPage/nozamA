@@ -1,19 +1,6 @@
 let formError = function(msg)
 {
-  document.getElementById("register-error").innerText = msg;
-};
-
-let formFilled = function(elements)
-{
-  for (let i = 0; i < elements.length; i++)
-  {
-    if (elements[i].value === '')
-    {
-      return false;
-    }
-  }
-
-  return true;
+  $('#register-error').text(msg);
 };
 
 function register_action(ev)
@@ -23,32 +10,39 @@ function register_action(ev)
   ev.stopPropagation();
 
   let elements = document.getElementById("register").elements;
-
-  if (!formFilled(elements))
-  {
-    formError("Empty fields are not allowed!");
-    return false;
-  }
-
+  console.log(elements);
 
   // Case passwords do not match
-  if (elements[3].value !== elements[4].value)
+  if ($('#password').val() !== $('#password-again').val())
   {
     // Reset elements
-    document.getElementById("regpwo").style.display = "inline";
-    document.getElementById("regpwt").style.display = "inline";
-    document.getElementById("regem").style.display = "none";
+    $('#regwo').css('display', 'inline');
+    $('#regpwt').css('display', 'inline');
+    $('#regem').css('display', 'none');
     formError("Passwords do not match!");
 
     // Clear password fields
-    elements[3].value = '';
-    elements[4].value = '';
+    $('#password').val('');
+    $('#password-again').val('');
 
     return false;
   }
 
-  // Make the call to the API
-  window.QueryManager.register(elements[2].value, elements[0].value + " " + elements[1].value, elements[3].value);
+  // Make the registry call to the API
+  window.QueryManager.register($('#email').val(), $('#first-name').val() + " " + $('#last-name').val(), $('#password').val(), function()
+  {
+    // Login User without redirect
+    window.QueryManager.login($('#email').val(), $('#password').val(), function()
+    {
+      // Make the address change call to the API
+      window.QueryManager.post('CHANGE_ADDRESS', window.getCookie('sessionID'), {
+          'city': $('#city').val(),
+          'zip': $('#zip').val(),
+          'street': $('#street').val()
+        },
+        function() {});
+    });
+  });
 
   return false;
 }
@@ -60,12 +54,6 @@ function login_action(ev)
   ev.stopPropagation();
 
   let elements = document.getElementById("login").elements;
-
-  if (!formFilled(elements))
-  {
-    formError("Empty fields are not allowed!");
-    return false;
-  }
 
   // Make the call to the API
   window.QueryManager.login(elements[0].value, elements[1].value);

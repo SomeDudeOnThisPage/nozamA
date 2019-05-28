@@ -9,12 +9,14 @@ const NOZAMA = {
   VENDOR: '/vendor',
   REGISTER_VENDOR: '/add_vendor',
   EDIT_VENDOR: '/change_profile/vendor',
+  CHANGE_USER: '/change_profile/user',
   CHANGE_PASSWORD: '/change_password',
   SEARCH: '/search',
   ADD_CART: '/grab_item',
   CATEGORIES: '/categories',
   ADD_ITEM: '/add_item',
-  ADD_ITEM_IMAGE: '/add_item_image'
+  ADD_ITEM_IMAGE: '/add_item_image',
+  CHANGE_ADDRESS: '/change_address'
 };
 
 const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
@@ -131,7 +133,10 @@ export default class QueryManager
       },
       success: function(data)
       {
-        callback(data);
+        if (callback !== undefined && callback !== null)
+        {
+          callback(data);
+        }
       }
     });
   }
@@ -163,6 +168,9 @@ export default class QueryManager
    */
   static login(email, password)
   {
+    // Optional success callback
+    let callback = arguments[2] || null;
+
     $.ajax({
       type: 'POST',
       url: NOZAMA.API + NOZAMA.LOGIN,
@@ -185,7 +193,13 @@ export default class QueryManager
 
         // Create cookie, no 'expires' so it expires whenever the session ends (The browser is closed).
         document.cookie = 'sessionID=' + session_id + ';path=/;';
-        window.location.href = window.root + 'index.html';
+
+        // Pass of callback argument optional, default is redirect to index.
+        if (callback !== null) { callback(); }
+        else
+        {
+          window.location.href = window.root + 'index.html';
+        }
       }
     });
   }
@@ -195,6 +209,9 @@ export default class QueryManager
    */
   static register(email, username, password)
   {
+    // Optional success callback
+    let callback = arguments[3] || null;
+
     $.ajax({
       type: 'POST',
       url: NOZAMA.API + NOZAMA.REGISTER,
@@ -206,7 +223,11 @@ export default class QueryManager
         },
       success: function()
       {
-        window.location.href = "index.html";
+        if (callback !== null) { callback(); }
+        else
+        {
+          window.location.href = "index.html";
+        }
       },
       error: function(xhr, _1, _2)
       {

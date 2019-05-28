@@ -23,7 +23,7 @@ function vForm(elements)
       'name': elements[0].value,
       'description': elements[1].value
     },
-    function ()
+    function()
     {
       elements.forEach(function (element)
       {
@@ -45,6 +45,15 @@ function searchVForm(data)
   list.generate(data);
 }
 
+function populateListByVendorItems(list)
+{
+  list.clear();
+  Array.from(vendor['items']).forEach(function(item)
+  {
+    list.addItem(item);
+  });
+}
+
 document.addEventListener("ondataloaded", function(e)
 {
   // Get vendor info.
@@ -53,28 +62,19 @@ document.addEventListener("ondataloaded", function(e)
     vendor = data;
     items = vendor['items'];
 
-    // Populate our data.
-    let elements = Array.from(document.getElementById('change-data').elements);
-    elements[0].value = vendor['name'];
-    elements[1].value = vendor['description'];
+    let dataForm = $('#change-data')[0];
+    dataForm.populate(data);
+    dataForm.setCallback(function()
+    {
+      window.QueryManager.post('EDIT_VENDOR', window.getCookie('sessionID'),
+      {
+        'name': $('#name').val(),
+        'description': $('#description').val()
+      });
+    });
 
     // Initially populate item list.
-    list = document.getElementById('item-list');
-    let populateListByVendorItems = function()
-    {
-      list.clear();
-      Array.from(vendor['items']).forEach(function(item)
-      {
-        list.addItem(item);
-      });
-    };
-    populateListByVendorItems();
-
-    // Create button change listener.
-    $('#vendor-info-edit').click(function()
-    {
-      vForm(elements);
-    });
+    populateListByVendorItems($('#item-list')[0]);
 
     // Create search bar listener (fires when 'enter' was pressed while the input field was in focus).
     $('#item-search').keypress(function(e)
@@ -86,7 +86,7 @@ document.addEventListener("ondataloaded", function(e)
         if (value === '')
         {
           // Reset to display all vendor items.
-          populateListByVendorItems();
+          populateListByVendorItems($('#item-list')[0]);
           return false;
         }
 
