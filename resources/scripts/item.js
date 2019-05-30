@@ -4,7 +4,6 @@ function generate(item, vendor)
 {
   let v_href = window.root + '/vendor/index.html?vendor=' + item['vendor_id'];
 
-  console.log(item['images']);
   $('#item-images')[0].generate(item['images']);
 
   // Populate our elements with the required data
@@ -20,19 +19,6 @@ document.addEventListener("ondataloaded", function(e)
   let url = new URL(window.location.href);
   current = url.searchParams.get('item');
 
-  /*let cart = Array.from(window.user['cart']);
-
-  // Check if the item is already in the cart
-  for(let i = 0; i < cart.length; i++)
-  {
-    if(cart[i]['item_id'] === Number(current))
-    {
-      let amount = JSON.parse(cart[i]['amount']);
-      $('#total-cart').text('Total of #' + amount + ' items in cart.');
-      return;
-    }
-  }*/
-
   // Create our item
   window.QueryManager.get('ITEM', current, function(i_result)
   {
@@ -44,6 +30,9 @@ document.addEventListener("ondataloaded", function(e)
       {
         element.style.display = 'block';
       });
+
+      // Make link functional
+      $('#href-internal-001').attr({'href': './vendor/edititem.html?item=' + current});
     }
 
     // Get vendor data after creating our item

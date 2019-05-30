@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Account</title>
+
+        <!-- External Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <!-- Modules -->
+        <script type="module" src="../resources/scripts/shared/ajax_commons.js"></script>
+        <script type="module" src="../resources/scripts/helpers.js"></script>
+
+        <!-- Scripts -->
+        <script src="../resources/scripts/edititem.js"></script>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="../resources/css/shared.css">
+    </head>
+
+    <body>
+        <div id="main-container">
+            <div id="content">
+                <p id="error-message"></p>
+
+                <div id="item-data">
+                    <toggle-form id="item-data-form">
+                        <p>Item Data: <button>Edit</button></p>
+
+                        <label for="name">Name:</label>
+                        <input id="name">
+                        <br>
+
+                        <label for="description">Description:</label>
+                        <textarea id="description"></textarea>
+                        <br>
+
+                        <label for="price">Price:</label>
+                        <input id="price" type="number">
+                        <br>
+                    </toggle-form>
+                </div>
+
+                <hr>
+
+                <div id="item-manufacturer">
+                    <toggle-form id="item-manufacturer-form">
+                        <p>Manufacturer: <button>Edit</button></p>
+
+                        <label for="manufacturer">Manufacturer:</label>
+                        <select id="manufacturer"></select>
+                        <br>
+
+                        <label for="add-manufacturer">Not here? Add:</label>
+                        <input id="add-manufacturer">
+                        <button id="add-manufacturer-confirm">Confirm</button>
+                        <br>
+
+                    </toggle-form>
+                </div>
+
+                <hr>
+
+                <div id="item-details">
+                    <toggle-form id="item-details-form">
+                        <p>Item Details: <button>Edit</button></p>
+                        <p id="form-error"></p>
+                        <table>
+                            <tr>
+                                <th>Detail</th>
+                                <th>Data</th>
+                            </tr>
+                        </table>
+                        <button id="btn-internal-001">Add Detail</button>
+                    </toggle-form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

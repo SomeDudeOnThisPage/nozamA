@@ -43,6 +43,11 @@ export default class ItemFrame extends AsyncElement
     // Check if the user is the vendor of this item
     if (data['vendor_id'] === window.user['belongs_to_vendor'])
     {
+      let self = this;
+      $(this.shadowRoot).find('#btn_internal_001').click(function()
+      {
+        window.location.href = window.root + 'vendor/edititem.html?item=' + self.getAttribute('item');
+      });
       // Make hidden elements visible
       elements[3].style.display = 'block';
       elements[2].innerText = 'This item is being sold by your shop.'

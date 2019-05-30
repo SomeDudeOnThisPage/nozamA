@@ -13,10 +13,13 @@ const NOZAMA = {
   CHANGE_PASSWORD: '/change_password',
   SEARCH: '/search',
   ADD_CART: '/grab_item',
+  REMOVE_CART: '/remove_item',
   CATEGORIES: '/categories',
   ADD_ITEM: '/add_item',
   ADD_ITEM_IMAGE: '/add_item_image',
-  CHANGE_ADDRESS: '/change_address'
+  CHANGE_ADDRESS: '/change_address',
+  MANUFACTURERS: '/manufacturers',
+  ADD_MANUFACTURER: '/add_manufacturer'
 };
 
 const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';

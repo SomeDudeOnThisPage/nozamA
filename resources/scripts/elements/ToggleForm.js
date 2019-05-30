@@ -1,15 +1,45 @@
 const buttonText = {
-  disabled: 'Edit',
-  undefined: 'Confirm'
+  true: 'Edit',
+  false: 'Confirm'
 };
 
+const formElements = 'input, textarea, select';
+
+/**
+ * Script component of the custom <toggle-form> html component.
+ * A ToggleForm component needs to contain a <form> tag, a <button> tag
+ * and a <p> tag with id='form-error'.
+ *
+ * Example:
+ * <toggle-form>
+ *   <button>Edit</button>
+ *   <form>...</form>
+ *   <p id="form-error"></p>
+ * </toggle-form>
+ */
 export default class ToggleForm extends HTMLElement
 {
+  setError(msg)
+  {
+    $(this).find('#form-error').text(msg);
+  }
+
+  getStatus()
+  {
+    return this.isDisabled;
+  }
+
   toggle()
   {
+    this.form = $(this).find(formElements); // Find again, Dynamic forms!!
+
+    this.form.attr('disabled', !this.form.attr('disabled'));
+    this.isDisabled = !this.isDisabled;
+    this.button.text(buttonText[this.isDisabled]);
+
+    this.setError('');
+
     let form = this.form;
-    form.attr('disabled', !form.attr('disabled'));
-    this.button.text(buttonText[form.attr('disabled')]);
 
     if (form.attr('disabled'))
     {
@@ -36,14 +66,15 @@ export default class ToggleForm extends HTMLElement
   {
     super();
 
-    this.form = $(this).find('input, textarea');
+    this.form = $(this).find(formElements);
 
     // Disable input fields
     this.form.attr('disabled', true);
+    this.isDisabled = true;
 
     // Attach button handlers
     let self = this;
-    this.button = $(this).find('button');
+    this.button = $(this).find('button:first');
     this.button.click(function() { self.toggle() });
   }
 }

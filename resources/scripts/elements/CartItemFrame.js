@@ -27,6 +27,16 @@ export default class CartItemFrame extends ItemFrame
   generate(data)
   {
     $(this.shadowRoot).find('#amount').val(this.getAttribute('amount'));
+
+    let self = this;
+    $(this.shadowRoot).find('button').click(function()
+    {
+      window.QueryManager.post('REMOVE_CART', window.getCookie('sessionID') + '/' + self.getAttribute('item'), null, function()
+      {
+        // TODO: Wait for Leo to implement, update elements
+      });
+    });
+
     super.generate(data);
   }
 
