@@ -31,16 +31,8 @@
                 </div>
 
                 <div id="item-details">
-                    <table>
-                        <tr>
-                            <td>Sold By:</td>
-                            <td id="item-vendor"></td>
-                        </tr>
-                        <tr>
-                            <td>Manufactured By:</td>
-                            <td id="item-manufacturer"></td>
-                        </tr>
-                    </table>
+                    <dynamic-table id="item-details-table" headers="Detail,Description" nobutton="true" nodelete="true">
+                    </dynamic-table>
                 </div>
                 <div>
                     <label for="add-to-cart-amount" class="form-label">Amount:</label>

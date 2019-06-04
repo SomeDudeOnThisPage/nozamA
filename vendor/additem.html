@@ -23,7 +23,7 @@
             <div id="content">
                 <p id="error-message"></p>
                 <p>Add a new item to your shop:</p>
-                <form onsubmit="return submit(event)">
+                <form onsubmit="return form_submit(event)">
                     <label for="item-name" class="form-label">Name:</label>
                     <input type="text" id="item-name" class="form-input-text" required>
                     <br>
@@ -44,6 +44,10 @@
 
                     <label for="item-category" class="form-label">Category:</label>
                     <select id="item-category"></select>
+                    <br>
+
+                    <p>Item Details <i>(short facts about your item)</i>:</p>
+                    <dynamic-table id="item-details" headers="Detail,Description" btext="Add Detail"></dynamic-table>
                     <br>
 
                     <label for="item-tags">Tags (Separated by ',' or ' '):</label>

@@ -43,7 +43,7 @@ const cerror = function(xhr, e_callback)
 
   if (emsg[xhr.status].fatal)
   {
-    //window.location.href = '/nozamA/leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
+    window.location.href = '/nozamA/leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
   }
   else
   {
@@ -52,7 +52,7 @@ const cerror = function(xhr, e_callback)
 };
 
 /**
- * Static class holding a collection of static methods designed to push and receive data to / from the API.
+ * Static wrapper class holding a collection of static methods designed to push and receive data to / from the API.
  */
 export default class QueryManager
 {
@@ -96,7 +96,7 @@ export default class QueryManager
   }
 
   /**
-   *
+   * Method to asynchronously post data to our API.
    * @param d_type The base destination endpoint.
    * @param destination The endpoint url parameters.
    * @param data The data to be transmitted.
@@ -275,27 +275,6 @@ export default class QueryManager
       success: function()
       {
         window.location.href = window.root + 'vendor/index.html';
-      },
-      error: function(xhr, _1, _2)
-      {
-        cerror(xhr, function()
-        {
-          $('#error-message').text(xhr.status + ' ' + emsg[xhr.status].msg);
-        });
-      },
-    });
-  }
-
-  static grabItem(sessionID, itemID, amount)
-  {
-    $.ajax({
-      type: 'POST',
-      url: NOZAMA.API + NOZAMA.ADD_CART + '/' + sessionID + '/' + itemID + '/' + amount,
-      contentType: 'application/json',
-      data: {},
-      success: function()
-      {
-        $('#total-cart').text('Total of #' + amount + ' items in cart.');
       },
       error: function(xhr, _1, _2)
       {

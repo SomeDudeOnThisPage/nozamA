@@ -10,8 +10,18 @@ function generate(item, vendor)
   $('#item-name').text(item['name']);
   $('#item-description').text(item['description']);
   $('#item-price').text('Price: ' + (item['price'] * window.currency.rate).toFixed(2) + window.currency.symbol);
-  $('#item-vendor').html('<a href="' + v_href + '">' + vendor['name'] + '</a>');
-  $('#item-manufacturer').text(item['manufacturer']);
+
+  // Create details table
+  let details = $('#item-details-table')[0];
+
+  // Insert Manufacturer & Vendor
+  details.addRow(['Vendor', '<a href="' + v_href + '">' + vendor['name'] + '</a>']);
+  details.addRow(['Manufacturer', item['manufacturer']]);
+
+  for (let k in item['details'])
+  {
+    details.addRow([k, item['details'][k]]);
+  }
 
   let index = findIndex(window.user['cart'], 'item_id', Number(current));
   if (index)
@@ -44,7 +54,6 @@ document.addEventListener("ondataloaded", function(e)
   // Create our item
   window.QueryManager.get('ITEM', current, function(i_result)
   {
-    console.log(i_result);
     if (i_result['vendor_id'] === window.user['belongs_to_vendor'])
     {
       $('.vendor-info').each(function()

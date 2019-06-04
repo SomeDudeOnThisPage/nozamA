@@ -29,6 +29,12 @@ export default class ToggleForm extends HTMLElement
     return this.isDisabled;
   }
 
+  disable()
+  {
+    this.form = $(this).find(formElements).not('.toggle-button'); // Find again, Dynamic forms!!
+    this.form.attr('disabled', !this.form.attr('disabled'));
+  }
+
   toggle()
   {
     this.form = $(this).find(formElements).not('.toggle-button'); // Find again, Dynamic forms!!
@@ -51,8 +57,8 @@ export default class ToggleForm extends HTMLElement
   {
     this.form.each(function(index, element)
     {
-      // Why are you like this JQuery...
       element = $(element);
+      // Why are you like this JQuery...
       element.val(data[element.attr('id')]);
     });
   }
@@ -74,7 +80,7 @@ export default class ToggleForm extends HTMLElement
 
     // Attach button handlers
     let self = this;
-    this.button = $(this).find('button:first');
+    this.button = $(this).find('.toggle-button');
     this.button.click(function() { self.toggle() });
   }
 }

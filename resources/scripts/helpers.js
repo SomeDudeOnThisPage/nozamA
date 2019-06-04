@@ -6,6 +6,7 @@ import ToggleForm from './elements/ToggleForm.js';
 import QueryManager from './shared/ajax_commons.js';
 import header from './shared/header.js';
 import footer from './shared/footer.js';
+import DynamicTable from "./elements/DynamicTable.js";
 
 /*
   JS module script implemented on every page defining shared globals and custom elements of the page.
@@ -100,3 +101,4 @@ customElements.define('cart-item-frame', CartItemFrame);
 customElements.define('item-list', ItemList);
 customElements.define('item-image-display', ItemImageDisplay);
 customElements.define('toggle-form', ToggleForm);
+customElements.define('dynamic-table', DynamicTable);

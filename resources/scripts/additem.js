@@ -1,11 +1,10 @@
 const MAX_IMAGES = 4;
 
-function submit(e)
+function form_submit(e)
 {
   e.preventDefault();
   e.stopPropagation();
 
-  console.log($('#item-tags').val().split(/[ ,]+/));
   // Create Item
   window.QueryManager.post('ADD_ITEM', window.getCookie('sessionID'),
   {
@@ -15,7 +14,7 @@ function submit(e)
     'price': $('#item-price').val(),
     'category': $('#item-category').val(),
     'tags': $('#item-tags').val().split(/[ ,]+/),
-    'details': {}
+    'details': $('#item-details')[0].toJSON()
   },
   function(result)
   {
@@ -24,14 +23,14 @@ function submit(e)
 
     files.forEach(function(file)
     {
-      window.QueryManager.addImage(window.getCookie('sessionID'), JSON.parse(result)['item_id'], file)
+      window.QueryManager.addImage(window.getCookie('sessionID'), JSON.parse(result)['item_id'], file);
     });
   });
-
+  
   return false;
 }
 
-document.addEventListener("ondataloaded", function(e)
+document.addEventListener("ondataloaded", function()
 {
   // Add categories to category selector element
   window.QueryManager.get('CATEGORIES', null, function(data)
@@ -61,11 +60,12 @@ document.addEventListener("ondataloaded", function(e)
 
     files.forEach(function(file)
     {
-      let img = $('<img>').attr({
+      let img = $('<img alt="">').attr({
         src: URL.createObjectURL(file),
-        alt: 'oops'
       });
       $('#item-images-preview').append(img);
     });
   });
+
+  $('#item-details')[0].addRow(['<input>', '<input>']);
 });

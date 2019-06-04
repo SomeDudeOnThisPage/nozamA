@@ -10,34 +10,16 @@ function findValueByText(select, text)
   }).val();
 }
 
-function createDetailTableRow(key, data, form)
-{
-  let row = $('<tr></tr>');
-  let k = $('<td></td>').append($('<input>').val(key).attr('disabled', arguments[3] || undefined));
-  let v = $('<td></td>').append($('<input>').val(data).attr('disabled', arguments[3] || undefined));
-  row.append(k, v);
-
-  let button = $('<button></button>').text('Delete').attr('disabled', arguments[3] || undefined)
-  .click(function()
-  {
-    if (!form[0].getStatus())
-    {
-      $(this).parent().parent().remove();
-    }
-  });
-
-  row.append($('<td></td>').append(button));
-
-  form.find('table').append(row);
-}
-
 document.addEventListener("ondataloaded", function(e)
 {
   current = new URL(window.location.href).searchParams.get('item');
 
   // Setup forms
   $('#item-data-form')[0].setCallback(function() {});
-  $('#item-details-form')[0].setCallback(function() {});
+  $('#item-details-form')[0].setCallback(function()
+  {
+    console.log($('#item-details').find('dynamic-table')[0].toJSON());
+  });
   $('#item-manufacturer-form')[0].setCallback(function() {});
 
   window.QueryManager.get('ITEM', current, function(result)
@@ -60,6 +42,14 @@ document.addEventListener("ondataloaded", function(e)
       select.val(findValueByText(select, result['manufacturer']));
     });
 
+    // Setup detail table rows
+    let table = $('#item-details').find('dynamic-table')[0];
+    for (let key in result['details'])
+    {
+      table.addRow([key, result['details'][key]], true);
+    }
+    // Don't forget to call disable() on the parent form again!
+    $('#item-details-form')[0].disable();
 
     // Setup Manufacturer-Add button
     $('#add-manufacturer-confirm').click(function()
@@ -92,26 +82,6 @@ document.addEventListener("ondataloaded", function(e)
 
         select.append(option);
       });
-    });
-
-    // Setup detail table rows
-    let form = $('#item-details-form');
-    for (let k in result['details'])
-    {
-      createDetailTableRow(k, result['details'][k], form, true);
-    }
-
-    // Initialize table row add button
-    $('#btn-internal-001').click(function()
-    {
-      let form = $('#item-details-form');
-      if (form[0].getStatus())
-      {
-        form[0].setError('You need to enable the form first.');
-        return false;
-      }
-
-      createDetailTableRow('', '', form);
     });
   });
 });
