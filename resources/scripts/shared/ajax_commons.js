@@ -1,4 +1,3 @@
-// APPLICATION CONSTANTS
 const NOZAMA = {
   API: 'https://api.qwertxzy.me',
   LOGIN: '/login',
@@ -22,9 +21,6 @@ const NOZAMA = {
   ADD_MANUFACTURER: '/add_manufacturer'
 };
 
-const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
-
-// ERROR MESSAGES
 const emsg = {
   0: {redirect: 500},
   400: {msg: 'The provided credentials were incorrect', fatal: false},
@@ -34,12 +30,11 @@ const emsg = {
   500: {msg: 'Internal Server Error', fatal: true},
 };
 
-// ERROR HANDLING METHODS
 const cerror = function(xhr, e_callback)
 {
-  // If our xhr.status is 0 it means we got the funny CORS error, meaning that the API server must be down or messed up
-  // Somehow the browser yoinks these though and gives us a 0, because guess what! When the server is down, the weird
-  // CORS headers are obviously not set! 'Tis a vicious cycle...
+  // If our xhr.status is 0 it means we got the funny CORS error, meaning that the API server must be down or messed up.
+  // Somehow the browser yoinks these though and gives us a 0, because guess what! When the server is down, the
+  // CORS headers are obviously not set!
 
   if (emsg[xhr.status].redirect)
   {
@@ -62,44 +57,26 @@ const cerror = function(xhr, e_callback)
 export default class QueryManager
 {
   /**
-   * Checks if an image exists and returns a default path if none is found.
-   * @param path The image path on our server.
-   * @param img The <img> element that needs to have its' src-attribute changed.
-   */
-  static loadImage(path, img)
-  {
-    $.get(NOZAMA_IMAGE_PATH + path)
-      .done(function()
-      {
-        // Image exists
-        img.src = NOZAMA_IMAGE_PATH + path;
-      })
-      .fail(function()
-      {
-        // Image does not exist
-        img.src = window.resources + 'img/img_missing.png';
-      });
-  }
-
-  /**
    * Method to asynchronously retrieve data from our API.
-   * @param d_type The type of data to be requested from the API.
-   * @param id The id of the data to be requested.
+   * @param d_type The base destination endpoint.
+   * @param destination The endpoint url parameters.
    * @param callback The callback to be executed. In case callback is an object, case object.generate will be executed.
+   * @hidden_param dataType Default: 'json' The data type to be received.
+   * @hidden_param errorCallback: Default: null A custom error callback.
    */
-  static get(d_type, id, callback)
+  static get(d_type, destination, callback)
   {
     let url = NOZAMA.API + NOZAMA[d_type];
 
-    if (arguments[1] !== null)
+    if (destination !== null)
     {
-      url += '/' + id;
+      url += '/' + destination;
     }
 
     $.ajax({
       type: 'GET',
       url: url,
-      dataType: 'json',
+      dataType: arguments[3] || 'json',
       success: function(result)
       {
         if (typeof callback === 'object')
@@ -113,12 +90,22 @@ export default class QueryManager
       },
       error: function(xhr, _1, _2)
       {
-        cerror(xhr, function() {});
+        cerror(xhr, arguments[4] || function() {});
       }
     });
   }
 
-  static post(d_type, id, data, callback)
+  /**
+   *
+   * @param d_type The base destination endpoint.
+   * @param destination The endpoint url parameters.
+   * @param data The data to be transmitted.
+   * @param callback The success callback.
+   * @hidden_param contentType Default: 'application/json' The content type defining how the data should be transmitted.
+   * @hidden_param stringify: Default: true Whether the data should be turned into a JSON string or not.
+   * @hidden_param errorCallback: Default: null A custom error callback.
+   */
+  static post(d_type, destination, data, callback)
   {
     if (!arguments[5])
     {
@@ -127,23 +114,29 @@ export default class QueryManager
 
     $.ajax({
       type: 'POST',
-      url: NOZAMA.API + NOZAMA[d_type] + '/' + id,
+      url: NOZAMA.API + NOZAMA[d_type] + '/' + destination,
       contentType: arguments[4] || 'application/json',
       data: data,
-      error: function(xhr, _1, _2)
-      {
-        cerror(xhr, function() {});
-      },
       success: function(data)
       {
         if (callback !== undefined && callback !== null)
         {
           callback(data);
         }
+      },
+      error: function(xhr, _1, _2)
+      {
+        cerror(xhr, arguments[6] || function() {});
       }
     });
   }
 
+  /**
+   * Adds an image to an item.
+   * @param session The sessionID used to authorize the action.
+   * @param item The itemID.
+   * @param file The actual file.
+   */
   static addImage(session, item, file)
   {
     let fdata = new FormData();
@@ -159,10 +152,7 @@ export default class QueryManager
       {
         cerror(xhr, function() {});
       },
-      success: function(data)
-      {
-        console.log('ADDED!');
-      }
+      success: function(data) {}
     });
   }
 
@@ -219,11 +209,11 @@ export default class QueryManager
       type: 'POST',
       url: NOZAMA.API + NOZAMA.REGISTER,
       data:
-        {
-          "email": email,
-          "username": username,
-          "password": password
-        },
+      {
+        "email": email,
+        "username": username,
+        "password": password
+      },
       success: function()
       {
         if (callback !== null) { callback(); }

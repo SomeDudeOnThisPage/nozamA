@@ -1,7 +1,5 @@
 import ItemFrame from "./ItemFrame.js";
 
-const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
-
 /**
  * A custom HTML element to display the name, price, one image, vendor,
  * manufacturer and amount / a 'delete from cart - button'.
@@ -31,9 +29,10 @@ export default class CartItemFrame extends ItemFrame
     let self = this;
     $(this.shadowRoot).find('button').click(function()
     {
-      window.QueryManager.post('REMOVE_CART', window.getCookie('sessionID') + '/' + self.getAttribute('item'), null, function()
+      let destination = window.getCookie('sessionID') + '/' + self.getAttribute('item') + '/0';
+      window.QueryManager.post('ADD_CART', destination, null, function()
       {
-        // TODO: Wait for Leo to implement, update elements
+        location.reload();
       });
     });
 

@@ -25,7 +25,8 @@
 
                 <div id="item-data">
                     <toggle-form id="item-data-form">
-                        <p>Item Data: <button>Edit</button></p>
+                        <p class="form-error"></p>
+                        <p>Item Data: <button class="toggle-button">Edit</button></p>
 
                         <label for="name">Name:</label>
                         <input id="name">
@@ -38,6 +39,9 @@
                         <label for="price">Price:</label>
                         <input id="price" type="number">
                         <br>
+
+                        <label for="tags">Tags:</label>
+                        <textarea id="tags"></textarea>
                     </toggle-form>
                 </div>
 
@@ -45,7 +49,8 @@
 
                 <div id="item-manufacturer">
                     <toggle-form id="item-manufacturer-form">
-                        <p>Manufacturer: <button>Edit</button></p>
+                        <p class="form-error"></p>
+                        <p>Manufacturer: <button class="toggle-button">Edit</button></p>
 
                         <label for="manufacturer">Manufacturer:</label>
                         <select id="manufacturer"></select>
@@ -54,8 +59,6 @@
                         <label for="add-manufacturer">Not here? Add:</label>
                         <input id="add-manufacturer">
                         <button id="add-manufacturer-confirm">Confirm</button>
-                        <br>
-
                     </toggle-form>
                 </div>
 
@@ -63,8 +66,8 @@
 
                 <div id="item-details">
                     <toggle-form id="item-details-form">
-                        <p>Item Details: <button>Edit</button></p>
-                        <p id="form-error"></p>
+                        <p class="form-error"></p>
+                        <p>Item Details: <button class="toggle-button">Edit</button></p>
                         <table>
                             <tr>
                                 <th>Detail</th>

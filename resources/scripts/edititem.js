@@ -17,7 +17,7 @@ function createDetailTableRow(key, data, form)
   let v = $('<td></td>').append($('<input>').val(data).attr('disabled', arguments[3] || undefined));
   row.append(k, v);
 
-  let button = $('<button></button>').text('Delete')
+  let button = $('<button></button>').text('Delete').attr('disabled', arguments[3] || undefined)
   .click(function()
   {
     if (!form[0].getStatus())
@@ -25,6 +25,7 @@ function createDetailTableRow(key, data, form)
       $(this).parent().parent().remove();
     }
   });
+
   row.append($('<td></td>').append(button));
 
   form.find('table').append(row);
@@ -64,7 +65,11 @@ document.addEventListener("ondataloaded", function(e)
     $('#add-manufacturer-confirm').click(function()
     {
       let m = $('#add-manufacturer').val();
-      if (m === '') return;
+      if (m === '')
+      {
+        $('#item-manufacturer-form')[0].setError('Name must not be empty!');
+        return;
+      }
 
       let select = $('#manufacturer');
 

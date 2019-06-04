@@ -1,10 +1,11 @@
 const MAX_IMAGES = 4;
 
-function form_submit(e)
+function submit(e)
 {
   e.preventDefault();
   e.stopPropagation();
 
+  console.log($('#item-tags').val().split(/[ ,]+/));
   // Create Item
   window.QueryManager.post('ADD_ITEM', window.getCookie('sessionID'),
   {
@@ -13,8 +14,8 @@ function form_submit(e)
     'manufacturer': 1,
     'price': $('#item-price').val(),
     'category': $('#item-category').val(),
-    'tags': [1],
-    'details': []
+    'tags': $('#item-tags').val().split(/[ ,]+/),
+    'details': {}
   },
   function(result)
   {
@@ -64,7 +65,6 @@ document.addEventListener("ondataloaded", function(e)
         src: URL.createObjectURL(file),
         alt: 'oops'
       });
-
       $('#item-images-preview').append(img);
     });
   });

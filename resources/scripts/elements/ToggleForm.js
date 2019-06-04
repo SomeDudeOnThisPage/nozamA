@@ -3,7 +3,7 @@ const buttonText = {
   false: 'Confirm'
 };
 
-const formElements = 'input, textarea, select';
+const formElements = 'input, textarea, select, button';
 
 /**
  * Script component of the custom <toggle-form> html component.
@@ -21,7 +21,7 @@ export default class ToggleForm extends HTMLElement
 {
   setError(msg)
   {
-    $(this).find('#form-error').text(msg);
+    $(this).find('.form-error').text(msg);
   }
 
   getStatus()
@@ -31,7 +31,7 @@ export default class ToggleForm extends HTMLElement
 
   toggle()
   {
-    this.form = $(this).find(formElements); // Find again, Dynamic forms!!
+    this.form = $(this).find(formElements).not('.toggle-button'); // Find again, Dynamic forms!!
 
     this.form.attr('disabled', !this.form.attr('disabled'));
     this.isDisabled = !this.isDisabled;
@@ -66,7 +66,7 @@ export default class ToggleForm extends HTMLElement
   {
     super();
 
-    this.form = $(this).find(formElements);
+    this.form = $(this).find(formElements).not('.toggle-button');
 
     // Disable input fields
     this.form.attr('disabled', true);
