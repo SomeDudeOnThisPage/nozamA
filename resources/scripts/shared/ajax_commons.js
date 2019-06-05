@@ -18,14 +18,17 @@ const NOZAMA = {
   ADD_ITEM_IMAGE: '/add_item_image',
   CHANGE_ADDRESS: '/change_address',
   MANUFACTURERS: '/manufacturers',
-  ADD_MANUFACTURER: '/add_manufacturer'
+  ADD_MANUFACTURER: '/add_manufacturer',
+  ORDER: '/order',
+  PURCHASE: '/purchase'
 };
 
 const emsg = {
   0: {redirect: 500},
   400: {msg: 'The provided credentials were incorrect', fatal: false},
   401: {msg: 'You are unauthorized to continue', fatal: false},
-  404: {msg: '', fatal: true},  // TBH this should NEVER be returned by a request but better be safe than sorry.
+  404: {msg: 'The data you are requesting does not exist', fatal: false},  // TBH this should NEVER be returned by a request but better be safe than sorry.
+  405: {msg: 'Disallowed', fatal: false},
   409: {msg: 'The provided credentials already exist', fatal: false},
   500: {msg: 'Internal Server Error', fatal: true},
 };

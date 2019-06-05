@@ -21,7 +21,7 @@ export default class DynamicTable extends HTMLElement
       row.append(column);
     });
 
-    if (!$(this).attr('nodelete'))
+    if ($(this).attr('no-delete') === undefined)
     {
       let deleteButton = $('<button></button>').text('delete').click(function()
       {
@@ -82,7 +82,7 @@ export default class DynamicTable extends HTMLElement
     });
     this.table.append(headerRow);
 
-    if (!$(this).attr('nobutton'))
+    if ($(this).attr('no-add') === undefined)
     {
       // Create 'add row'-button
       let button = $('<button></button>').attr('type', 'button').text($(this).attr('btext'));
