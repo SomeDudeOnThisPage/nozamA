@@ -23,8 +23,7 @@ export default class OrderFrame extends AsyncElement
   setOrder(id)
   {
     $(this).attr('order', id);
-    this.postDataLoaded(testData);
-    //window.QueryManager.get('ORDER', window.getCookie('sessionID') + '/' + id, this)
+    window.QueryManager.get('ORDER', window.getCookie('sessionID') + '/' + id, this)
   }
 
   // Somehow the loader HTML takes longer to load than the like 15 line HTML of this file lmao
@@ -32,11 +31,14 @@ export default class OrderFrame extends AsyncElement
 
   generate(data)
   {
-    this.wrapper.find('*').not('tr,th,table,dynamic-table').each(function()
+    this.wrapper.find('*').not('tr,th,table,dynamic-table,#id').each(function()
     {
       let element = $(this);
       element.text(element.text().replace('%s', data[element.attr('id')]));
     });
+
+    let tag = this.wrapper.find('#id');
+    tag.text(tag.text().replace('%s', $(this).attr('order')));
 
     let table = $(this.wrapper).find('#item-list')[0];
     data['items'].forEach(function(item)
