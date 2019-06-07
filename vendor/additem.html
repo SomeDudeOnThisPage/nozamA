@@ -43,17 +43,38 @@
                     <div id="item-images-preview"></div>
 
                     <br>
+                    <p>Category</p>
                     <label for="item-category" class="form-label">Category:</label>
                     <select id="item-category"></select>
                     <br>
 
-                    <p>Item Details <i>(short facts about your item)</i>:</p>
-                    <dynamic-table id="item-details" headers="Detail,Description" btext="Add Detail"></dynamic-table>
+                    <br><hr><br>
+
+                    <p>Manufacturer:</p>
+
+                    <label for="manufacturer">Manufacturer:</label>
+                    <select id="manufacturer"></select>
                     <br>
 
+                    <label id="l-add-manufacturer" for="add-manufacturer">Not in the list? Add (Press 'Enter' to add):</label>
+                    <input id="add-manufacturer">
+                    <br>
+
+                    <br><hr><br>
+
+                    <p>Item Details <i>(short facts about your item)</i>:</p>
+                    <dynamic-table id="item-details" headers="Detail,Description" btext="Add Detail"></dynamic-table>
+                    <br><br>
+
+                    <hr>
+
+                    <br>
+                    <p>Tags</p>
                     <label for="item-tags">Tags (Separated by ',' or ' '):</label>
                     <textarea id="item-tags"></textarea>
                     <br>
+
+                    <br><hr><br>
 
                     <button type="submit">Confirm!</button>
                     <br><br>

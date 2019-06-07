@@ -1,23 +1,5 @@
 import AsyncElement from "./AsyncElement.js";
 
-// Leo fix your endpoints
-const testData = {
-  id: (Math.random() * 100).toFixed(0),
-  order_status: 'Lost in the great abyss.',
-  ordered_on: '02:33 27:02:1999',
-  order_total: 77.34,
-  items: [
-    {
-      'item_id': 1,
-      'amount': 2
-    },
-    {
-      'item_id': 51,
-      'amount': 1
-    }
-  ]
-};
-
 export default class OrderFrame extends AsyncElement
 {
   setOrder(id)

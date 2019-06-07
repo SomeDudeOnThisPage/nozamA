@@ -46,7 +46,7 @@ const cerror = function(xhr, e_callback)
 
   if (emsg[xhr.status].fatal)
   {
-    window.location.href = '/nozamA/leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
+    //window.location.href = '/nozamA/leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
   }
   else
   {

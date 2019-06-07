@@ -9,7 +9,11 @@
   box-sizing: border-box;
 
   padding: 10px;
-  background-image: linear-gradient( #cccccc,#ffffff);
+  background-image: linear-gradient(#4b6584,#778ca3);
+  /*
+    background-image: linear-gradient( #cccccc,#ffffff);
+    @max erstmal solide farbe weil es is echt schwer mit weiß auf weiß zu developen...
+  */
   border-radius: 2px;
 }
 
@@ -81,4 +85,34 @@
   border-style: solid;
   border-color: gray;
   border-radius: 4px;
+}
+
+ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding-right: 10px;
+  overflow: hidden;
+  float: right;
+}
+
+li
+{
+  float: left;
+}
+
+li a, li .dropdown
+{
+  display: inline-block;
+  color: black;
+  text-align: center;
+  font-size: 18px;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav-link img
+{
+  width: 30px;
+  height: 30px;
 }
