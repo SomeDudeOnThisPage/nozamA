@@ -4,18 +4,23 @@ export default class ItemList extends AsyncElement
 {
   static generateItemPreviewFrame(id)
   {
+    let frame;
     if (arguments[1] === 'cart')
     {
-      let frame = $('<cart-item-frame></cart-item-frame>');
+      frame = $('<cart-item-frame></cart-item-frame>');
       frame[0].setItem(id, arguments[2]);
-      return frame;
+    }
+    else if (arguments[1] === 'order')
+    {
+      frame = $('<order-frame></order-frame>');
+      frame[0].setOrder(id);
     }
     else
     {
-      let frame = $('<item-preview-frame></item-preview-frame>');
+      frame = $('<item-preview-frame></item-preview-frame>');
       frame[0].setItem(id);
-      return frame;
     }
+    return frame;
   }
 
   /**
@@ -67,11 +72,11 @@ export default class ItemList extends AsyncElement
 
   generate(data)
   {
+    this.clear();
     this.items = data;
 
     let self = this;
-    // If we are a cart list, generate in a different manner
-    if (this.getAttribute('mode') === 'cart')
+    if ($(this).attr('mode') === 'cart')
     {
       let cart = Array.from(data);
       cart.forEach(function(element)
@@ -87,7 +92,7 @@ export default class ItemList extends AsyncElement
       {
         if (i < this.items.length)
         {
-          let frame = ItemList.generateItemPreviewFrame(this.items[i]);
+          let frame = ItemList.generateItemPreviewFrame(this.items[i], $(this).attr('mode') || undefined);
           this.wrapper.append(frame);
         }
         else
@@ -111,8 +116,10 @@ export default class ItemList extends AsyncElement
         return this.generate(window.user['cart']);
       case 'search':
         return window.QueryManager.get('SEARCH', arguments[0], this);
+      case 'order':
+        return this.generate(window.user['order_history']);
       default:
-        throw new TypeError('<item-list> element missing mandatory attribute \'mode\' {\'search\', \'random\', \'cart\'}.');
+        throw new TypeError('<item-list> element missing mandatory attribute \'mode\' {\'search\', \'random\', \'cart\', \'order\'}.');
     }
   }
 
@@ -165,7 +172,8 @@ export default class ItemList extends AsyncElement
     this.pageItems = 5;
 
     // Create buttons if we are a search thingy.
-    if (this.getAttribute('mode') === null || this.getAttribute('mode') === 'search')
+    let a = $(this).attr('mode');
+    if (a === null || a === 'search' || a === 'order')
     {
       this.createButtons();
     }

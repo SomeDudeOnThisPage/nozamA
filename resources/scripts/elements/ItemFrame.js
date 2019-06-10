@@ -33,12 +33,15 @@ export default class ItemFrame extends AsyncElement
    */
   generate(data)
   {
+    let width = this.wrapper[0].offsetWidth / 4;
+    let desc = data['description'].substring(0, width) + '...';
     let elements = Array.from(this.getInternalElements());
     elements[0].href = window.root + 'item.html?item=' + this.getAttribute('item');
     elements[0].innerText = data['name'];
     elements[1].children[0].src = NOZAMA_IMAGE_PATH + data['images'][0];
     //window.QueryManager.loadImage(data['images'][0], elements[1].children[0]);
     elements[2].innerText = (data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
+    elements[3].innerText = desc;
 
     // Check if the user is the vendor of this item
     if (data['vendor_id'] === window.user['belongs_to_vendor'])
@@ -49,7 +52,7 @@ export default class ItemFrame extends AsyncElement
         window.location.href = window.root + 'vendor/edititem.html?item=' + self.getAttribute('item');
       });
       // Make hidden elements visible
-      elements[3].style.display = 'block';
+      elements[4].style.display = 'block';
       elements[2].innerText = 'This item is being sold by your shop.'
     }
   }

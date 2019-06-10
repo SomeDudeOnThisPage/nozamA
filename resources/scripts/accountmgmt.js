@@ -27,4 +27,7 @@ document.addEventListener("ondataloaded", function(e)
       'street': $('#street').val()
     });
   });
+
+  // Populate list
+  $('#order-history')[0].populate();
 });

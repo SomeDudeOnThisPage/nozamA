@@ -7,6 +7,7 @@ import QueryManager from './shared/ajax_commons.js';
 import header from './shared/header.js';
 import footer from './shared/footer.js';
 import DynamicTable from "./elements/DynamicTable.js";
+import OrderFrame from "./elements/OrderFrame.js";
 
 /*
   JS module script implemented on every page defining shared globals and custom elements of the page.
@@ -102,3 +103,4 @@ customElements.define('item-list', ItemList);
 customElements.define('item-image-display', ItemImageDisplay);
 customElements.define('toggle-form', ToggleForm);
 customElements.define('dynamic-table', DynamicTable);
+customElements.define('order-frame', OrderFrame);

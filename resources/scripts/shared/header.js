@@ -19,49 +19,19 @@ export default function()
     // Check if we have a valid session and set the headers' links accordingly
     if (window.user)
     {
-      // Create dropdown menu containing account links
-      let dropdown = $('<select></select>').attr({
-        id: 'nav-select'
-      });
-
-      // Create a placeholder for the dropdown menu
-      let dropdown_ph = $('<option></option>').text('Your Account').attr({
-        hidden: true
-      });
-      dropdown.append(dropdown_ph);
-
-      $(dropdown).change(function()
-      {
-        document.location.href = $(this).val();
-      });
-
-      // Generate our links
-      let isvendor = VENDOR_SPECIFIC;
-      if (window.user['belongs_to_vendor'] !== null) { isvendor = 0; }
-      for (let i = 0; i < options_on.length - isvendor; i++)
-      {
-        let option = $('<option></option>').text(options_on[i].innerText).attr({value: window.root + options_on[i].value});
-        dropdown.append(option);
-      }
-
-      header.append(dropdown);
+      $('#nav-on').css('display', 'block');
     }
     else
     {
-      // User not logged in / sessionID expired - Create login and sign up links
-      header.append($('<a></a>').text('Log In / Sign Up!').attr(
-      {
-        href: window.root + 'account/login.html',
-        id: 'nav-login'
-      }));
+      $('#nav-off').css('display', 'block');
     }
 
     // Attach search bar event handlers
     $('#header_search').submit(function()
     {
-      let elements = $('#nav-searchbar');
+      let element = $(this).find('#nav-searchbar');
 
-      let search = (elements.val()).replace(/ /g,'+');
+      let search = (element.val()).replace(/ /g,'+');
       if (search === '') { return false; }
 
       window.location.href = window.root + 'results.html?search=' + search;

@@ -5,6 +5,8 @@ function form_submit(e)
   e.preventDefault();
   e.stopPropagation();
 
+  $('#item-details')[0].toJSON();
+
   // Create Item
   window.QueryManager.post('ADD_ITEM', window.getCookie('sessionID'),
   {
@@ -19,14 +21,15 @@ function form_submit(e)
   function(result)
   {
     let files = Array.from($('#item-images')[0].files);
-    console.log(JSON.parse(result));
 
     files.forEach(function(file)
     {
       window.QueryManager.addImage(window.getCookie('sessionID'), JSON.parse(result)['item_id'], file);
     });
+
+    //window.location.href = window.root + 'item.html?item=' + result['item_id'];
   });
-  
+
   return false;
 }
 
@@ -43,6 +46,31 @@ document.addEventListener("ondataloaded", function()
         value: i
       });
       select.append(option);
+    }
+  });
+
+  // Add manufacturers to manufacturer selector element
+  window.QueryManager.get('MANUFACTURERS', null, function(data)
+  {
+    let select = $('#manufacturer');
+
+    for (let key in data)
+    {
+      select.append($('<option></option>').text(data[key]['manufacturer_name']).val(data[key]['manufacturer_id']));
+    }
+  });
+
+  // Setup hook to add manufacturers
+  $('#add-manufacturer').keypress(function(e)
+  {
+    if (e.keyCode === 13)
+    {
+      window.QueryManager.post('ADD_MANUFACTURER', $('#add-manufacturer').val(), function(data)
+      {
+        $('#l-add-manufacturer').text('Added Manufacturer:' + data['manufacturer_name'] + '.');
+        $('#manufacturer').append($('<option></option>').text(data['manufacturer_name']).val(data['manufacturer_id']));
+        $('#manufacturer').val(data['manufacturer_id']);
+      })
     }
   });
 

@@ -4,4 +4,31 @@
         <input id="nav-searchbar" name="nav_searchbar" class="search_bar" type="text" placeholder="Search...">
         <button id="search-button" class="search_button" type="submit">Q</button>
     </div>
+    <div id="nav-off" style="display: none">
+        <ul>
+            <li><a href="/nozamA/account/login.html">Login</a></li>
+            <li><a href="/nozamA/account/register.html">Register</a></li>
+        </ul>
+    </div>
+    <div id="nav-on" style="display: none">
+        <ul>
+            <li><a href="/nozamA/account/index.html" class="nav-link">Account</a></li>
+            <li><a href="/nozamA/account/cart.html" class="nav-link">Cart</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">Menu</a>
+                <div class="dropdown-content">
+                    <a href="/nozamA/account/index.html#account-history">Payment History</a>
+                    <a href="/nozamA/account/cart.html">Shopping Cart</a>
+                    <hr>
+                    <a href="/nozamA/vendor/manage.html">Vendor Management</a>
+                    <a href="/nozamA/account/index.html?logout=yes">Log Out</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </form>
+
+<!--
+<img src="/nozamA/resources/img/nav_account.png">
+<img src="/nozamA/resources/img/nav_scart.png">
+-->

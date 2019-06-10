@@ -56,6 +56,15 @@
   left: 10px;
 }
 
+.description
+{
+  font-size: 18px;
+  position: absolute;
+  left: 135px;
+
+  padding: 5px;
+}
+
 .vendor-info
 {
   position: absolute;

@@ -46,7 +46,7 @@ function findIndex(data, inKey, value)
   return false;
 }
 
-document.addEventListener("ondataloaded", function(e)
+document.addEventListener("ondataloaded", function()
 {
   let url = new URL(window.location.href);
   current = url.searchParams.get('item');
