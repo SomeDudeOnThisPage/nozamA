@@ -1,5 +1,5 @@
 
-#main-container{
+#content{
     border: 1px solid gray;
     border-radius: 2px;
     width: 30%;
@@ -17,9 +17,6 @@
     font-size: 14px;
 }
 
-#password{
-    
-}
 
 body {
     text-align: left;
