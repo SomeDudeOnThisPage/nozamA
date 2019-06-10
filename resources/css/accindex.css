@@ -9,9 +9,10 @@ label, input{
     margin-left: 10%;
 }
 
-p:first-child{
+p{
     font-weight: bold;
     margin-left: 10%;
+
 }
 
 input{
@@ -32,6 +33,7 @@ button{
     border: 1px solid gray;
     border-radius: 2px;
     display: block;
+    width: 70px;
     margin-left: 10%;
 }
 
@@ -39,3 +41,4 @@ button{
 #account-history{
     margin-left: 10%;
 }
+
