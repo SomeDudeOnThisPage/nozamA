@@ -17,6 +17,8 @@
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../resources/css/shared.css">
         <link rel="stylesheet" href="../resources/css/vendor.css">
+        <link rel="stylesheet" href="../resources/css/manage.css">
+
     </head>
 
     <body>
@@ -25,7 +27,7 @@
                 <p id="error-message"></p>
                 <div id="data">
                     <toggle-form id="change-data" onsubmit="return false">
-                        <p>Your Shop: <button>Edit</button></p>
+                        <p>Your Shop: <br> <button>Edit</button></p>
 
                         <label for="name" class="form-label">Shop Name:</label>
                         <input type="text" id="name" class="form-input-text" disabled>
@@ -38,10 +40,10 @@
                 </div>
 
                 <div id="options">
-                    <a href="additem.html">Add an Item.</a>
+                    <a style="margin-left: 10%; font-size: 12px" href="additem.html" >Add an Item.</a>
                 </div>
 
-                <div id="itemmgmt">
+                <div style="margin-left: 10%; width: 720px;" id="itemmgmt">
                     <div id="items-controls">
                         <p>Your Items:</p>
                         <label for="item-search">Search:</label>
@@ -52,6 +54,7 @@
                         <item-list id="item-list" mode="default"></item-list>
                     </div>
                 </div>
+                <br>
 
             </div>
         </div>

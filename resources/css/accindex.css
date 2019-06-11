@@ -1,0 +1,44 @@
+body{
+    font-family: sans-serif;
+    text-align: left;
+}
+
+label, input{
+    display: block;
+    font-size: 14px;
+    margin-left: 10%;
+}
+
+p{
+    font-weight: bold;
+    margin-left: 10%;
+
+}
+
+input{
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+#content{
+    border: 1px solid gray;
+    border-radius: 2px;
+    width: 40%;
+    min-width: 550px;
+    margin: 0 auto;
+}
+
+button{
+    background-image: linear-gradient(#F5DA81, #DBA901);
+    border: 1px solid gray;
+    border-radius: 2px;
+    display: block;
+    width: 70px;
+    margin-left: 10%;
+}
+
+
+#account-history{
+    margin-left: 10%;
+}
+

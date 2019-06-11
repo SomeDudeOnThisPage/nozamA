@@ -16,6 +16,7 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../resources/css/shared.css">
+        <link rel="stylesheet" href="../resources/css/edititem.css">
     </head>
 
     <body>
@@ -26,49 +27,55 @@
                 <div id="item-data">
                     <toggle-form id="item-data-form">
                         <p class="form-error"></p>
-                        <p>Item Data: <button class="toggle-button">Edit</button></p>
+                        <p>Item Data:</p>
 
                         <label for="name">Name:</label>
-                        <input id="name">
-                        <br>
+                        <input id="name" class="form-input-text">
+                        <br><br>
 
                         <label for="description">Description:</label>
-                        <textarea id="description"></textarea>
-                        <br>
+                        <textarea id="description" class="form-input-text-large"></textarea>
+                        <br><br>
 
                         <label for="price">Price:</label>
-                        <input id="price" type="number">
-                        <br>
+                        <input id="price" type="number" class="form-input-text">
+                        <br><br>
 
                         <label for="tags">Tags:</label>
-                        <textarea id="tags"></textarea>
+                        <textarea id="tags" class="form-input-text-large"></textarea>
+                        <br>
+                        <button class="toggle-button">Edit</button>
+                        <br><br>
                     </toggle-form>
                 </div>
-
-                <hr>
 
                 <div id="item-manufacturer">
                     <toggle-form id="item-manufacturer-form">
                         <p class="form-error"></p>
-                        <p>Manufacturer: <button class="toggle-button">Edit</button></p>
+                        <p>Manufacturer: </p>
 
                         <label for="manufacturer">Manufacturer:</label>
                         <select id="manufacturer"></select>
-                        <br>
+                        <br><br>
 
                         <label for="add-manufacturer">Not here? Add:</label>
-                        <input id="add-manufacturer">
+                        <input id="add-manufacturer" class="form-input-text">
+                        <br>
                         <button id="add-manufacturer-confirm">Confirm</button>
+                        <br>
+                        <button class="toggle-button">Edit</button>
+                        <br><br>
                     </toggle-form>
                 </div>
-
-                <hr>
 
                 <div id="item-details">
                     <toggle-form id="item-details-form">
                         <p class="form-error"></p>
-                        <p>Item Details: <button class="toggle-button">Edit</button></p>
-                        <dynamic-table headers="Detail,Description" btext="Add Detail"></dynamic-table>
+                        <p>Item Details: </p>
+                        <dynamic-table style="margin-left: 10%;" headers="Detail,Description" btext="Add Detail"></dynamic-table>
+
+                        <button class="toggle-button">Edit</button>
+                        <br><br>
                     </toggle-form>
                 </div>
             </div>

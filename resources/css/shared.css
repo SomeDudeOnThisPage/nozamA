@@ -78,3 +78,59 @@ html, body
   display: block;
   text-align: left;
 }
+
+.form-input-text, .form-input-text-large
+{
+  border: 1px solid gray;
+  border-radius: 2px;
+  margin-left: 10%;
+  width: 75%;
+  height: 40px;
+
+  font-family: Arial, serif;
+  font-size: 14px;
+}
+
+.form-label
+{
+  font-family: Arial, serif;
+  font-size: 14px;
+}
+
+dynamic-table table
+{
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+dynamic-table td, dynamic-table th
+{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+dynamic-table tr:nth-child(even){background-color: #f2f2f2;}
+
+dynamic-table tr:hover {background-color: #ddd;}
+
+dynamic-table th
+{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  min-width: 300px;
+  text-align: left;
+  background-color: #f1c40f;
+  color: #2c3e50;
+}
+
+dynamic-table input
+{
+  height: 35px;
+  width: 100%;
+}
+
+dynamic-table button
+{
+  background-image: linear-gradient(#F5DA81, #DBA901);
+  border: 1px solid gray;
+  border-radius: 2px;
+}

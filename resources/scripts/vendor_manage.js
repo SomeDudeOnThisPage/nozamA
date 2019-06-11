@@ -3,37 +3,6 @@ let items;
 let form_enabled = false;
 let list;
 
-function vForm(elements)
-{
-  if ((form_enabled = !form_enabled) === true) // Was false, enable form elements
-  {
-    elements.forEach(function(element)
-    {
-      element.removeAttribute('disabled');
-    });
-
-    $('#vendor-info-edit').text('Confirm');
-  }
-  else // Was true, confirm, send data and disable forms
-  {
-    $('#vendor-info-edit').text('Please Wait');
-
-    window.QueryManager.post('EDIT_VENDOR', window.getCookie('sessionID'),
-    {
-      'name': elements[0].value,
-      'description': elements[1].value
-    },
-    function()
-    {
-      elements.forEach(function (element)
-      {
-        element.setAttribute('disabled', null);
-      });
-      $('#vendor-info-edit').text('Edit Information');
-    });
-  }
-}
-
 function searchVForm(data)
 {
   data.filter(function(value, index, arr)
