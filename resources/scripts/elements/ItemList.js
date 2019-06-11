@@ -1,5 +1,11 @@
 import AsyncElement from "./AsyncElement.js";
 
+/**
+ * All elements considered ItemFrames to be removed on a 'clear()'-call.
+ * @type {string}
+ */
+const subElements = 'item-preview-frame,cart-item-frame,order-frame';
+
 export default class ItemList extends AsyncElement
 {
   static generateItemPreviewFrame(id)
@@ -34,81 +40,99 @@ export default class ItemList extends AsyncElement
   }
 
   /**
-   * Removes the item-frames (not the item ids themselves)
+   * Removes the item-frames (not the item ids themselves).
    */
   clear()
   {
-    $(this.wrapper).empty();
+    $(this.wrapper).find().each(function()
+    {
+      $(this).remove(subElements);
+    });
   }
 
   /**
-   * Increments page by n pages and regenerates new items
+   * Increments page by n pages and regenerates new items.
+   * @param n Amount of pages.
    */
-  forward()
+  forward(n)
   {
-    if ((this.page + 1) * this.pageItems < this.items.length)
+    if ((this.page + 1) * $(this).attr('page') < this.items.length)
     {
       $('#end-of-search').css('display', 'none');
       this.clear();
-      this.page += 1;
+      this.page += arguments[0] || 1;
       this.generate(this.items);
     }
   }
 
   /**
    * Decrements page by n pages and regenerates new items
+   * @param n Amount of pages.
    */
-  back()
+  back(n)
   {
     $('#end-of-search').css('display', 'none');
 
-    if (this.page > 0)
+    if (this.page - (n || 1) >= 0)
     {
-      this.page = Math.max(this.page - 1, 0);
+      this.page = Math.max(this.page - (n || 1), 0);
       this.clear();
       this.generate(this.items);
     }
   }
 
+  /**
+   * Generates a set amount of frames.
+   * @param frames The JSON-Data of the frames.
+   */
+  setItems(frames)
+  {
+    let self = $(this);
+    frames.forEach(function(data)
+    {
+      // FFS why can't our API just be consistent?
+      // Just ALWAYS give me ItemList JSON data in the same format, not different if you get cart or order-history data.
+      // Now I have to do: 'data['item_id'] || data' to get an item ID in both cases...
+      let frame = ItemList.generateItemPreviewFrame(data['item_id'] || data, self.attr('mode'));
+      self[0].wrapper.append(frame);
+    });
+  }
+
   generate(data)
   {
-    this.clear();
+    let self = $(this);
     this.items = data;
+    this.totalPages = Math.ceil(data.length / $(this).attr('page'));
 
-    let self = this;
-    if ($(this).attr('mode') === 'cart')
+    if (self.attr('page') !== undefined && self.attr('page') !== null)
     {
-      let cart = Array.from(data);
-      cart.forEach(function(element)
-      {
-        let frame = ItemList.generateItemPreviewFrame(element['item_id'], 'cart', element['amount']);
-        self.wrapper.append(frame);
-      });
+      // Paged Display
+      let start = self[0].page * self.attr('page');
+      self[0].setItems(self[0].items.slice(start, start + self.attr('page')));
     }
     else
     {
-      // Generate items beginning from the current page ranging to the current page + items per page.
-      for (let i = this.page * this.pageItems; i < this.page * this.pageItems + this.pageItems; i++)
-      {
-        if (i < this.items.length)
-        {
-          let frame = ItemList.generateItemPreviewFrame(this.items[i], $(this).attr('mode') || undefined);
-          this.wrapper.append(frame);
-        }
-        else
-        {
-          $('#end-of-search').css('display', 'inline');
-        }
-      }
+      // Full List Display
+      self[0].setItems(data);
+    }
+
+    console.log(this.wrapper.find('.button-container'));
+    // Display buttons if necessary
+    let a = $(this).attr('page');
+    if (a !== null && a !== undefined && data.length > a)
+    {
+      this.wrapper.find('.button-container').css('display', 'block');
     }
   }
+
+  preDataLoaded() {}
 
   /**
    * Populates the object based on a search string or cart.
    */
   populate()
   {
-    switch(this.getAttribute('mode'))
+    switch($(this).attr('mode'))
     {
       case 'random':
         return window.QueryManager.get('RANDOM', arguments[0], this);
@@ -117,65 +141,16 @@ export default class ItemList extends AsyncElement
       case 'search':
         return window.QueryManager.get('SEARCH', arguments[0], this);
       case 'order':
-        return this.generate(window.user['order_history']);
+        return this.postDataLoaded(window.user['order_history']);
       default:
         throw new TypeError('<item-list> element missing mandatory attribute \'mode\' {\'search\', \'random\', \'cart\', \'order\'}.');
     }
-  }
-
-  /**
-   * Creates buttons that can modify the page.
-   * The inner buttons do nothing yet but will eventually also be used to switch pages.
-   */
-  createButtons()
-  {
-    let self = this;
-
-    // Create a container for our buttons
-    let container = $('<div></div>').attr(
-    {
-      class: 'item-list-button-container'
-    });
-
-    // Create page forward / page backward buttons
-    container.append(
-      $('<button></button>').text('<').attr({
-        class: 'item-list-button'
-      })
-      .click(function() { self.back() })
-    );
-
-    container.append(
-      $('<button></button>').text('>').attr({
-        class: 'item-list-button'
-      })
-      .click(function() { self.forward() } )
-    );
-
-    $(this.shadowRoot).append(container);
   }
 
   constructor()
   {
     super(arguments[0] || 'item-list');
 
-    /**
-     * Current page.
-     * @type {number}
-     */
     this.page = 0;
-
-    /**
-     * Items per page.
-     * @type {number}
-     */
-    this.pageItems = 5;
-
-    // Create buttons if we are a search thingy.
-    let a = $(this).attr('mode');
-    if (a === null || a === 'search' || a === 'order')
-    {
-      this.createButtons();
-    }
   }
 }
