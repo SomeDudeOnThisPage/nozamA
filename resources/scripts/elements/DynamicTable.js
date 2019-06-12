@@ -34,6 +34,19 @@ export default class DynamicTable extends HTMLElement
   }
 
   /**
+   * Populates a nx2 table with JSON key-value data.
+   * @param data The JSON data.
+   * @hidden-param subArray Specifies an array in the array to be iterated (e.g. 'details')
+   */
+  populate(data)
+  {
+    for (let key in data)
+    {
+      this.addRow([key, data[key]], true);
+    }
+  }
+
+  /**
    * I warned you. This is a mess.
    */
   toJSON()
@@ -41,17 +54,31 @@ export default class DynamicTable extends HTMLElement
     let getValue = function(td)
     {
       let input = $(td).find('input')[0];
-      if (input !== undefined)
+      if (input !== undefined && input !== null)
+      {
         return input.value;
+      }
 
-      return $(td).text();
+      let text = $(td).text();
+      if (text !== undefined || text !== '')
+      {
+        return $(td).text();
+      }
+
+      return false;
     };
 
     let data = {};
     this.table.find('tr').not('.headers').each(function()
     {
       let columns = $(this).find('td');
-      data[getValue(columns[0])] = getValue(columns[1]);
+      let detail = getValue(columns[0]);
+      let description = getValue(columns[1]);
+
+      if (detail && description)
+      {
+        data[getValue(columns[0])] = getValue(columns[1]);
+      }
     });
 
     return data;
@@ -88,7 +115,7 @@ export default class DynamicTable extends HTMLElement
       let button = $('<button></button>').attr('type', 'button').text($(this).attr('btext'));
       button.click(function()
       {
-        self.addRow(this.template || ['<input required>', '<input required>']);
+        self.addRow(this.template || ['<input required>', '<input required>'], true);
       });
       $(this).append(button);
     }

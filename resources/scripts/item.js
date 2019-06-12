@@ -14,14 +14,10 @@ function generate(item, vendor)
   // Create details table
   let details = $('#item-details-table')[0];
 
-  // Insert Manufacturer & Vendor
+  // Insert Manufacturer & Vendor, populate detail list.
   details.addRow(['Vendor', '<a href="' + v_href + '">' + vendor['name'] + '</a>']);
   details.addRow(['Manufacturer', item['manufacturer']]);
-
-  for (let k in item['details'])
-  {
-    details.addRow([k, item['details'][k]]);
-  }
+  details.populate(item['details']);
 
   let index = findIndex(window.user['cart'], 'item_id', Number(current));
   if (index)

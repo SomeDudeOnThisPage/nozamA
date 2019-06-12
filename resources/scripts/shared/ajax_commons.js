@@ -16,6 +16,7 @@ const NOZAMA = {
   CATEGORIES: '/categories',
   ADD_ITEM: '/add_item',
   ADD_ITEM_IMAGE: '/add_item_image',
+  CHANGE_ITEM: '/change_item',
   CHANGE_ADDRESS: '/change_address',
   MANUFACTURERS: '/manufacturers',
   ADD_MANUFACTURER: '/add_manufacturer',

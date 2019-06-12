@@ -1,22 +1,20 @@
-#item-data, #item-manufacturer, #item-details{
-    width: 50%;
-    min-width: 400px;
-    font-family: sans-serif;
-    margin: 0 auto 25px;
+#item-data, #item-manufacturer, #item-details, #item-category{
     border: 1px solid gray;
     border-radius: 4px;
-    display: block;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 25px;
 }
 
 #manufacturer{
     margin-left: 10%;
 }
 
-label{
+/*label{
     display: block;
     margin-left: 10%;
     font-size: 14px;
-}
+}*/
 
 /* Benutz Klassen in shared.css, ist besser so */
 /*input, textarea{
@@ -39,9 +37,14 @@ p{
     margin-left: 10%;
 }
 
+.toggle-button
+{
+    margin-bottom: 25px;
+}
+
 dynamic-table
 {
-    width: 75%;
+    width: 80%;
     min-width: 400px;
     font-family: sans-serif;
     margin: 0 auto;
