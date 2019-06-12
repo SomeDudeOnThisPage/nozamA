@@ -28,7 +28,7 @@
 #nav-search
 {
   position: absolute;
-  width: calc(100% - /* (image size offset + 50 offset for the internal padding) times 2 */ 450px);
+  width: 50%;
   min-width: 200px;
   left: 150px;
   top: 50%;
@@ -73,8 +73,8 @@
 #nav-search>.search_button
 {
   position: absolute;
-  width: 40px;
-  left: calc(100% - 23px);
+  width: 50px;
+  left: 92%;
   transform: translateY(-50%);
 
   background-image: linear-gradient(#F5DA81, #DBA901);

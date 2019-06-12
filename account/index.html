@@ -16,6 +16,7 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../resources/css/shared.css">
+        <link rel="stylesheet" href="../resources/css/accindex.css">
     </head>
 
     <body>
@@ -27,7 +28,7 @@
                     <p>Account Information:</p>
 
                     <toggle-form id="info" method="post" onsubmit="return false">
-                        <p>Your personal data: <button class="toggle-button">Edit</button></p>
+                        <p>Your personal data: </p>
 
                         <label for="name" class="form-label">Your Name:</label>
                         <input type="text" id="name" class="form-input-text" disabled>
@@ -35,12 +36,14 @@
 
                         <label for="email" class="form-label">E-Mail Address:</label>
                         <input type="text" id="email" class="form-input-text" disabled>
+                        <br>
+                        <button class="toggle-button">Edit</button>
                     </toggle-form>
 
                     <hr>
 
                     <toggle-form id="address" method="post" onsubmit="return false">
-                        <p>Your Address: <button class="toggle-button">Edit</button></p>
+                        <p>Your Address: </p>
 
                         <label for="city" class="form-label">City:</label>
                         <input type="text" id="city" class="form-input-text" disabled>
@@ -52,11 +55,13 @@
 
                         <label for="street" class="form-label">Street:</label>
                         <input type="text" id="street" class="form-input-text" disabled>
+                        <br>
+                        <button class="toggle-button">Edit</button>
                     </toggle-form>
 
                 </div>
                 <hr>
-                <a href="change_password.html">Change your password.</a>
+                <a style="font-size: 14px; margin-left: 10%;" href="change_password.html">Change your password.</a>
                 <hr>
                 <div id="account-history">
                     <p>Past Orders:</p>
