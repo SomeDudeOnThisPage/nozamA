@@ -31,21 +31,16 @@
 
                         <label for="name">Name:</label>
                         <input id="name" class="form-input-text">
-                        <br><br>
 
                         <label for="description">Description:</label>
                         <textarea id="description" class="form-input-text-large"></textarea>
-                        <br><br>
 
                         <label for="price">Price:</label>
                         <input id="price" type="number" class="form-input-text">
-                        <br><br>
 
                         <label for="tags">Tags:</label>
-                        <textarea id="tags" class="form-input-text-large"></textarea>
-                        <br>
+                        <textarea id="tags" class="form-input-text-large" multiple></textarea>
                         <button class="toggle-button">Edit</button>
-                        <br><br>
                     </toggle-form>
                 </div>
 
@@ -55,16 +50,23 @@
                         <p>Manufacturer: </p>
 
                         <label for="manufacturer">Manufacturer:</label>
-                        <select id="manufacturer"></select>
-                        <br><br>
+                        <select id="manufacturer" class="form-select"></select>
 
                         <label for="add-manufacturer">Not here? Add:</label>
-                        <input id="add-manufacturer" class="form-input-text">
-                        <br>
-                        <button id="add-manufacturer-confirm">Confirm</button>
-                        <br>
+                        <input id="add-manufacturer" class="form-input-text" placeholder="Press [ENTER] to confirm..." tf-parse-ignore>
                         <button class="toggle-button">Edit</button>
-                        <br><br>
+                    </toggle-form>
+                </div>
+
+                <div id="item-category">
+                    <toggle-form id="item-category-form">
+                        <p class="form-error"></p>
+                        <p>Category: </p>
+
+                        <label for="category">Category:</label>
+                        <select id="category" class="form-select"></select>
+
+                        <button class="toggle-button">Edit</button>
                     </toggle-form>
                 </div>
 
@@ -75,7 +77,6 @@
                         <dynamic-table style="margin-left: 10%;" headers="Detail,Description" btext="Add Detail"></dynamic-table>
 
                         <button class="toggle-button">Edit</button>
-                        <br><br>
                     </toggle-form>
                 </div>
             </div>

@@ -1,34 +1,33 @@
 body{
-  font-family: sans-serif;
-}
-
-p{
-  font-weight: bold;
-  margin-left: 10%;
-}
-#item-images-preview > img
-{
-  width: 100px;
-  height: 100px;
+  /*font-family: sans-serif;*/
 }
 
 #content{
   border: 1px solid gray;
   border-radius: 4px;
-  width: 50%;
+  width: 75%;
   margin: auto;
 }
 
-input[type=text]{
+/*input[type=text]{
   width: 80%;
-}
+}*/
 
 #item-images-preview{
-  margin: auto;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 25px;
+  margin-bottom: 25px;
   border: 1px solid gray;
 }
 
-label, input{
+#item-images-preview > img
+{
+  width: 25%;
+  height: 25%;
+}
+
+/*label, input, select{
   font-size: 14px;
   margin-left: 10%;
   width: 80%;
@@ -40,7 +39,7 @@ label, input{
 input{
   border: 1px solid gray;
   border-radius: 2px;
-}
+}*/
 
 button[type=submit]{
   margin-left: 10%;
@@ -49,7 +48,7 @@ button[type=submit]{
   border-radius: 2px;
 }
 
-#item-price{
+/*#item-price{
   width: 20%;
 }
 
@@ -63,23 +62,50 @@ button[type=submit]{
 #item-description{
   margin-left: 10%;
   width: 80%;
-}
+}*/
 
 #item-images{
-  width: 50%;
-  border: 1px solid gray;
-  border-radius: 2px;
-}
-
-#item-category{
+  width: 80%;
   margin-left: 10%;
 }
 
 #item-details{
+  margin-left: 10%;
+  margin-bottom: 25px;
+}
+
+/*#item-category{
   margin-left: 10%;
 }
 
 #item-tags{
   margin-left: 10%;
   width: 80%;
+}*/
+
+.toggle-button {
+  background-image: linear-gradient(#F5DA81, #DBA901);
+  border: 1px solid gray;
+  border-radius: 2px;
+  margin-left: 10%;
+  margin-bottom: 25px;
+}
+
+.confirm[type=submit]
+{
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 50px;
+  height: 40px;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+dynamic-table
+{
+  width: 80%;
+  min-width: 400px;
+  font-family: sans-serif;
+  margin: 0 auto;
+  display: block;
 }
