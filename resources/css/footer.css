@@ -14,12 +14,14 @@
   box-sizing: border-box;
   padding: 10px;
 
-  background-image: linear-gradient(#ffffff,#cccccc);
+  background-image: linear-gradient(#4b7bec,#4b7bec);
   border-radius: 2px;
 }
 
 .footer > a
 {
-  color: #404040;
+  font-family: "Trebuchet MS", serif;
+  color: white;
+  text-decoration: none;
   font-size: 15px;
 }

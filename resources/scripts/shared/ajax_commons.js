@@ -121,6 +121,11 @@ export default class QueryManager
       url: NOZAMA.API + NOZAMA[d_type] + '/' + destination,
       contentType: arguments[4] || 'application/json',
       data: data,
+      xhrFields:
+      {
+        // Firefox support!
+        withCredentials: true
+      },
       success: function(data)
       {
         if (callback !== undefined && callback !== null)

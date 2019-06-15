@@ -96,11 +96,27 @@ window.logout = function()
   window.location.href = window.root + 'index.html';
 };
 
-// DEFINE GLOBAL CUSTOM ELEMENTS
-customElements.define('item-preview-frame', ItemFrame);
-customElements.define('cart-item-frame', CartItemFrame);
-customElements.define('item-list', ItemList);
-customElements.define('item-image-display', ItemImageDisplay);
-customElements.define('toggle-form', ToggleForm);
-customElements.define('dynamic-table', DynamicTable);
-customElements.define('order-frame', OrderFrame);
+try
+{
+  // DEFINE GLOBAL CUSTOM ELEMENTS
+  customElements.define('item-preview-frame', ItemFrame);
+  customElements.define('cart-item-frame', CartItemFrame);
+  customElements.define('item-list', ItemList);
+  customElements.define('item-image-display', ItemImageDisplay);
+  customElements.define('toggle-form', ToggleForm);
+  customElements.define('dynamic-table', DynamicTable);
+  customElements.define('order-frame', OrderFrame);
+}
+catch(ignored)
+{
+  // Internet Explorer GRRRRRRRRRRRRRRRRRR...
+  console.log('Why InternetExplorer, GRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR!');
+  $('body').empty();
+
+  window.addStylesheet('edge-support.css');
+
+  let stupid = $('<div></div>')
+    .html('<p>Look at this dude using Edge.<br>Seriously, use a good browser.</p>')
+    .attr('class', 'rotating');
+  $('body').append(stupid);
+}

@@ -19,6 +19,8 @@ document.addEventListener("ondataloaded", function(e)
   {
     $('#item-data-form')[0].populate(result);
 
+    console.log(result['manufacturer'], result['category']);
+
     // Setup select boxes
     window.QueryManager.get('MANUFACTURERS', null, function(data) { populateSelect('manufacturer', data, result['manufacturer']); });
     //$('#category').append($('<option></option>').val('Test').text('Hello'));
@@ -74,7 +76,6 @@ function changeItemData()
   let data = $('#item-data-form')[0].toJSON();
   let manufacturer = $('#item-manufacturer-form')[0].toJSON();
   let category = $('#item-category-form')[0].toJSON();
-  if (category['category'] === null) { category['category'] = 1; }
 
   // There goes our IE11 support
   let json = Object.assign(data, manufacturer, category);
@@ -118,5 +119,6 @@ function populateSelect(element, data, initial)
     select.append(option);
   });
 
-  select.val(findValueByText(select, initial));
+  if (typeof initial !== 'number') { initial = findValueByText(select, initial); }
+  select.val(initial);
 }
