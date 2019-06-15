@@ -40,12 +40,9 @@ document.addEventListener("ondataloaded", function()
   {
     let select = $('#item-category');
 
-    for (let i = 1; i <= Object.keys(data).length; i++)
+    for (let key in data)
     {
-      let option = $('<option></option>').text(data[i]).attr({
-        value: i
-      });
-      select.append(option);
+      select.append($('<option></option>').text(data[key]['category_name']).val(data[key]['category_id']));
     }
   });
 

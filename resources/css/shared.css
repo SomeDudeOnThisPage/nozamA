@@ -27,7 +27,7 @@ html, body
 
 #main-container
 {
-  position: relative;
+  margin: -1px;
 }
 
 #side-bar
@@ -45,6 +45,21 @@ html, body
 #content
 {
   /*position: relative;*/
+}
+
+.toggle-button
+{
+  background-image: linear-gradient(#F5DA81, #DBA901);
+  border: 1px solid gray;
+  border-radius: 2px;
+  display: block;
+  width: 70px;
+  margin-left: 10%;
+}
+
+.toggle-button:hover
+{
+  background-image: linear-gradient(#DBA901, #F5DA81);
 }
 
 .dropdown:hover .dropdown-content
@@ -82,7 +97,7 @@ html, body
   border: 1px solid gray;
   border-radius: 4px;
   margin-left: 10%;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   width: 80%;
   height: auto;
   display: block;

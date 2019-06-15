@@ -5,14 +5,12 @@
   top: 0;
   height: 55px;
   width: 100%;
+  transform: translateY(0.1%);
 
   box-sizing: border-box;
-  background-image: linear-gradient(#4b7bec,#4b7bec);
-  /*
-    background-image: linear-gradient( #cccccc,#ffffff);
-    @max erstmal solide farbe weil es is echt schwer mit weiß auf weiß zu developen...
-  */
-  /*border-radius: 2px;*/
+  background-image: linear-gradient(#3d3d3d,#4b4b4b);
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.25);
+  border: 1px solid black;
 }
 
 #nav-logo
@@ -20,8 +18,14 @@
   position: absolute;
   width: 100px;
   top: 50%;
-  transform: translateY(-40%);
-  padding-left: 10px;
+  transform: translateY(-45%);
+  padding-left: 15px;
+  transition: all 0.1s ease-in-out;
+}
+
+#nav-logo:hover
+{
+  transform: scale(1.1) translateY(-35%);
 }
 
 #nav-search
@@ -52,24 +56,41 @@
   transform: translateY(-50%);
   padding-left: 10px;
 
-  border: 1px solid #4b7bec;
+  border: 1px solid darkgrey;
+  border-left: none;
   border-radius: 4px 0 0 4px;
 }
 
 #nav-search>.search_button
 {
   position: absolute;
-  width: 40px;
+  width: 42px;
   height: 34px;
-  left: calc(100% - 28px);
+  left: calc(100% - 29px);
   transform: translateY(-50%);
 
-  background-image: linear-gradient(#f7b731, #fed330);
+  background-image: linear-gradient(#F5DA81, #DBA901);
 
-  /*padding: 8px;*/
-
-  border: 1px solid #4b7bec;
+  border: 1px solid darkgrey;
   border-radius: 0 4px 4px 0;
+}
+
+#nav-search>.search_button:hover
+{
+  background-image: linear-gradient(#DBA901, #F5DA81);
+}
+
+#search-button-image
+{
+  width: 15px;
+  height: 15px;
+  transform: translateY(10%);
+  transition: all 0.1s ease-in-out;
+}
+
+#nav-search>.search_button:hover #search-button-image
+{
+  transform: scale(1.1) translateY(15%);
 }
 
 ul
@@ -86,7 +107,18 @@ li
 {
   float: left;
   position: relative;
-  padding: 17px 18px;
+  padding: 15px;
+}
+
+li:hover
+{
+  background-image: linear-gradient(#4b4b4b,#3d3d3d);
+}
+
+li:hover > .nav-link:before
+{
+  visibility: visible;
+  width: 100%;
 }
 
 /* Animated Nav Links */
@@ -109,12 +141,6 @@ li
   background-color: white;
   visibility: hidden;
   transition: all 0.1s ease-in-out;
-}
-
-.nav-link:hover:before
-{
-  visibility: visible;
-  width: 100%;
 }
 
 .nav-link img

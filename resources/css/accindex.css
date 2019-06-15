@@ -3,42 +3,64 @@ body{
     text-align: left;
 }
 
-label, input{
+/*.form-label, .form-input-text{
     display: block;
     font-size: 14px;
     margin-left: 10%;
-}
+}*/
 
-p{
-    font-weight: bold;
+h5
+{
     margin-left: 10%;
-
+    font-size: 20px;
 }
 
-input{
-    border: 1px solid gray;
-    border-radius: 2px;
-}
-
-#content{
-    border: 1px solid gray;
-    border-radius: 2px;
-    width: 40%;
-    min-width: 550px;
-    margin: 0 auto;
-}
-
-button{
-    background-image: linear-gradient(#F5DA81, #DBA901);
-    border: 1px solid gray;
-    border-radius: 2px;
-    display: block;
-    width: 70px;
+p
+{
+    font-size: 16px;
     margin-left: 10%;
+    margin-right: 10%;
 }
 
+hr
+{
+    margin-top: 30px;
+}
+
+#account-info
+{
+    width: 50%;
+    height: 700px;
+    border: 1px solid darkgrey;
+    border-right: none;
+    float: left;
+
+    box-sizing: border-box;
+}
 
 #account-history{
-    margin-left: 10%;
+    width: 50%;
+    border: 1px solid darkgrey;
+    float: right;
+
+    height: 700px;
+    overflow: scroll;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
 }
 
+#content
+{
+    display: inline-block;
+    width: 80%;
+    min-width: 550px;
+    margin-left: 10%;
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+order-frame
+{
+    margin-bottom: 1px;
+}

@@ -1,4 +1,61 @@
 .order-frame
 {
+  display: inline-block;
+  width: calc(100% - /* Padding */2 * 10px - /* Border */2px);
   border: 1px darkgrey dashed;
+  padding: 10px;
+}
+
+.order-frame #meta
+{
+  width: 30%;
+  float: left;
+}
+
+.order-frame p
+{
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+.order-frame #order_total
+{
+  text-align: right;
+}
+
+.order-frame #items
+{
+  width: 70%;
+  float: right;
+}
+
+dynamic-table
+{
+  font-size: 14px;
+  text-align: right;
+}
+
+dynamic-table a
+{
+  text-decoration: none;
+}
+
+dynamic-table table
+{
+  position: relative;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+dynamic-table td, dynamic-table th
+{
+  border: 1px solid darkgrey;
+}
+
+dynamic-table th
+{
+  text-align: center;
+  background-image: linear-gradient(#F5DA81, #DBA901);
+  color: #2c3e50;
 }

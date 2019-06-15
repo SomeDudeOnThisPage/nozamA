@@ -13,9 +13,10 @@ export default class OrderFrame extends AsyncElement
 
   generate(data)
   {
-    this.wrapper.find('*').not('tr,th,table,dynamic-table,#id').each(function()
+    this.wrapper.find('*').not('tr,th,table,dynamic-table,#id,div').each(function()
     {
       let element = $(this);
+      //if (element.attr('id') === 'ordered_on') { data[element.attr('id')] = window.currency.rate }
       element.text(element.text().replace('%s', data[element.attr('id')]));
     });
 
@@ -32,6 +33,8 @@ export default class OrderFrame extends AsyncElement
         table.addRow([href, item['amount'], price + window.currency.symbol]);
       });
     });
+
+    $(this.wrapper).find('#order_total').text('Total: ' + (data['order_total'] * window.currency.rate).toFixed(2) + window.currency.symbol);
   }
 
   constructor()
