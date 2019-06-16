@@ -16,6 +16,7 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="./resources/css/shared.css">
+        <link rel="stylesheet" href="./resources/css/item.css">
     </head>
 
     <body>
@@ -34,7 +35,7 @@
                     <dynamic-table id="item-details-table" headers="Detail,Description" no-add no-delete>
                     </dynamic-table>
                 </div>
-                <div>
+                <div id="buy-item">
                     <label for="add-to-cart-amount" class="form-label">Amount:</label>
                     <input id="add-to-cart-amount" type="number" min="1" max="99" placeholder="amount" value="1">
                     <button id="add-to-cart">Add to cart</button>
