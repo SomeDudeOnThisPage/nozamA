@@ -19,6 +19,11 @@
   margin: 0;
 }
 
+.order-frame #id
+{
+  font-weight: bold;
+}
+
 .order-frame #order_total
 {
   text-align: right;
@@ -46,6 +51,16 @@ dynamic-table table
   position: relative;
   width: 100%;
   border-collapse: collapse;
+}
+
+dynamic-table table .headers > th:first-child
+{
+  width: 50%;
+}
+
+dynamic-table table .headers > th:last-child
+{
+  width: 25%;
 }
 
 dynamic-table td, dynamic-table th

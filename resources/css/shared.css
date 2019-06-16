@@ -14,7 +14,6 @@ html, body
 {
   margin: 0;
   font-size: 20px;
-  height: 100%;
   overflow-x: hidden;
 }
 
@@ -27,6 +26,8 @@ html, body
 
 #main-container
 {
+  height: 100%;
+  overflow-x: hidden;
   margin: -1px;
 }
 
@@ -44,7 +45,11 @@ html, body
 
 #content
 {
-  /*position: relative;*/
+  margin-top: 75px;
+  margin-bottom: 75px;
+  min-width: 550px;
+  margin-left: 10%;
+  width: 80%;
 }
 
 .toggle-button
@@ -60,36 +65,6 @@ html, body
 .toggle-button:hover
 {
   background-image: linear-gradient(#DBA901, #F5DA81);
-}
-
-.dropdown:hover .dropdown-content
-{
-  display: block;
-}
-
-.dropdown-content
-{
-  display: none;
-  position: absolute;
-  right: -15px;
-  top: 55px;
-
-  background-color: #f9f9f9;
-  width: 200px;
-  padding: 15px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a
-{
-  text-decoration: none;
-  color: black;
-}
-
-.dropdown-content a:hover
-{
-  color: #666666;
 }
 
 .form-input-text, .form-input-text-large, .form-select
@@ -111,6 +86,15 @@ html, body
   resize: vertical;
   min-height: 25px;
   max-height: 1000px;
+}
+
+#greetings
+{
+  margin-left: 0;
+  padding: 25px;
+  width: calc(100% - 50px);
+  border: 1px solid darkgrey;
+  text-align: center;
 }
 
 label

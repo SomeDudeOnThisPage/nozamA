@@ -24,6 +24,8 @@ export default class OrderFrame extends AsyncElement
     tag.text(tag.text().replace('%s', $(this).attr('order')));
 
     let table = $(this.wrapper).find('#item-list')[0];
+    let self = $(this.wrapper);
+    let itemsLoaded = 0;
     data['items'].forEach(function(item)
     {
       window.QueryManager.get('ITEM', item['item_id'], function(result)
@@ -31,6 +33,12 @@ export default class OrderFrame extends AsyncElement
         let href = $('<a></a>').attr('href', window.root + 'item.html?item=' + item['item_id']).text(result['name']);
         let price = (window.currency.rate * result['price'] * item['amount']).toFixed(2);
         table.addRow([href, item['amount'], price + window.currency.symbol]);
+        itemsLoaded++;
+
+        if (itemsLoaded === data['items'].length)
+        {
+          $(self).fadeIn(150);
+        }
       });
     });
 
@@ -40,5 +48,6 @@ export default class OrderFrame extends AsyncElement
   constructor()
   {
     super(arguments[0] || 'order-frame');
+    $(this.wrapper).hide();
   }
 }

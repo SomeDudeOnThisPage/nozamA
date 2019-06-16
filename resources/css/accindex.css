@@ -53,11 +53,6 @@ hr
 #content
 {
     display: inline-block;
-    width: 80%;
-    min-width: 550px;
-    margin-left: 10%;
-    margin-top: 75px;
-    margin-bottom: 75px;
 }
 
 order-frame

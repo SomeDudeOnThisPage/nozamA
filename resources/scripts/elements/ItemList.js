@@ -54,30 +54,13 @@ export default class ItemList extends AsyncElement
    * Increments page by n pages and regenerates new items.
    * @param n Amount of pages.
    */
-  forward(n)
+  appendChunk()
   {
-    if ((this.page + 1) * $(this).attr('page') < this.items.length)
+    let start = this.chunkPointer * $(this).attr('chunk');
+    if (start <= this.items.length)
     {
-      $('#end-of-search').css('display', 'none');
-      this.clear();
-      this.page += arguments[0] || 1;
-      this.generate(this.items);
-    }
-  }
-
-  /**
-   * Decrements page by n pages and regenerates new items
-   * @param n Amount of pages.
-   */
-  back(n)
-  {
-    $('#end-of-search').css('display', 'none');
-
-    if (this.page - (n || 1) >= 0)
-    {
-      this.page = Math.max(this.page - (n || 1), 0);
-      this.clear();
-      this.generate(this.items);
+      this.setItems(this.items.slice(start, Math.min(start + $(this).attr('chunk'), this.items.length)));
+      this.chunkPointer++;
     }
   }
 
@@ -102,26 +85,16 @@ export default class ItemList extends AsyncElement
   {
     let self = $(this);
     this.items = data;
-    this.totalPages = Math.ceil(data.length / $(this).attr('page'));
 
-    if (self.attr('page') !== undefined && self.attr('page') !== null)
+    if (self.attr('chunk') !== undefined && self.attr('chunk') !== null)
     {
-      // Paged Display
-      let start = self[0].page * self.attr('page');
-      self[0].setItems(self[0].items.slice(start, start + self.attr('page')));
+      // Chunked Display -> Add first chunk
+      this.appendChunk();
     }
     else
     {
       // Full List Display
-      self[0].setItems(data);
-    }
-
-    console.log(this.wrapper.find('.button-container'));
-    // Display buttons if necessary
-    let a = $(this).attr('page');
-    if (a !== null && a !== undefined && data.length > a)
-    {
-      this.wrapper.find('.button-container').css('display', 'block');
+      this.setItems(data);
     }
   }
 
@@ -138,7 +111,7 @@ export default class ItemList extends AsyncElement
         return window.QueryManager.get('RANDOM', arguments[0], this);
       case 'cart':
         return this.generate(window.user['cart']);
-      case 'search':
+      case 'chunk-loaded-display':
         return window.QueryManager.get('SEARCH', arguments[0], this);
       case 'order':
         return this.postDataLoaded(window.user['order_history']);
@@ -151,6 +124,6 @@ export default class ItemList extends AsyncElement
   {
     super(arguments[0] || 'item-list');
 
-    this.page = 0;
+    this.chunkPointer = 0;
   }
 }

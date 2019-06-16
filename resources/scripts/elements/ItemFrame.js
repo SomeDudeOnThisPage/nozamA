@@ -33,15 +33,24 @@ export default class ItemFrame extends AsyncElement
    */
   generate(data)
   {
-    let width = this.wrapper[0].offsetWidth / 4;
-    let desc = data['description'].substring(0, width) + '...';
+    let desc = data['description'].substring(0, 247);//width);
+    if (data['description'].length > desc.length) { desc = desc + '...'; }
+
     let elements = Array.from(this.getInternalElements());
-    elements[0].href = window.root + 'item.html?item=' + this.getAttribute('item');
+    let self = $(this.wrapper);
+
+    self.find('.name').attr('href', window.root + 'item.html?item=' + $(this).attr('item')).text(data['name']);
+    self.find('.image-image').attr('src', NOZAMA_IMAGE_PATH + data['images'][0]);
+    self.find('.price').text((data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol);
+    self.find('.description').text(desc);
+
+
+    /*elements[0].href = ;
     elements[0].innerText = data['name'];
-    elements[1].children[0].src = NOZAMA_IMAGE_PATH + data['images'][0];
+    elements[1].children[0].src = ;
     //window.QueryManager.loadImage(data['images'][0], elements[1].children[0]);
-    elements[2].innerText = (data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol;
-    elements[3].innerText = desc;
+    elements[2].innerText = ;
+    elements[3].innerText = desc;*/
 
     // Check if the user is the vendor of this item
     if (data['vendor_id'] === window.user['belongs_to_vendor'])
@@ -55,10 +64,13 @@ export default class ItemFrame extends AsyncElement
       elements[4].style.display = 'block';
       elements[2].innerText = 'This item is being sold by your shop.'
     }
+
+    $(this.wrapper).fadeIn(750);
   }
 
   constructor()
   {
     super(arguments[0] || 'item-frame');
+    $(this.wrapper).hide();
   }
 }
