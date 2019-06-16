@@ -1,5 +1,5 @@
 body{
-  /*font-family: sans-serif;*/
+  font-family: sans-serif;
 }
 
 #content{
@@ -42,7 +42,6 @@ input{
 }*/
 
 button[type=submit]{
-  margin-left: 10%;
   background-image: linear-gradient(#F5DA81, #DBA901);
   border: 1px solid gray;
   border-radius: 2px;
