@@ -31,16 +31,20 @@
                     <p id="item-price"></p>
                 </div>
 
-                <div id="item-details">
-                    <dynamic-table id="item-details-table" headers="Detail,Description" no-add no-delete>
-                    </dynamic-table>
-                </div>
+
                 <div id="buy-item">
                     <label for="add-to-cart-amount" class="form-label">Amount:</label>
                     <input id="add-to-cart-amount" type="number" min="1" max="99" placeholder="amount" value="1">
                     <button id="add-to-cart">Add to cart</button>
                     <p id="total-cart"></p>
                 </div>
+
+                <div id="item-details">
+                    <dynamic-table id="item-details-table" headers="Detail,Description" no-add no-delete>
+                    </dynamic-table>
+                </div>
+
+
                 <!-- Hidden elements made visible when the logged in user is the vendor selling the displayed item -->
                 <div class="vendor-info" style="display:none;">
                     <p>This Item is sold by your shop!</p>
