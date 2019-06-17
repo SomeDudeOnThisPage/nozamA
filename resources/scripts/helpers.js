@@ -66,6 +66,19 @@ window.addStylesheet = function()
   $(element).append(stylesheet);
 };
 
+window.cFooter = function()
+{
+  let footer = $('.footer');
+  if ($('#main-container').height() > $(window).height())
+  {
+    footer.css('position', 'static');
+  }
+  else
+  {
+    footer.css('position', 'absolute');
+  }
+};
+
 window.error = function(msg)
 {
   $('#error-message').text(arguments[1] || '' + msg);

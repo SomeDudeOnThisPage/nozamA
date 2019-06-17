@@ -1,24 +1,85 @@
-body{
+body
+{
     font-family: sans-serif;
     text-align: left;
 }
 
-#content{
-    width: 80%;
-    min-width: 700px;
-    margin: 0 auto;
-    border: 1px solid gray;
-    border-radius: 4px;
+#content
+{
+    display: inline-block;
 }
 
+#cart-content
+{
+    width: 80%;
+    height: 700px;
+    border: 1px solid darkgrey;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    float: left;
+    overflow: scroll;
 
-button{
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+#sidebar-right
+{
+    width: 20%;
+    border: 1px solid darkgrey;
+    float: right;
+    border-radius: 0 4px 4px 0;
+    height: 700px;
+
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+#delivery
+{
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#sidebar-right > #street, #city-zip, #full-name
+{
+    margin: 0;
+    font-size: 15px;
+}
+
+#smol
+{
+    font-size: 10px;
+    margin: 0;
+    text-align: justify;
+}
+
+#sidebar-right > a
+{
+    font-size: 15px;
+}
+
+#sad-cart, #sad-cart-text
+{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+}
+
+#purchase
+{
     background-image: linear-gradient(#F5DA81, #DBA901);
+    font-weight: bold;
     border: 1px solid gray;
     border-radius: 2px;
     display: block;
-    width: 100px;
+    width: 100%;
     height: 30px;
-    margin-left: 85%;
     font-size: 14px;
+}
+
+#purchase:hover
+{
+    background-image: linear-gradient(#DBA901, #F5DA81);
 }

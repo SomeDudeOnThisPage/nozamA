@@ -44,7 +44,7 @@ export default class ItemList extends AsyncElement
    */
   clear()
   {
-    $(this.wrapper).find().each(function()
+    $(this.wrapper).find('*').each(function()
     {
       $(this).remove(subElements);
     });
@@ -85,6 +85,12 @@ export default class ItemList extends AsyncElement
   {
     let self = $(this);
     this.items = data;
+
+    if (self.attr('mode') === 'order')
+    {
+      // Start with latest order obviously...
+      this.items.reverse();
+    }
 
     if (self.attr('chunk') !== undefined && self.attr('chunk') !== null)
     {

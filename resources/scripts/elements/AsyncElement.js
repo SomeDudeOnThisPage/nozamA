@@ -32,6 +32,10 @@ export default class AsyncElement extends HTMLElement
     let self = this;
     this.wrapper.load('/nozamA/resources/html/elements/' + this.cname + '.html', function()
     {
+      // Async Elements can change the page size -> Check if our footer needs to be adjusted.
+      // Not the best way to handle this but it works.
+      window.cFooter();
+
       self.generate(data);
     });
   }

@@ -24,8 +24,27 @@
         <div id="main-container">
             <div id="content">
                 <p id="error-message"></p>
-                <item-list id="item-list" mode="cart"></item-list>
-                <button id="purchase">Purchase</button>
+                <div id="empty" style="display: none;">
+                    <p id="sad-cart-text">Your cart is empty.</p>
+                    <img id="sad-cart" src="/nozamA/resources/img/sadcart.png">
+                </div>
+
+                <div id="cart-content" style="display: none;">
+                    <item-list id="item-list" mode="cart"></item-list>
+                </div>
+                <div id="sidebar-right" style="display: none;">
+                    <p id="delivery">This order will be delivered to:</p>
+                    <p id="street">22 Jump Street</p>
+                    <p id="city-zip">61381 Bobheim</p>
+                    <p id="full-name">Roland Koch</p>
+                    <a href="index.html#account-info">Change Address</a>
+                    <hr>
+                    <button id="purchase">Purchase</button>
+                    <hr>
+                    <p id="smol"><b>Disclaimer</b>: You explicitly waive your right to a refund. We do not guarantee the arrival of
+                    promised goods. Purchase at your own risk. <br> <b>Note</b>: We are legally obliged to tell you that the possibility
+                    of us running away with your money to buy a private island lies at approx. 74%.</p>
+                </div>
             </div>
         </div>
     </body>

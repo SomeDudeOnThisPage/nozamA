@@ -1,6 +1,5 @@
 let vendor;
 let items;
-let form_enabled = false;
 let list;
 
 function searchVForm(data)
@@ -25,6 +24,8 @@ function populateListByVendorItems(list)
 
 document.addEventListener("ondataloaded", function(e)
 {
+  list = $('#item-list')[0];
+
   // Get vendor info.
   window.QueryManager.get('VENDOR', window.user['belongs_to_vendor'], function(data)
   {
