@@ -1,0 +1,33 @@
+
+#content{
+    border: 1px solid gray;
+    border-radius: 2px;
+    height: 700px;
+}
+
+#item-data {
+    width: 70%;
+    display: block;
+    float: left;
+}
+#item-images{
+    margin-left: 100%;
+}
+
+#item-details{
+    border: 1px solid gray;
+    display: block;
+    float: right;
+    width:  40%;
+}
+
+#buy-item{
+
+    border: 1px solid black;
+    float: left;
+    width: 50%;
+}
+
+.vendor-info{
+
+}
