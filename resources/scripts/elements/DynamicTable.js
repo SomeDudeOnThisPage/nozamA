@@ -31,6 +31,9 @@ export default class DynamicTable extends HTMLElement
     }
 
     $(this.table).append(row);
+
+    // Adding rows can increase our page height -> Reposition footer if needed.
+    window.cFooter();
   }
 
   /**

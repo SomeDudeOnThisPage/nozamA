@@ -1,6 +1,7 @@
+const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
+
 let vendor;
 let items;
-let form_enabled = false;
 let list;
 
 function searchVForm(data)
@@ -25,11 +26,15 @@ function populateListByVendorItems(list)
 
 document.addEventListener("ondataloaded", function(e)
 {
+  list = $('#item-list')[0];
+
   // Get vendor info.
   window.QueryManager.get('VENDOR', window.user['belongs_to_vendor'], function(data)
   {
     vendor = data;
     items = vendor['items'];
+
+    $('#vendor-image').append($('<img alt="">').attr('src', NOZAMA_IMAGE_PATH + vendor['image']));
 
     let dataForm = $('#change-data')[0];
     dataForm.populate(data);

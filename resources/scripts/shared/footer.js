@@ -7,6 +7,5 @@ export default function()
   });
 
   footer.load(window.resources + 'html/elements/footer.html');
-
   $('#main-container').append(footer);
 }

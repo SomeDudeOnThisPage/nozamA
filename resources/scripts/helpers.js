@@ -40,6 +40,7 @@ window.onload = function()
     QueryManager.get('USER', getCookie('sessionID'), function(result)
     {
       window.user = result;
+      console.log(result);
       dispatch();
     });
   }
@@ -64,6 +65,19 @@ window.addStylesheet = function()
     href: window.resources + 'css/' + path
   });
   $(element).append(stylesheet);
+};
+
+window.cFooter = function()
+{
+  let footer = $('.footer');
+  if ($('#main-container').height() > $(window).height())
+  {
+    footer.css('position', 'static');
+  }
+  else
+  {
+    footer.css('position', 'absolute');
+  }
 };
 
 window.error = function(msg)

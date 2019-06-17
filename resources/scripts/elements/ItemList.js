@@ -44,7 +44,7 @@ export default class ItemList extends AsyncElement
    */
   clear()
   {
-    $(this.wrapper).find().each(function()
+    $(this.wrapper).find('*').each(function()
     {
       $(this).remove(subElements);
     });
@@ -52,7 +52,6 @@ export default class ItemList extends AsyncElement
 
   /**
    * Increments page by n pages and regenerates new items.
-   * @param n Amount of pages.
    */
   appendChunk()
   {
@@ -73,10 +72,13 @@ export default class ItemList extends AsyncElement
     let self = $(this);
     frames.forEach(function(data)
     {
+      let arg2;
+      if (self.attr('mode') === 'cart') { arg2 = data['amount']; }
+
       // FFS why can't our API just be consistent?
       // Just ALWAYS give me ItemList JSON data in the same format, not different if you get cart or order-history data.
       // Now I have to do: 'data['item_id'] || data' to get an item ID in both cases...
-      let frame = ItemList.generateItemPreviewFrame(data['item_id'] || data, self.attr('mode'));
+      let frame = ItemList.generateItemPreviewFrame(data['item_id'] || data, self.attr('mode'), arg2);
       self[0].wrapper.append(frame);
     });
   }
@@ -85,6 +87,12 @@ export default class ItemList extends AsyncElement
   {
     let self = $(this);
     this.items = data;
+
+    if (self.attr('mode') === 'order')
+    {
+      // Start with latest order obviously...
+      this.items.reverse();
+    }
 
     if (self.attr('chunk') !== undefined && self.attr('chunk') !== null)
     {

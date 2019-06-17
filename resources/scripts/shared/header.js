@@ -20,6 +20,11 @@ export default function()
     if (window.user)
     {
       $('#nav-on').css('display', 'block');
+
+      if (!window.user['belongs_to_vendor'])
+      {
+        $('#vlink').css('display', 'none');
+      }
     }
     else
     {

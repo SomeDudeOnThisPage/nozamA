@@ -2,11 +2,13 @@
 {
   position: relative;
   margin-bottom: 10px;
+  padding: 10px;
 
-  height: 175px;
+  height: 185px;
 
   box-sizing: border-box;
-  border: 1px darkgrey dashed;
+  border: 1px darkgrey solid;
+  border-radius: 4px;
 
   z-index: 1;
   background: white;
@@ -21,7 +23,7 @@
   padding: 5px;
 
   position: relative;
-  left: 135px;
+  left: 140px;
 }
 
 .name:visited
@@ -29,11 +31,54 @@
   color: black;
 }
 
+.cart-info
+{
+  position: absolute;
+  min-width: 33%;
+  padding: 5px;
+  font-size: 18px;
+  right: 0;
+  text-align: right;
+  margin-right: 25px;
+  bottom: 5px;
+}
+
+.cart-info > input
+{
+  padding: 4px;
+  width: 33%;
+  border: 1px solid gray;
+  border-radius: 2px;
+  text-align: right;
+}
+
+.cart-info > button
+{
+  border: 1px solid gray;
+  border-radius: 2px;
+  padding: 4px;
+  background-image: linear-gradient(#F5DA81, #DBA901);
+}
+
+.cart-info > button:hover
+{
+  background-image: linear-gradient(#DBA901, #F5DA81);
+  cursor: pointer;
+}
+
+.image
+{
+  position: absolute;
+  left: 5px;
+  width: 125px;
+  height: 125px;
+}
+
 .image > img
 {
-  padding: 5px;
+  padding: 0;
   position: absolute;
-  left: 0;
+  left: 5px;
   width: 125px;
   height: 125px;
 
@@ -46,44 +91,16 @@
   position: absolute;
   bottom: -25px;
   left: 10px;
+  color: green;
 }
 
-.vendor-info
+.description
 {
+  font-size: 18px;
   position: absolute;
-  right: 0;
-}
+  left: 150px;
+  margin-right: 25px;
+  text-align: justify;
 
-.vendor-info > p
-{
-  font-size: 20px;
-}
-
-.vendor-info > button
-{
-  font-size: 20px;
-  padding: 10px;
-}
-
-.cart-info
-{
-  position: absolute;
-  right: 0;
-}
-
-.loader
-{
-  position: absolute;
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin
-{
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  padding: 5px;
 }
