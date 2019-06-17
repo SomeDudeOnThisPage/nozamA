@@ -64,6 +64,8 @@
   font-size: 18px;
   position: absolute;
   left: 150px;
+  margin-right: 25px;
+  text-align: justify;
 
   padding: 5px;
 }

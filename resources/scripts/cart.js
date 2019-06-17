@@ -12,9 +12,9 @@ document.addEventListener("ondataloaded", function(e)
 
     $('#purchase').click(function()
     {
-      window.QueryManager.post('PURCHASE', window.getCookie('sessionID'), function()
+      window.QueryManager.post('PURCHASE', window.getCookie('sessionID'), null, function(data)
       {
-        console.log('PURCHASED!');
+        window.location.href = '/nozamA/account/index.html?purchase=' + JSON.parse(data)['order_id'];
       })
     });
   }

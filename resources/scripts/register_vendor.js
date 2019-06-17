@@ -8,9 +8,18 @@ function register_action(ev)
   ev.preventDefault();
   ev.stopPropagation();
 
-  let elements = document.getElementById('register-vendor').elements;
-  console.log('Trying to register vendor with name=' + elements[0].value + ' and description=' + elements[1].value);
-  window.QueryManager.registerVendor(elements[0].value, elements[1].value, window.getCookie('sessionID'));
+  window.QueryManager.post('REGISTER_VENDOR', window.getCookie('sessionID'),
+  {
+    name: $('#register-vendor-name').val(),
+    description: $('#register-vendor-description').val(),
+  },
+  function()
+  {
+    // Register Image
+    console.log($('#register-vendor-image').val());
+    window.QueryManager.addVendorImage(window.getCookie('sessionID'), $('#register-vendor-image')[0].files[0]);
+    //window.location.href = 'manage.html';
+  });
   return false;
 }
 

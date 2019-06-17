@@ -1,3 +1,5 @@
+const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
+
 let vendor;
 let items;
 let list;
@@ -31,6 +33,8 @@ document.addEventListener("ondataloaded", function(e)
   {
     vendor = data;
     items = vendor['items'];
+
+    $('#vendor-image').append($('<img alt="">').attr('src', NOZAMA_IMAGE_PATH + vendor['image']));
 
     let dataForm = $('#change-data')[0];
     dataForm.populate(data);

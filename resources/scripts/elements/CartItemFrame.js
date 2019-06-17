@@ -18,22 +18,28 @@ export default class CartItemFrame extends ItemFrame
 {
   setItem(id, amount)
   {
-    this.setAttribute('amount', amount);
+    $(this).attr('amount', amount);
     super.setItem(id);
   }
 
   generate(data)
   {
-    $(this.shadowRoot).find('#amount').val(this.getAttribute('amount'));
+    $(this.wrapper).find('#amount').val($(this).attr('amount'));
 
-    let self = this;
-    $(this.shadowRoot).find('button').click(function()
+    let self = $(this);
+    $(this.wrapper).find('button').click(function()
     {
-      let destination = window.getCookie('sessionID') + '/' + self.getAttribute('item') + '/0';
+      let destination = window.getCookie('sessionID') + '/' + self.attr('item') + '/0';
       window.QueryManager.post('ADD_CART', destination, null, function()
       {
-        location.reload();
+        self.remove();
       });
+    });
+
+    $(this.wrapper).find('#amount').change(function()
+    {
+      let destination = window.getCookie('sessionID') + '/' + self.attr('item') + '/' + $(this).val();
+      window.QueryManager.post('ADD_CART', destination, null, function() {});
     });
 
     super.generate(data);

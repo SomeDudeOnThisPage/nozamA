@@ -7,6 +7,7 @@ const NOZAMA = {
   USER: '/profile',
   VENDOR: '/vendor',
   REGISTER_VENDOR: '/add_vendor',
+  VENDOR_IMAGE: '/add_vendor_image',
   EDIT_VENDOR: '/change_profile/vendor',
   CHANGE_USER: '/change_profile/user',
   CHANGE_PASSWORD: '/change_password',
@@ -154,6 +155,25 @@ export default class QueryManager
     $.ajax({
       type: 'POST',
       url: NOZAMA.API + NOZAMA.ADD_ITEM_IMAGE + '/' + session + '/' + item,
+      processData: false,
+      contentType: false,
+      data: fdata,
+      error: function(xhr, _1, _2)
+      {
+        cerror(xhr, function() {});
+      },
+      success: function(data) {}
+    });
+  }
+
+  static addVendorImage(session, file)
+  {
+    let fdata = new FormData();
+    fdata.append('image', file);
+
+    $.ajax({
+      type: 'POST',
+      url: NOZAMA.API + NOZAMA.VENDOR_IMAGE + '/' + session,
       processData: false,
       contentType: false,
       data: fdata,

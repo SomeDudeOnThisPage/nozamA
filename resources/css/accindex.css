@@ -32,6 +32,7 @@ hr
     width: 50%;
     height: 700px;
     border: 1px solid darkgrey;
+    border-radius: 2px;
     border-right: none;
     float: left;
 
@@ -41,6 +42,7 @@ hr
 #account-history{
     width: 50%;
     border: 1px solid darkgrey;
+    border-radius: 0 4px 4px 0;
     float: right;
 
     height: 700px;
@@ -63,7 +65,17 @@ order-frame
 .toggle-button{
     background-image: linear-gradient(#F5DA81, #DBA901);
     border: 1px solid gray;
-    border-radius: 2px;
+    border-radius: 4px;
     margin-left: 10%;
     width: 50px;
+}
+
+#recent-purchase
+{
+    padding: 25px;
+    text-align: center;
+    margin: 10px 0 20px 0;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+    height: 30px;
 }

@@ -40,6 +40,7 @@ window.onload = function()
     QueryManager.get('USER', getCookie('sessionID'), function(result)
     {
       window.user = result;
+      console.log(result);
       dispatch();
     });
   }
