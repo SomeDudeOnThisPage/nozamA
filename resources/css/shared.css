@@ -121,6 +121,7 @@ dynamic-table table
   width: 100%;
   border-collapse: collapse;
   margin-left: 10%;
+
 }
 
 dynamic-table td, dynamic-table th

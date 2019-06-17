@@ -1,28 +1,85 @@
+html, body{
+    font-family: sans-serif;
+}
 
 #content{
     border: 1px solid gray;
     border-radius: 4px;
-    height: 800px;
+    height: 900px;
+    width: 70%;
+    margin: 40px auto 40px auto;
 }
 
 #item-data {
-    width: 70%;
+    margin-left: 10%;
+    width: 65%;
     float: left;
+    padding-top: 20px;
 }
-#item-images{
+
+#add-to-cart {
+    background-image: linear-gradient(#F5DA81, #DBA901);
+    border: 1px solid gray;
+    border-radius: 2px;
+    width: 92px;
+    height: 30px;
+    font-weight: bold;
+    display: block;
 }
 
 #item-details{
-    width:  70%;
-
+    width:  80%;
+    margin-left: 10%;
 }
 
 #buy-item{
-    margin-right: 10%;
-    width: 18%;
-    height: 100px;
+    font-size: 14px;
+    width: 21%;
+    padding-right: 4px;
+    padding-top: 20px;
     float: right;
+    height: 80px;
 }
 
 .vendor-info{
+    margin-left: 10%;
 }
+
+#item-name{
+    font-weight: bold;
+}
+
+#item-price{
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    color: darkred;
+}
+
+dynamic-table table
+{
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+dynamic-table td, dynamic-table th
+{
+    border: 1px solid gray;
+    padding: 8px;
+}
+
+dynamic-table th
+{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-image: linear-gradient(#F5DA81, #DBA901);
+    color: #2c3e50;
+}
+
+
+dynamic-table tr:nth-child(even){background-color: #f2f2f2;}
+
+dynamic-table tr:hover {background-color: #ddd;}
