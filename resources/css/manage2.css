@@ -5,18 +5,25 @@ body{
 p{
     font-weight: bold;
 }
+
 #itemmgmt{
-    float: right;
     border: 1px solid gray;
-    width: 75%;
+    width: 55%;
+    float:right;
+    display: block;
+
 }
 #data{
     float: left;
     width: 22%;
+    display: block;
 }
 
-
-#item-list{
+#vendor-image{
+    float: left;
+    border: 1px solid gray;
+    border-radius: 4px;
+    display: block;
 }
 
 #content
