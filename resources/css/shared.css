@@ -47,12 +47,17 @@ html, body
 
 #content
 {
-  margin-top: 75px;
+  margin-top: calc(75px + 55px);
   margin-bottom: 75px;
   min-width: 550px;
   margin-left: 10%;
   width: 80%;
+  display: inline-block;
+}
 
+#error-message
+{
+  margin: 0;
 }
 
 .toggle-button
@@ -61,11 +66,10 @@ html, body
   border: 1px solid gray;
   border-radius: 2px;
   display: block;
-  width: 70px;
   margin-left: 10%;
 }
 
-.toggle-button:hover
+.toggle-button:active
 {
   background-image: linear-gradient(#DBA901, #F5DA81);
 }
@@ -98,6 +102,7 @@ html, body
   width: calc(100% - 50px);
   border: 1px solid darkgrey;
   text-align: center;
+  margin-top: 0;
 }
 
 label
@@ -130,16 +135,16 @@ dynamic-table td, dynamic-table th
   padding: 8px;
 }
 
-dynamic-table tr:nth-child(even){background-color: #f2f2f2;}
+dynamic-table tr:nth-child(even){ background-color: #f2f2f2;}
 
-dynamic-table tr:hover {background-color: #ddd;}
+dynamic-table tr:hover { background-color: #ddd;}
 
 dynamic-table th
 {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #f1c40f;
+  background-image: linear-gradient(#F5DA81, #DBA901);
   color: #2c3e50;
 }
 
@@ -154,4 +159,9 @@ dynamic-table button
   background-image: linear-gradient(#F5DA81, #DBA901);
   border: 1px solid gray;
   border-radius: 2px;
+}
+
+dynamic-table button:active
+{
+  background-image: linear-gradient(#DBA901, #F5DA81);
 }

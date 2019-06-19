@@ -1,21 +1,25 @@
 #main-image
 {
-    position: relative;
+    position: static;
     min-height: 250px;
     width: 250px;
     height: 250px;
+    transition: all 0.1s ease-in-out;
+}
+
+#main-image:hover
+{
+    transform: scale(1.25);
 }
 
 .image-button
 {
-    position: relative;
+    position: static;
+    border-radius: 14px;
     width: calc(250px / 4);
     height: calc(250px / 4);
     padding: 0;
-}
-
-.image-button > img
-{
-    width: calc(250px / 4);
-    height: calc(250px / 4);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    outline: none;
 }

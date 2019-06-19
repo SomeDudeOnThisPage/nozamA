@@ -1,13 +1,18 @@
 html, body{
-    font-family: sans-serif;
+    margin: 0;
+}
+
+p
+{
+    font-family: "Times New Roman", sans-serif;
+    margin-left: 0;
 }
 
 #content{
     border: 1px solid gray;
     border-radius: 4px;
-    height: 900px;
-    width: 70%;
-    margin: 40px auto 40px auto;
+    padding-bottom: 75px;
+    /* Setz auf keinen fall height von content, das verwirrt den footer */
 }
 
 #item-data {
@@ -55,31 +60,3 @@ html, body{
     font-style: italic;
     color: darkred;
 }
-
-dynamic-table table
-{
-    position: relative;
-    width: 100%;
-    border-collapse: collapse;
-}
-
-
-dynamic-table td, dynamic-table th
-{
-    border: 1px solid gray;
-    padding: 8px;
-}
-
-dynamic-table th
-{
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-image: linear-gradient(#F5DA81, #DBA901);
-    color: #2c3e50;
-}
-
-
-dynamic-table tr:nth-child(even){background-color: #f2f2f2;}
-
-dynamic-table tr:hover {background-color: #ddd;}

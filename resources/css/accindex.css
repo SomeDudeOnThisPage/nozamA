@@ -52,22 +52,9 @@ hr
     box-sizing: border-box;
 }
 
-#content
-{
-    display: inline-block;
-}
-
 order-frame
 {
     margin-bottom: 1px;
-}
-
-.toggle-button{
-    background-image: linear-gradient(#F5DA81, #DBA901);
-    border: 1px solid gray;
-    border-radius: 4px;
-    margin-left: 10%;
-    width: 50px;
 }
 
 #recent-purchase

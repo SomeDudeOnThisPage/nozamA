@@ -16,16 +16,17 @@ document.addEventListener("ondataloaded", function(e)
 
     window.QueryManager.get('ORDER', window.getCookie('sessionID') + '/' + last, function(data_order)
     {
-      console.log(data_order['items']['0']);
       // Get first item
       window.QueryManager.get('ITEM', data_order['items']['0']['item_id'], function(data_item)
       {
         let href = $('<a></a>').attr('href', '/nozamA/item.html?item=' + data_order['items']['0']['item_id']).text(data_item['name']);
-        let after = '\'! <br> Take a look at your order history to see the status of your order.';
+        let after = '! <br> Take a look at your order history to see the status of your order.';
+        let multiplicity = '';
+        if (data_order['items'].length > 2) { multiplicity = 's'; }
 
         if (data_order['items'].length > 1)
         {
-          after = ' and ' + (data_order['items'].length - 1) + ' other items' + after;
+          after = '\' and ' + (data_order['items'].length - 1) + ' other item' + multiplicity + after;
         }
 
         $('#recent-purchase').append('Thank you for your recent purchase of \'').append(href).append(after);
