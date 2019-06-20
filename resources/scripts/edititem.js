@@ -10,16 +10,17 @@ document.addEventListener("ondataloaded", function(e)
   $('#item-category-form')[0].setCallback(changeItemData);
   $('#item-details-form')[0].setCallback(function()
   {
-    let details = $('#item-details').find('dynamic-table')[0].toJSON();
+    let details = $('#item-details')[0].toJSON();
     window.QueryManager.post('CHANGE_ITEM', 'details/' + window.getCookie('sessionID') + '/' + current, details, function() {})
   });
 
   // Get item data
   window.QueryManager.get('ITEM', current, function(result)
   {
-    $('#item-data-form')[0].populate(result);
+    console.log(result);
+    window.document.title = 'Edit: ' + result['name'];
 
-    console.log(result['manufacturer'], result['category']);
+    $('#item-data-form')[0].populate(result);
 
     // Setup select boxes
     window.QueryManager.get('MANUFACTURERS', null, function(data) { populateSelect('manufacturer', data, result['manufacturer']); });
@@ -27,7 +28,7 @@ document.addEventListener("ondataloaded", function(e)
     window.QueryManager.get('CATEGORIES', null, function(data) { populateSelect('category', data, result['category']); });
 
     // Setup detail table rows
-    let table = $('#item-details').find('dynamic-table')[0];
+    let table = $('#item-details')[0];
     table.populate(result['details']);
     $('#item-details-form')[0].disable();
 
@@ -65,6 +66,9 @@ document.addEventListener("ondataloaded", function(e)
         });
       }
     });
+
+    window.cFooter();
+
   });
 });
 

@@ -50,6 +50,8 @@ document.addEventListener("ondataloaded", function()
   // Create our item
   window.QueryManager.get('ITEM', current, function(i_result)
   {
+    window.document.title = i_result['name'];
+
     if (i_result['vendor_id'] === window.user['belongs_to_vendor'])
     {
       $('.vendor-info').each(function()

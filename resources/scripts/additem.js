@@ -27,10 +27,32 @@ function form_submit(e)
       window.QueryManager.addImage(window.getCookie('sessionID'), JSON.parse(result)['item_id'], file);
     });
 
-    //window.location.href = window.root + 'item.html?item=' + result['item_id'];
+    window.location.href = window.root + 'item.html?item=' + result['item_id'];
   });
 
   return false;
+}
+
+function generateManufacturerList()
+{
+  let initial = arguments[0] || null;
+
+  // Add manufacturers to manufacturer selector element
+  window.QueryManager.get('MANUFACTURERS', null, function(data)
+  {
+    let select = $('#manufacturer');
+    select.empty();
+
+    for (let key in data)
+    {
+      select.append($('<option></option>').text(data[key]['manufacturer_name']).val(data[key]['manufacturer_id']));
+    }
+
+    if (initial)
+    {
+      select.val(initial);
+    }
+  });
 }
 
 document.addEventListener("ondataloaded", function()
@@ -46,28 +68,23 @@ document.addEventListener("ondataloaded", function()
     }
   });
 
-  // Add manufacturers to manufacturer selector element
-  window.QueryManager.get('MANUFACTURERS', null, function(data)
-  {
-    let select = $('#manufacturer');
-
-    for (let key in data)
-    {
-      select.append($('<option></option>').text(data[key]['manufacturer_name']).val(data[key]['manufacturer_id']));
-    }
-  });
+  generateManufacturerList();
 
   // Setup hook to add manufacturers
   $('#add-manufacturer').keypress(function(e)
   {
     if (e.keyCode === 13)
     {
-      window.QueryManager.post('ADD_MANUFACTURER', $('#add-manufacturer').val(), function(data)
+      window.QueryManager.post('ADD_MANUFACTURER', null,
       {
-        $('#l-add-manufacturer').text('Added Manufacturer:' + data['manufacturer_name'] + '.');
-        $('#manufacturer').append($('<option></option>').text(data['manufacturer_name']).val(data['manufacturer_id']));
-        $('#manufacturer').val(data['manufacturer_id']);
-      })
+        'manufacturer_name': $('#add-manufacturer').val(),
+        'manufacturer_description': ''
+      },
+      function(data)
+      {
+        data = JSON.parse(data);
+        generateManufacturerList(data['manufacturer_id']);
+      });
     }
   });
 

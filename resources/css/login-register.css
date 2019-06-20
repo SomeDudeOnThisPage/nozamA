@@ -5,51 +5,51 @@
     min-width: 500px;
     margin-left: 35%;
     margin-top: calc(75px + 55px);
-}   
-
-
-input[type=submit]{
-    font-weight: 500;
-    width: 80%;
-    background-image: linear-gradient(#F5DA81, #DBA901);
-    border-radius: 2px;
+    margin-bottom: 75px;
 }
-
 
 body {
     text-align: left;
     font-family: sans-serif;
 }
 
-
-label, input{
+.form-input-text{
     font-size: 14px;
     margin-left: 10%;
     display: block;
     height: auto;
     font-weight: normal;
-}
-
-input{
+    width: 80%;
     border: 1px solid gray;
     border-radius: 2px;
 }
 
-
-input[type=text]{
+.form-submit
+{
+    font-weight: 500;
     width: 80%;
+    background-image: linear-gradient(#F5DA81, #DBA901);
+    border: 1px solid gray;
+    border-radius: 2px;
+    margin-left: 10%;
 }
 
-input[type=password]{
-    width: 80%;
+.form-submit:hover
+{
+    cursor: pointer;
 }
 
-#login-disclaimer{
+.form-submit:active
+{
+    background-image: linear-gradient(#DBA901, #F5DA81);
+}
+
+#login-disclaimer, #register-disclaimer{
     margin-left: 10%;
     font-weight: bold;
 }
 
-#login-register{
+#login-register, #register-login{
     margin-left: 10%;
     font-size: 14px;
 }

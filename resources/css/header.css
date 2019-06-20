@@ -75,8 +75,12 @@
 
 #nav-search>.search_button:hover
 {
-  background-image: linear-gradient(#DBA901, #F5DA81);
   cursor: pointer;
+}
+
+#nav-search>.search_button:active
+{
+  background-image: linear-gradient(#DBA901, #F5DA81);
 }
 
 #search-button-image

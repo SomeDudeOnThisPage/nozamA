@@ -81,6 +81,10 @@ body
 
 #purchase:hover
 {
-    background-image: linear-gradient(#DBA901, #F5DA81);
     cursor: pointer;
+}
+
+#purchase:active
+{
+    background-image: linear-gradient(#DBA901, #F5DA81);
 }

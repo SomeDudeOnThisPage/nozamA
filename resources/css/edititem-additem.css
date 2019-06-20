@@ -1,0 +1,104 @@
+body{
+    font-family: sans-serif;
+}
+
+#content{
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+#content p
+{
+    font-weight: bold;
+}
+
+#content hr
+{
+    width: 80%;
+}
+
+#manufacturer{
+    margin-left: 10%;
+}
+
+#item-images-preview{
+    width: 80%;
+    padding: 0;
+    margin-left: 10%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 1px solid gray;
+}
+
+#item-images-preview > img
+{
+    width: 25%;
+    height: 25%;
+}
+
+.confirm{
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 50px;
+    height: 40px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
+    background-image: linear-gradient(#F5DA81, #DBA901);
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+.confirm:hover
+{
+    cursor: pointer;
+}
+
+.confirm:active{
+    background-image: linear-gradient(#DBA901, #F5DA81);
+}
+
+#item-images{
+    width: 80%;
+    margin-left: 10%;
+}
+
+#item-images::-webkit-file-upload-button
+{
+    background-image: linear-gradient(#F5DA81, #DBA901);
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+#item-images::-webkit-file-upload-button:hover
+{
+    cursor: pointer;
+}
+
+#item-images::-webkit-file-upload-button:active
+{
+    background-image: linear-gradient(#DBA901, #F5DA81);
+}
+
+.toggle-button
+{
+    margin-bottom: 25px;
+}
+
+dynamic-table
+{
+    margin-bottom: 25px;
+}
+
+dynamic-table table
+{
+    width: 80%;
+    min-width: 400px;
+}
+
+dynamic-table > button
+{
+    margin-left: 10%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

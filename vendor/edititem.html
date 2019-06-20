@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Account</title>
+        <title>Edit Item</title>
 
         <!-- External Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -16,69 +16,66 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../resources/css/shared.css">
-        <link rel="stylesheet" href="../resources/css/edititem.css">
+        <link rel="stylesheet" href="../resources/css/edititem-additem.css">
     </head>
 
     <body>
         <div id="main-container">
             <div id="content">
                 <p id="error-message"></p>
+                <toggle-form id="item-data-form">
+                    <p class="form-error"></p>
+                    <p>Item Data:</p>
 
-                <div id="item-data">
-                    <toggle-form id="item-data-form">
-                        <p class="form-error"></p>
-                        <p>Item Data:</p>
+                    <label for="name">Name:</label>
+                    <input id="name" class="form-input-text">
 
-                        <label for="name">Name:</label>
-                        <input id="name" class="form-input-text">
+                    <label for="description">Description:</label>
+                    <textarea id="description" class="form-input-text-large"></textarea>
 
-                        <label for="description">Description:</label>
-                        <textarea id="description" class="form-input-text-large"></textarea>
+                    <label for="price">Price:</label>
+                    <input id="price" type="number" class="form-input-text">
 
-                        <label for="price">Price:</label>
-                        <input id="price" type="number" class="form-input-text">
+                    <label for="tags">Tags:</label>
+                    <textarea id="tags" class="form-input-text-large" multiple></textarea>
+                    <button class="toggle-button">Edit</button>
+                </toggle-form>
 
-                        <label for="tags">Tags:</label>
-                        <textarea id="tags" class="form-input-text-large" multiple></textarea>
-                        <button class="toggle-button">Edit</button>
-                    </toggle-form>
-                </div>
+                <hr>
 
-                <div id="item-manufacturer">
-                    <toggle-form id="item-manufacturer-form">
-                        <p class="form-error"></p>
-                        <p>Manufacturer: </p>
+                <toggle-form id="item-manufacturer-form">
+                    <p class="form-error"></p>
+                    <p>Manufacturer: </p>
 
-                        <label for="manufacturer">Manufacturer:</label>
-                        <select id="manufacturer" class="form-select"></select>
+                    <label for="manufacturer">Manufacturer:</label>
+                    <select id="manufacturer" class="form-select"></select>
 
-                        <label for="add-manufacturer">Not here? Add:</label>
-                        <input id="add-manufacturer" class="form-input-text" placeholder="Press [ENTER] to confirm..." tf-parse-ignore>
-                        <button class="toggle-button">Edit</button>
-                    </toggle-form>
-                </div>
+                    <label for="add-manufacturer">Not here? Add:</label>
+                    <input id="add-manufacturer" class="form-input-text" placeholder="Press [ENTER] to confirm..." tf-parse-ignore>
+                    <button class="toggle-button">Edit</button>
+                </toggle-form>
 
-                <div id="item-category">
-                    <toggle-form id="item-category-form">
-                        <p class="form-error"></p>
-                        <p>Category: </p>
+                <hr>
 
-                        <label for="category">Category:</label>
-                        <select id="category" class="form-select"></select>
+                <toggle-form id="item-category-form">
+                    <p class="form-error"></p>
+                    <p>Category: </p>
 
-                        <button class="toggle-button">Edit</button>
-                    </toggle-form>
-                </div>
+                    <label for="category">Category:</label>
+                    <select id="category" class="form-select"></select>
 
-                <div id="item-details">
-                    <toggle-form id="item-details-form">
-                        <p class="form-error"></p>
-                        <p>Item Details: </p>
-                        <dynamic-table style="margin-left: 10%;" headers="Detail,Description" btext="Add Detail"></dynamic-table>
+                    <button class="toggle-button">Edit</button>
+                </toggle-form>
 
-                        <button class="toggle-button">Edit</button>
-                    </toggle-form>
-                </div>
+                <hr>
+
+                <toggle-form id="item-details-form">
+                    <p class="form-error"></p>
+                    <p>Item Details: </p>
+                    <dynamic-table style="margin-left: 10%;" id="item-details" headers="Detail,Description" btext="Add Detail"></dynamic-table>
+
+                    <button class="toggle-button">Edit</button>
+                </toggle-form>
             </div>
         </div>
     </body>

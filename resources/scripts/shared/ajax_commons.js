@@ -117,9 +117,18 @@ export default class QueryManager
       data = JSON.stringify(data);
     }
 
+    if (destination !== null && destination !== undefined)
+    {
+      destination = '/' + destination;
+    }
+    else
+    {
+      destination = '';
+    }
+
     $.ajax({
       type: 'POST',
-      url: NOZAMA.API + NOZAMA[d_type] + '/' + destination,
+      url: NOZAMA.API + NOZAMA[d_type] + destination,
       contentType: arguments[4] || 'application/json',
       data: data,
       /*xhrFields:

@@ -28,6 +28,9 @@ window.user = false;
 // MAIN FUNCTION HOOK
 window.onload = function()
 {
+  $(window).resize(function() { cFooter(); });
+
+
   let dispatch = function()
   {
     header();
@@ -40,7 +43,6 @@ window.onload = function()
     QueryManager.get('USER', getCookie('sessionID'), function(result)
     {
       window.user = result;
-      console.log(result);
       dispatch();
     });
   }
