@@ -69,6 +69,7 @@ html, body
   margin-left: 10%;
 }
 
+
 .toggle-button:active
 {
   background-image: linear-gradient(#DBA901, #F5DA81);

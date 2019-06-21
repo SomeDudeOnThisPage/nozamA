@@ -5,13 +5,11 @@ body{
 #content{
     border: 1px solid gray;
     border-radius: 2px;
-    width: 60%;
-    min-width: 700px;
-    margin: 0 auto;
 }
 
 p{
     margin-left: 10%;
+    margin-right: 10%;
     font-size: 16px;
 }
 

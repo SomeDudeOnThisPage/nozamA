@@ -8,10 +8,9 @@ p{
 
 #itemmgmt{
     border: 1px solid gray;
-    width: 55%;
+    width: 50%;
     float:right;
     display: block;
-
 }
 #data{
     float: left;
@@ -29,7 +28,7 @@ p{
 #content
 {
     width: 80%;
-    min-width: 550px;
+    min-width: 900px;
     height: 650px;
     border: 1px solid gray;
     border-radius: 2px;
