@@ -55,10 +55,11 @@ export default class ItemList extends AsyncElement
    */
   appendChunk()
   {
-    let start = this.chunkPointer * $(this).attr('chunk');
-    if (start <= this.items.length)
+    let start = this.chunkPointer * Number($(this).attr('chunk'));
+    console.log(this.chunkPointer);
+    if (start < this.items.length)
     {
-      this.setItems(this.items.slice(start, Math.min(start + $(this).attr('chunk'), this.items.length)));
+      this.setItems(this.items.slice(start, Math.min(start + Number($(this).attr('chunk')), this.items.length)));
       this.chunkPointer++;
     }
   }
@@ -110,8 +111,9 @@ export default class ItemList extends AsyncElement
 
   /**
    * Populates the object based on a search string or cart.
+   * @param arg0 Mode='random': Amount of random items. <br> Mode='chunk-loaded-display': Chunk size.
    */
-  populate()
+  populate(arg0)
   {
     switch($(this).attr('mode'))
     {

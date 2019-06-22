@@ -37,33 +37,16 @@ document.addEventListener("ondataloaded", function(e)
     {
       if (e.keyCode === 13)
       {
-        let manufacturer = $('#add-manufacturer').val();
-        if (manufacturer === '')
-        {
-          $('#item-manufacturer-form')[0].setError('Name must not be empty!');
-          return;
-        }
-
-        // Check if the entered manufacturer already exists in our list
-        let select = $('#manufacturer');
-        $('#manufacturer').find('option').each(function ()
-        {
-          if ($(this).text().toLowerCase() === manufacturer.toLowerCase())
+        window.QueryManager.post('ADD_MANUFACTURER', null,
           {
-            select.val(findValueByText(select, manufacturer));
-            return false;
-          }
-        });
-
-        // If not, add the manufacturer and create the option tag
-        window.QueryManager.post('ADD_MANUFACTURER', manufacturer, null, function (result)
-        {
-          let option = $('<option></option>')
-            .text(result['manufacturer_name'])
-            .val(result['manufacturer_id']);
-
-          select.append(option);
-        });
+            'manufacturer_name': $('#add-manufacturer').val(),
+            'manufacturer_description': ''
+          },
+          function(data)
+          {
+            let data2 = JSON.parse(data);
+            window.QueryManager.get('MANUFACTURERS', null, function(data) { populateSelect('manufacturer', data, data2['manufacturer_id']); });
+          });
       }
     });
 

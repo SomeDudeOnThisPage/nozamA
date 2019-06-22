@@ -30,7 +30,6 @@ window.onload = function()
 {
   $(window).resize(function() { cFooter(); });
 
-
   let dispatch = function()
   {
     header();

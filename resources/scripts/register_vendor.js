@@ -8,18 +8,37 @@ function register_action(ev)
   ev.preventDefault();
   ev.stopPropagation();
 
-  window.QueryManager.post('REGISTER_VENDOR', window.getCookie('sessionID'),
+  // Check if banner image satisfies requirements
+  let img = new Image();
+
+  img.src = window.URL.createObjectURL($('#register-vendor-image')[0].files[0]);
+
+  img.onload = function()
   {
-    name: $('#register-vendor-name').val(),
-    description: $('#register-vendor-description').val(),
-  },
-  function()
-  {
-    // Register Image
-    console.log($('#register-vendor-image').val());
-    window.QueryManager.addVendorImage(window.getCookie('sessionID'), $('#register-vendor-image')[0].files[0]);
-    //window.location.href = 'manage.html';
-  });
+    let d = img.naturalWidth / img.naturalHeight;
+    window.URL.revokeObjectURL( img.src );
+    console.log(d);
+
+    if (d !== 10 && d !== 5 && d !== /* Don't ask why. */ 3.3333333333333335)
+    {
+      window.error('Shop banner does not meet requirement: Dimensions must be w/h: 10:{1 or 2 or 3}');
+      return false;
+    }
+    else
+    {
+      window.QueryManager.post('REGISTER_VENDOR', window.getCookie('sessionID'),
+      {
+        name: $('#register-vendor-name').val(),
+        description: $('#register-vendor-description').val(),
+      },
+      function()
+      {
+        // Register Image
+        window.QueryManager.addVendorImage(window.getCookie('sessionID'), $('#register-vendor-image')[0].files[0]);
+        window.location.href = window.root + '/vendor/manage.html';
+      });
+    }
+  };
   return false;
 }
 
@@ -35,6 +54,6 @@ document.addEventListener("ondataloaded", function(e)
   // If the user already has a shop redirect him to his page
   if (window.user['belongs_to_vendor'] !== null)
   {
-    window.location.href = window.root + 'vendor/index.html';
+    window.location.href = window.root + 'vendor/index.html?vendor=' + window.user['belongs_to_vendor'];
   }
 });

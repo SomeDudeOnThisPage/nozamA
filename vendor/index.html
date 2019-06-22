@@ -3,24 +3,31 @@
     <head>
         <meta charset="UTF-8">
         <title>Vendor</title>
-
         <!-- External Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
         <!-- Modules -->
         <script type="module" src="../resources/scripts/shared/ajax_commons.js"></script>
         <script type="module" src="../resources/scripts/helpers.js"></script>
-
         <!-- Scripts -->
-
+        <script src="../resources/scripts/vendor-index.js"></script>
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../resources/css/shared.css">
+        <link rel="stylesheet" href="../resources/css/vendor.css">
     </head>
 
     <body>
         <div id="main-container">
             <div id="content">
                 <p id="error-message"></p>
+                <div id="vendor-info">
+                    <img id="vendor-image" alt="oops">
+                    <p id="vendor-name"></p>
+                    <p id="vendor-description"></p>
+                </div>
+                <div id="vendor-items">
+                    <p>This shop sells the following items:</p>
+                    <item-list id="item-list"></item-list>
+                </div>
             </div>
         </div>
     </body>

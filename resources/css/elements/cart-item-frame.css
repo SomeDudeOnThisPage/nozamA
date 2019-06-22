@@ -62,8 +62,12 @@
 
 .cart-info > button:hover
 {
-  background-image: linear-gradient(#DBA901, #F5DA81);
   cursor: pointer;
+}
+
+.cart-info > button:active
+{
+  background-image: linear-gradient(#DBA901, #F5DA81);
 }
 
 .image

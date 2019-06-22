@@ -22,7 +22,8 @@ function generate(item, vendor)
   let index = findIndex(window.user['cart'], 'item_id', Number(current));
   if (index)
   {
-    $('#total-cart').text('Total of #' + window.user['cart'][index]['amount'] + ' items in cart.');
+    $('#total-cart').text('#' + window.user['cart'][index]['amount'] + ' items in cart.');
+    $('#total-hr').css('display', 'block');
   }
 }
 
@@ -75,14 +76,14 @@ document.addEventListener("ondataloaded", function()
 
     if (index)
     {
-      newAmount += window.user['cart'][index]['amount'] || 0;
+      newAmount += window.user['cart'][index]['amount'] || 1;
     }
 
     let destination = window.getCookie('sessionID') + '/' + current + '/' + newAmount;
 
     window.QueryManager.post('ADD_CART', destination, null, function()
     {
-      $('#total-cart').text('Total of #' + newAmount + ' items in cart.');
+      $('#total-cart').text('#' + newAmount + ' items in cart.');
       location.reload();
       //window.user['cart'][index]['amount'] = newAmount;
     });

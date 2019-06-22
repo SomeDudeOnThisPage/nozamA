@@ -27,7 +27,7 @@ function form_submit(e)
       window.QueryManager.addImage(window.getCookie('sessionID'), JSON.parse(result)['item_id'], file);
     });
 
-    window.location.href = window.root + 'item.html?item=' + result['item_id'];
+    window.location.href = window.root + 'vendor/manage.html';
   });
 
   return false;

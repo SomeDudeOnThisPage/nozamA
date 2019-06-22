@@ -11,15 +11,15 @@ p
 #content{
     border: 1px solid gray;
     border-radius: 4px;
-    padding-bottom: 75px;
+    padding-bottom: 25px;
     /* Setz auf keinen fall height von content, das verwirrt den footer */
 }
 
 #item-data {
-    margin-left: 10%;
-    width: 65%;
     float: left;
-    padding-top: 20px;
+    margin-left: 25px;
+    margin-top: 25px;
+    width: 65%;
 }
 
 #add-to-cart {
@@ -33,17 +33,60 @@ p
 }
 
 #item-details{
-    width:  80%;
-    margin-left: 10%;
+    width:  calc(100% - 50px);
+    margin-left: 25px;
+    margin-bottom: 0;
 }
 
 #buy-item{
-    font-size: 14px;
-    width: 21%;
-    padding-right: 4px;
-    padding-top: 20px;
     float: right;
-    height: 80px;
+    font-size: 14px;
+    width: calc(25% - 50px);
+    padding: 25px;
+    border: 1px solid black;
+    border-radius: 0 0 0 4px;
+    border-right: none;
+    border-top: none;
+}
+
+#smol
+{
+    margin-bottom: 0;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+#buy-item > hr
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#buy-item > label
+{
+    display: inline;
+    width: 75px;
+    margin-left: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#buy-item > input
+{
+    display: inline;
+    margin-bottom: 5px;
+    width: calc(100% - 75px);
+}
+
+#total-cart
+{
+    font-size: 16px;
+    margin: 0;
+}
+
+#buy-item > button
+{
+    width: 100%;
 }
 
 .vendor-info{
@@ -63,7 +106,7 @@ p
 
 dynamic-table table
 {
-    width: 80%;
+    width: 100%;
     margin-left: 0;
 }
 

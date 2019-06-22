@@ -55,12 +55,40 @@ html, body
   display: inline-block;
 }
 
+#ep-error
+{
+  width: 80%;
+  border: 1px solid darkgrey;
+  border-radius: 2px;
+  text-align: center;
+  margin-left: 10%;
+  padding: 10px;
+}
+
+#error-number, #whats-this
+{
+  margin: 0;
+  padding: 5px;
+}
+
 #error-message
 {
   margin: 0;
 }
 
-.toggle-button
+#error-number
+{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#representation
+{
+  width: 60%;
+  border: 2px solid darkgrey;
+}
+
+.toggle-button, #secret
 {
   background-image: linear-gradient(#F5DA81, #DBA901);
   border: 1px solid gray;
@@ -69,8 +97,14 @@ html, body
   margin-left: 10%;
 }
 
+#secret
+{
+  width: 80%;
+  margin-left: 10%;
+  padding: 5px;
+}
 
-.toggle-button:active
+.toggle-button:active, #secret:active
 {
   background-image: linear-gradient(#DBA901, #F5DA81);
 }
@@ -104,6 +138,11 @@ html, body
   border: 1px solid darkgrey;
   text-align: center;
   margin-top: 0;
+}
+
+#l-shop-description:hover #description-help
+{
+  display: inline-block;
 }
 
 label

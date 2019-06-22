@@ -30,11 +30,20 @@
                     <input type="text" id="register-vendor-name" class="form-input-text" required>
                     <br>
 
-                    <label for="register-vendor-description" class="form-label">Shop Description:</label>
+                    <label for="register-vendor-description" class="form-label" id="l-shop-description">Shop Description:</label>
                     <textarea id="register-vendor-description" class="form-input-text-large" required></textarea>
+                    <div id="description-help" style="display: none;">
+                        <p>The description should include:</p>
+                        <ul>
+                            <li>General Description</li>
+                            <li>Address</li>
+                            <li>Phone-Number / Mail Address</li>
+                        </ul>
+                    </div>
+
                     <br>
 
-                    <label for="register-vendor-image" class="form-label">Shop Image:</label>
+                    <label for="register-vendor-image" class="form-label">Shop Banner: (Format w/h: 10:{1 or 2 or 3})</label>
                     <input type="file" id="register-vendor-image" class="form-input-image" required accept="image/*">
                     <br>
 

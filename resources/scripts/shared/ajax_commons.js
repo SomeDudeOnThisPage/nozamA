@@ -27,11 +27,11 @@ const NOZAMA = {
 
 const emsg = {
   0: {redirect: 500},
-  400: {msg: 'The provided credentials were incorrect', fatal: false},
-  401: {msg: 'You are unauthorized to continue', fatal: false},
-  404: {msg: 'The data you are requesting does not exist', fatal: false},  // TBH this should NEVER be returned by a request but better be safe than sorry.
-  405: {msg: 'Disallowed', fatal: false},
-  409: {msg: 'The provided credentials already exist', fatal: false},
+  400: {msg: 'The provided data was incorrect', fatal: false},
+  401: {msg: 'You are unauthorized to continue', fatal: true},
+  404: {msg: 'The action you were trying to perform does not exist', fatal: true},  // TBH this should NEVER be returned by a request but better be safe than sorry.
+  405: {msg: 'Disallowed', fatal: true},
+  409: {msg: 'The provided data already exist', fatal: false},
   500: {msg: 'Internal Server Error', fatal: true},
 };
 
@@ -48,7 +48,7 @@ const cerror = function(xhr, e_callback)
 
   if (emsg[xhr.status].fatal)
   {
-    //window.location.href = '/nozamA/leo_your_server_sucks.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
+    window.location.href = '/nozamA/e.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
   }
   else
   {

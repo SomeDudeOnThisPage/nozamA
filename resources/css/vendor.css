@@ -1,9 +1,48 @@
 #itemmgmt
 {
-  position: relative;
-  height: 625px;
-  border: 2px black solid;
+  border: 1px none gray;
+  border-left-style: solid;
   width: 50%;
+  float:right;
+  display: block;
+}
+
+#content
+{
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+#data
+{
+  float: left;
+  width: 45%;
+  display: block;
+}
+
+#data > a
+{
+  margin-top: 20px;
+  padding: 10px;
+  background-image: linear-gradient(#F5DA81, #DBA901);
+  text-decoration: none;
+  color: black;
+  border: 1px solid darkgrey;
+  border-radius: 2px;
+  display: block;
+  width: calc(80% - 20px);
+  text-align: center;
+  margin-left: 10%;
+}
+
+#data > a:visited
+{
+  color: black;
+}
+
+#vendor-image > img
+{
+  width: 25px;
 }
 
 #items
@@ -43,4 +82,56 @@
 {
   position: absolute;
   right: 30px;
+}
+
+#description
+{
+  max-height: 380px;
+  min-height: 380px;
+  height: 380px;
+}
+
+/* vendor/index.html */
+
+#vendor-image
+{
+  position: absolute;
+  width: 100%;
+  top: 55px;
+  margin-left: -10%;
+}
+
+#vendor-name
+{
+  width: 80%;
+  margin-left: 10%;
+  font-weight: bold;
+  font-size: 55px;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#vendor-description
+{
+  margin-left: 10%;
+  font-size: 20px;
+  text-align: justify;
+  text-align-last: center;
+  width: 80%;
+}
+
+#vendor-description > table
+{
+  margin-left:auto;
+  margin-right:auto;
+  text-align: left;
+  text-align-last: left;
+}
+
+#vendor-items > p
+{
+  margin-left: 0;
+  margin-bottom: 5px;
+  font-size: 20px;
 }

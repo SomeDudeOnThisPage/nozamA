@@ -31,20 +31,22 @@
                     <p id="item-price"></p>
                 </div>
 
-
                 <div id="buy-item">
                     <label for="add-to-cart-amount" class="form-label">Amount:</label>
                     <input id="add-to-cart-amount" type="number" min="1" max="99" placeholder="amount" value="1">
-                    <br><br>
                     <button id="add-to-cart">Add to cart</button>
+                    <hr>
                     <p id="total-cart"></p>
+                    <hr id="total-hr" style="display: none;">
+                    <p id="smol"><b>Disclaimer</b>: We are not affiliated with the vendor of this product in any way, shape or form.
+                        <br>We can not, and will not offer you support for this product, nor offer refunds. These services are at the
+                    discretion of this items' respective vendor and / or manufacturer.</p>
                 </div>
 
                 <div id="item-details">
                     <dynamic-table id="item-details-table" headers="Detail,Description" no-add no-delete>
                     </dynamic-table>
                 </div>
-
 
                 <!-- Hidden elements made visible when the logged in user is the vendor selling the displayed item -->
                 <div class="vendor-info" style="display:none;">

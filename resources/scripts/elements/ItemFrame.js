@@ -44,14 +44,6 @@ export default class ItemFrame extends AsyncElement
     self.find('.price').text((data['price'] * window.currency.rate).toFixed(2) + window.currency.symbol);
     self.find('.description').text(desc);
 
-
-    /*elements[0].href = ;
-    elements[0].innerText = data['name'];
-    elements[1].children[0].src = ;
-    //window.QueryManager.loadImage(data['images'][0], elements[1].children[0]);
-    elements[2].innerText = ;
-    elements[3].innerText = desc;*/
-
     // Check if the user is the vendor of this item
     if (data['vendor_id'] === window.user['belongs_to_vendor'])
     {
@@ -66,6 +58,7 @@ export default class ItemFrame extends AsyncElement
     }
 
     $(this.wrapper).fadeIn(750);
+    window.cFooter();
   }
 
   constructor()
