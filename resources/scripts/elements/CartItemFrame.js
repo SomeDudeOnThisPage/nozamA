@@ -32,6 +32,7 @@ export default class CartItemFrame extends ItemFrame
       let destination = window.getCookie('sessionID') + '/' + self.attr('item') + '/0';
       window.QueryManager.post('ADD_CART', destination, null, function()
       {
+        window.checkCart();
         self.remove();
       });
     });

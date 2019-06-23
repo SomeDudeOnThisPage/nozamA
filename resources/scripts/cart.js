@@ -10,12 +10,9 @@ document.addEventListener("ondataloaded", function(e)
     $('#cart-content, #sidebar-right').show();
     $('item-list')[0].populate();
 
-    console.log(window.user);
     $('#street').text(window.user['street']);
     $('#city-zip').text(window.user['zip'] + ' ' + window.user['city']);
     $('#full-name').text(window.user['name']);
-
-
 
     $('#purchase').click(function()
     {

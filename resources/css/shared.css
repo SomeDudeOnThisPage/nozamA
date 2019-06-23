@@ -18,6 +18,12 @@ html, body
   font-family: sans-serif;
 }
 
+body
+{
+  /* Firefox */
+  overflow-y: hidden;
+}
+
 .item-list-container
 {
   padding: 10px;
@@ -29,7 +35,7 @@ html, body
 {
   height: 100%;
   min-height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   margin: -1px;
 }
 

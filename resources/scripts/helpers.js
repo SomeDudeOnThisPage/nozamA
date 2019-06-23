@@ -68,6 +68,11 @@ window.addStylesheet = function()
   $(element).append(stylesheet);
 };
 
+/**
+ * Checks if the footer position needs to be adjusted.
+ * Should be called from any element generator that can
+ * change the height of the page.
+ */
 window.cFooter = function()
 {
   let footer = $('.footer');
@@ -81,9 +86,26 @@ window.cFooter = function()
   }
 };
 
+/**
+ * Convenience function to set the #error-message paragraph text.
+ * @param msg The message.
+ */
 window.error = function(msg)
 {
   $('#error-message').text(arguments[1] || '' + msg);
+};
+
+/**
+ * Called on remove of cart item frames.
+ * Only on /account/cart.html
+ */
+window.checkCart = function()
+{
+  if ($('item-list').children().length === 0)
+  {
+    $('#cart-content, #sidebar-right').hide();
+    $('#empty').fadeIn(150);
+  }
 };
 
 /**
@@ -105,6 +127,10 @@ window.getCookie = function(name)
   return false;
 };
 
+/**
+ * Prepares logout procedure.
+ * Logout itself is handled on the account pages' script.
+ */
 window.logout = function()
 {
   document.cookie = "sessionID=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
@@ -124,7 +150,8 @@ try
 }
 catch(ignored)
 {
-  // Internet Explorer GRRRRRRRRRRRRRRRRRR...
+  // We are using a browser that does not support CustomElements.v1
+  // -> Probably IE or Edge.
   console.log('Why InternetExplorer, GRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR!');
   $('body').empty();
 

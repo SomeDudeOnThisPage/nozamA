@@ -40,7 +40,10 @@ function register_action(ev)
           'zip': $('#zip').val(),
           'street': $('#street').val()
         },
-        function() {});
+        function()
+        {
+          window.location.href = window.root + 'index.html';
+        });
     });
   });
 
