@@ -8,7 +8,7 @@ export default class ItemImageDisplay extends AsyncElement
    */
   preDataLoaded()
   {
-    this.wrapper.load('/nozamA/resources/html/elements/item-image-display.html');
+    this.wrapper.load(window.resources + 'html/elements/item-image-display.html');
   }
 
   /**

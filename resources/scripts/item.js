@@ -2,7 +2,7 @@ let current;
 
 function generate(item, vendor)
 {
-  let v_href = window.root + '/vendor/index.html?vendor=' + item['vendor_id'];
+  let v_href = window.root + 'vendor/index.html?vendor=' + item['vendor_id'];
 
   $('#item-images')[0].generate(item['images']);
 

@@ -17,7 +17,6 @@ document.addEventListener("ondataloaded", function(e)
   // Get item data
   window.QueryManager.get('ITEM', current, function(result)
   {
-    console.log(result);
     window.document.title = 'Edit: ' + result['name'];
 
     $('#item-data-form')[0].populate(result);

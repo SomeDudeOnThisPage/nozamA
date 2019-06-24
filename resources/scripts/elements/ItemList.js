@@ -56,7 +56,6 @@ export default class ItemList extends AsyncElement
   appendChunk()
   {
     let start = this.chunkPointer * Number($(this).attr('chunk'));
-    console.log(this.chunkPointer);
     if (start < this.items.length)
     {
       this.setItems(this.items.slice(start, Math.min(start + Number($(this).attr('chunk')), this.items.length)));

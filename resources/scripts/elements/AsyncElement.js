@@ -46,7 +46,7 @@ export default class AsyncElement extends HTMLElement
    */
   preDataLoaded()
   {
-    this.wrapper.load('/nozamA/resources/html/elements/loader.html');
+    this.wrapper.load(window.resources + 'html/elements/loader.html');
   }
 
   /**

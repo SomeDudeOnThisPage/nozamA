@@ -16,8 +16,8 @@ import OrderFrame from "./elements/OrderFrame.js";
 */
 
 // DEFINE GLOBALS
-window.root = '/';
-window.resources = '/resources/';
+window.root = window.location.origin + '/';
+window.resources = window.root + '/resources/';
 window.currency = {
   'symbol' : '€',
   'rate' : 0.89 // Might be a good idea to get this dynamically but eeeeh...
