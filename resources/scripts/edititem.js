@@ -1,6 +1,6 @@
 let current;
 
-document.addEventListener("ondataloaded", function(e)
+document.addEventListener("ondataloaded", function()
 {
   current = new URL(window.location.href).searchParams.get('item');
 
