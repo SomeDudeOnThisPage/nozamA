@@ -1,5 +1,3 @@
-const NOZAMA_IMAGE_PATH = 'https://progex.qwertxzy.me/';
-
 let vendor;
 let items;
 let list;

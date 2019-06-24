@@ -16,8 +16,8 @@ import OrderFrame from "./elements/OrderFrame.js";
 */
 
 // DEFINE GLOBALS
-window.root = '/nozamA/';
-window.resources = '/nozamA/resources/';
+window.root = '/';
+window.resources = '/resources/';
 window.currency = {
   'symbol' : '€',
   'rate' : 0.89 // Might be a good idea to get this dynamically but eeeeh...

@@ -1,3 +1,7 @@
+/**
+ * All common API endpoints, mirrored in case any should change during development.
+ * @type {{REGISTER: string, CHANGE_USER: string, VENDOR_IMAGE: string, REGISTER_VENDOR: string, SEARCH: string, RANDOM: string, MANUFACTURERS: string, ADD_CART: string, CHANGE_PASSWORD: string, ADD_ITEM_IMAGE: string, ADD_ITEM: string, USER: string, CATEGORIES: string, PURCHASE: string, ITEM: string, ORDER: string, EDIT_VENDOR: string, REMOVE_CART: string, CHANGE_ITEM: string, CHANGE_ADDRESS: string, ADD_MANUFACTURER: string, VENDOR: string, API: string, LOGIN: string}}
+ */
 const NOZAMA = {
   API: 'https://api.qwertxzy.me',
   LOGIN: '/login',
@@ -25,6 +29,10 @@ const NOZAMA = {
   PURCHASE: '/purchase'
 };
 
+/**
+ * Common error messages and handling options.
+ * @type {{"0": {redirect: number}, "400": {msg: string, fatal: boolean}, "401": {msg: string, fatal: boolean}, "500": {msg: string, fatal: boolean}, "404": {msg: string, fatal: boolean}, "405": {msg: string, fatal: boolean}, "409": {msg: string, fatal: boolean}}}
+ */
 const emsg = {
   0: {redirect: 500},
   400: {msg: 'The provided data was incorrect', fatal: false},
@@ -35,6 +43,11 @@ const emsg = {
   500: {msg: 'Internal Server Error', fatal: true},
 };
 
+/**
+ * Default error checking function for ajax requests.
+ * @param xhr The returned XHR object.
+ * @param e_callback A custom callback, if desired.
+ */
 const cerror = function(xhr, e_callback)
 {
   // If our xhr.status is 0 it means we got the funny CORS error, meaning that the API server must be down or messed up.
@@ -167,7 +180,7 @@ export default class QueryManager
       processData: false,
       contentType: false,
       data: fdata,
-      error: function(xhr, _1, _2)
+      error: function(xhr)
       {
         cerror(xhr, function() {});
       },
@@ -175,6 +188,11 @@ export default class QueryManager
     });
   }
 
+  /**
+   * Adds an image banner to a vendor.
+   * @param session SessionID of vendor.
+   * @param file Image file.
+   */
   static addVendorImage(session, file)
   {
     let fdata = new FormData();
@@ -186,7 +204,7 @@ export default class QueryManager
       processData: false,
       contentType: false,
       data: fdata,
-      error: function(xhr, _1, _2)
+      error: function(xhr)
       {
         cerror(xhr, function() {});
       },
@@ -210,7 +228,7 @@ export default class QueryManager
         'email': email,
         'password': password,
       },
-      error: function(xhr, _1, _2)
+      error: function(xhr)
       {
         cerror(xhr, function()
         {
@@ -260,7 +278,7 @@ export default class QueryManager
           window.location.href = "index.html";
         }
       },
-      error: function(xhr, _1, _2)
+      error: function(xhr)
       {
         cerror(xhr, function()
         {
@@ -290,36 +308,12 @@ export default class QueryManager
         // href to account page
         window.location.href = 'index.html?password_changed=yes';
       },
-      error: function(xhr, _1, _2)
+      error: function(xhr)
       {
         cerror(xhr, function()
         {
           $('#error-message').text(xhr.status + ' ' + emsg[xhr.status].msg);
         })
-      },
-    });
-  }
-
-  static registerVendor(name, description, sessionID)
-  {
-    $.ajax({
-      type: 'POST',
-      url: NOZAMA.API + NOZAMA.REGISTER_VENDOR + '/' + sessionID,
-      contentType: 'application/json',
-      data: JSON.stringify({
-        "name": name,
-        "description": description
-      }),
-      success: function()
-      {
-        window.location.href = window.root + 'vendor/index.html';
-      },
-      error: function(xhr, _1, _2)
-      {
-        cerror(xhr, function()
-        {
-          $('#error-message').text(xhr.status + ' ' + emsg[xhr.status].msg);
-        });
       },
     });
   }
