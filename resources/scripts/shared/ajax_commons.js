@@ -21,6 +21,7 @@ const NOZAMA = {
   CATEGORIES: '/categories',
   ADD_ITEM: '/add_item',
   ADD_ITEM_IMAGE: '/add_item_image',
+  REMOVE_ITEM: '/delete_item',
   CHANGE_ITEM: '/change_item',
   CHANGE_ADDRESS: '/change_address',
   MANUFACTURERS: '/manufacturers',
@@ -53,19 +54,17 @@ const cerror = function(xhr, e_callback)
   // If our xhr.status is 0 it means we got the funny CORS error, meaning that the API server must be down or messed up.
   // Somehow the browser yoinks these though and gives us a 0, because guess what! When the server is down, the
   // CORS headers are obviously not set!
+  let s = true;
+  s = e_callback(xhr); // Stop fatal redirect if we want to
 
   if (emsg[xhr.status].redirect)
   {
     xhr.status = emsg[xhr.status].redirect;
   }
 
-  if (emsg[xhr.status].fatal)
+  if (s && emsg[xhr.status].fatal)
   {
-    window.location.href = '/nozamA/e.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
-  }
-  else
-  {
-    e_callback();
+    window.location.href = window.root + 'e.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
   }
 };
 

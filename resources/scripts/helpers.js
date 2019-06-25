@@ -43,6 +43,12 @@ window.onload = function()
     {
       window.user = result;
       dispatch();
+    }, null,
+    function()
+    {
+      alert('Your session has expired. Please log back in.');
+      window.logout();
+      return false;
     });
   }
   else

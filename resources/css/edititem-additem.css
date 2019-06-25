@@ -80,6 +80,21 @@ body{
     background-image: linear-gradient(#DBA901, #F5DA81);
 }
 
+#delet-this
+{
+    border: 1px solid gray;
+    border-radius: 2px;
+    margin-left: 10%;
+    margin-bottom: 25px;
+    width: 80%;
+    background-image: linear-gradient(#F5DA81, #DBA901);
+}
+
+#delet-this:active
+{
+    background-image: linear-gradient(#DBA901, #F5DA81);
+}
+
 .toggle-button
 {
     margin-bottom: 25px;

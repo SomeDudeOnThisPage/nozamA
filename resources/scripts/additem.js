@@ -12,7 +12,7 @@ function form_submit(e)
   {
     'name': $('#item-name').val(),
     'description': $('#item-description').val(),
-    'manufacturer': 1,
+    'manufacturer': $('#manufacturer').val(),
     'price': $('#item-price').val(),
     'category': $('#item-category').val(),
     'tags': $('#item-tags').val().split(/[ ,]+/),

@@ -49,6 +49,15 @@ document.addEventListener("ondataloaded", function()
       }
     });
 
+    // Delete
+    $('#delet-this').click(function()
+    {
+      window.QueryManager.post('REMOVE_ITEM', window.getCookie('sessionID') + '/' + current, null, function(data)
+      {
+        window.location.href = window.root + 'vendor/manage.html';
+      });
+    });
+
     window.cFooter();
 
   });
