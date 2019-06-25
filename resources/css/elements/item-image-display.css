@@ -25,7 +25,8 @@
     height: calc(250px / 4);
     padding: 0;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
     outline: none;
 }
 
