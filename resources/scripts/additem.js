@@ -21,13 +21,20 @@ function form_submit(e)
   function(result)
   {
     let files = Array.from($('#item-images')[0].files);
+    let total = files.length;
+    let added = 0;
 
     files.forEach(function(file)
     {
       window.QueryManager.addImage(window.getCookie('sessionID'), JSON.parse(result)['item_id'], file);
-    });
+      added++;
 
-    window.location.href = window.root + 'vendor/manage.html';
+      // Do not continue until all images are added.
+      if (added === total)
+      {
+        window.location.href = window.root + 'vendor/manage.html';
+      }
+    });
   });
 
   return false;
