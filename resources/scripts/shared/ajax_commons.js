@@ -54,15 +54,15 @@ const cerror = function(xhr, e_callback)
   // If our xhr.status is 0 it means we got the funny CORS error, meaning that the API server must be down or messed up.
   // Somehow the browser yoinks these though and gives us a 0, because guess what! When the server is down, the
   // CORS headers are obviously not set!
-  let s = true;
-  s = e_callback(xhr); // Stop fatal redirect if we want to
+  let propagate;
+  propagate = e_callback(xhr); // Stop fatal redirect if we want to
 
   if (emsg[xhr.status].redirect)
   {
     xhr.status = emsg[xhr.status].redirect;
   }
 
-  if (s && emsg[xhr.status].fatal)
+  if (propagate && emsg[xhr.status].fatal)
   {
     window.location.href = window.root + 'e.html?id=' + xhr.status + '&msg=' + emsg[xhr.status].msg;
   }
@@ -84,6 +84,7 @@ export default class QueryManager
   static get(d_type, destination, callback)
   {
     let url = NOZAMA.API + NOZAMA[d_type];
+    let e_callback = arguments[4] || null;
 
     if (destination !== null)
     {
@@ -105,9 +106,9 @@ export default class QueryManager
           callback(result);
         }
       },
-      error: function(xhr, _1, _2)
+      error: function(xhr)
       {
-        cerror(xhr, arguments[4] || function() {});
+        cerror(xhr, e_callback || function() { return true; });
       }
     });
   }

@@ -44,9 +44,9 @@ window.onload = function()
       window.user = result;
       dispatch();
     }, null,
-    function()
+    function(xhr)
     {
-      alert('Your session has expired. Please log back in.');
+      alert('Error ' + xhr.status + '. Your session has expired. Please log back in.');
       window.logout();
       return false;
     });
