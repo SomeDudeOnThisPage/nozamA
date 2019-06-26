@@ -26,14 +26,16 @@ function form_submit(e)
 
     files.forEach(function(file)
     {
-      window.QueryManager.addImage(window.getCookie('sessionID'), JSON.parse(result)['item_id'], file);
-      added++;
-
-      // Do not continue until all images are added.
-      if (added === total)
+      window.QueryManager.addImage(window.getCookie('sessionID'), JSON.parse(result)['item_id'], file, function()
       {
-        window.location.href = window.root + 'vendor/manage.html';
-      }
+        added++;
+
+        // Do not continue until all images are added.
+        if (added === total)
+        {
+          window.location.href = window.root + 'vendor/manage.html';
+        }
+      });
     });
   });
 

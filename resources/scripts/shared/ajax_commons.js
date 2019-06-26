@@ -169,7 +169,7 @@ export default class QueryManager
    * @param item The itemID.
    * @param file The actual file.
    */
-  static addImage(session, item, file)
+  static addImage(session, item, file, callback)
   {
     let fdata = new FormData();
     fdata.append('image', file);
@@ -184,7 +184,10 @@ export default class QueryManager
       {
         cerror(xhr, function() {});
       },
-      success: function(data) {}
+      success: function(data)
+      {
+        callback(data);
+      }
     });
   }
 
